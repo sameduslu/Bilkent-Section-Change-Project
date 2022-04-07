@@ -1,7 +1,3 @@
-<<<<<<< d3928b3d237f755b84fa64e623b22f48e2d4b5b4
-public class Register {
-    
-=======
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,5 +32,4 @@ public class Register {
 
         return result;
     }
->>>>>>> Add Students
 }
