@@ -1,11 +1,11 @@
 public class Person {
     protected String name;
-    protected int ID;
+    protected String ID;
     protected course[][] schedule2D;
     protected final int rowNum = 9;
     protected final int columnNum = 6; 
     protected Courses courses = new Courses();
-    public Person(String name, int ID){
+    public Person(String name, String ID){
         this.name = name;
         this.ID = ID;
         for(int i = 0; i < columnNum; i++){
