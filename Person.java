@@ -1,7 +1,7 @@
 public class Person {
     protected String name;
     protected int ID;
-    protected String[][] schedule2D;
+    protected course[][] schedule2D;
     protected final int rowNum = 9;
     protected final int columnNum = 6; 
     protected Courses courses = new Courses();
@@ -31,8 +31,8 @@ public class Person {
     private void addCourseToProgram(Course course) {
         for(int i = 0; i < columnNum; i++){
             for(int j = 0; j < rowNum; j++){
-                if(course.getBooleanMatrix(j, i)){
-                    schedule2D[j][i]=course.getName();
+                if(course.getBooleanMatrix()){
+                    schedule2D[j][i]=course;
                 }
             }
         } 
@@ -41,7 +41,7 @@ public class Person {
         for(int i = 0; i < columnNum; i++){
             for(int j = 0; j < rowNum; j++){
                 if(schedule2D[j][i]!=null){
-                    if(course.getBooleanMatrix(j, i)){
+                    if(course.getBooleanMatrix()){
                         return true;
                     }
                 }
