@@ -8,9 +8,9 @@ public class Person {
     public Person(String name, String ID){
         this.name = name;
         this.ID = ID;
-        for(int i = 0; i < columnNum; i++){
-            for(int j = 0; j < rowNum; j++){
-                schedule2D[j][i] = null; 
+        for(int i = 0; i < rowNum; i++){
+            for(int j = 0; j < columnNum; j++){
+                schedule2D[i][j] = null; //todo instantiate
             }
         } 
     }
@@ -29,19 +29,19 @@ public class Person {
         }
     }
     private void addCourseToProgram(Course course) {
-        for(int i = 0; i < columnNum; i++){
-            for(int j = 0; j < rowNum; j++){
-                if(course.getProgram()[j][i]){
-                    schedule2D[j][i]=course;
+        for(int i = 0; i < rowNum; i++){
+            for(int j = 0; j < columnNum; j++){
+                if(course.getProgram()[i][j]){
+                    schedule2D[i][j]=course;
                 }
             }
         } 
     }
     public boolean doesOverlap(Course course){
-        for(int i = 0; i < columnNum; i++){
-            for(int j = 0; j < rowNum; j++){
-                if(schedule2D[j][i]!=null){
-                    if(course.getProgram()[j][i]){
+        for(int i = 0; i < rowNum; i++){
+            for(int j = 0; j < columnNum; j++){
+                if(schedule2D[i][j]!=null){
+                    if(course.getProgram()[i][j]){
                         return true;
                     }
                 }
