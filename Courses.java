@@ -24,7 +24,8 @@ public class Courses {
         if(index>=0)
         {
             courses.remove(index);
-        }else{
+        }
+        else{
             System.out.println("The removal desired course can not found");
         }
     }
@@ -60,4 +61,7 @@ public class Courses {
     {
         return courses.size();
     }   
+    public Course getCourse (int index) {
+        return courses.get(index);
+    }
 }
