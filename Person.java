@@ -1,9 +1,9 @@
 public class Person {
     protected String name;
     protected String ID;
-    protected Course[][] schedule2D;
-    protected final int rowNum = 9;
-    protected final int columnNum = 6; 
+    protected Course[][] schedule2D = new Course[rowNum][columnNum];
+    protected static final int rowNum = 9;
+    protected static final int columnNum = 6;
     protected Courses courses = new Courses();
     public Person(String name, String ID){
         this.name = name;
@@ -25,7 +25,7 @@ public class Person {
             this.addCourseToProgram(course);
         }
         else{
-            System.out.println("The course spesified overlaps with another course.");
+            System.out.println("The course specified overlaps with another course.");
         }
     }
     private void addCourseToProgram(Course course) {
