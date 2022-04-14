@@ -1,7 +1,9 @@
+import java.util.Arrays;
 public class Person {
     protected String name;
     protected String ID;
     protected Course[][] schedule2D = new Course[rowNum][columnNum];
+    protected boolean[][] program = new boolean[rowNum][columnNum]; 
     protected static final int rowNum = 9;
     protected static final int columnNum = 6;
     protected Courses courses = new Courses();
@@ -9,9 +11,8 @@ public class Person {
         this.name = name;
         this.ID = ID;
         for(int i = 0; i < rowNum; i++){
-            for(int j = 0; j < columnNum; j++){
-                schedule2D[i][j] = null; //todo instantiate
-            }
+            Arrays.fill(schedule2D[i], null);
+            Arrays.fill(program[i],false);
         } 
     }
     public String getName() {
@@ -33,6 +34,7 @@ public class Person {
             for(int j = 0; j < columnNum; j++){
                 if(course.getProgram()[i][j]){
                     schedule2D[i][j]=course;
+                    program[i][j] = true;
                 }
             }
         } 
@@ -40,13 +42,25 @@ public class Person {
     public boolean doesOverlap(Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
-                if(schedule2D[i][j]!=null){
-                    if(course.getProgram()[i][j]){
-                        return true;
-                    }
+                if(this.program[i][j] && course.getProgram()[i][j]){
+                    return true;
                 }
             }
         } 
         return false;
+    }
+
+    public void printSchedule() {
+        for (int i = 0; i < rowNum; i++) {
+            for (int j = 0; j < columnNum; j++) {
+                if (schedule2D[i][j] == null) {
+                    System.out.print ("----- ");
+                }
+                else {
+                    System.out.print (schedule2D[i][j].getName() + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 }

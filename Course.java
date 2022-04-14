@@ -10,7 +10,7 @@ public class Course {
     boolean[][] program;
     Instructor instructor;
     // Queue veri yapısı gerekecek;
-    static final int quota = 20;
+    static final int quota = 25;
     /******************************************************************************************* */
     /**************************** CONSTRUCTOR ************************************************** */
     /******************************************************************************************* */
@@ -19,17 +19,26 @@ public class Course {
         this.section = section;
         this.program = matrice;
         this.instructor=instructor;
+        students = new ArrayList<Student>();
     }
     /****************************************************************************************** */
     /**************************** METHODS ***************************************************** */
     /****************************************************************************************** */
-    public void addStudent(Student newStudent)
+    public boolean addStudent(Student newStudent)
     {
-        if(this.isThereQuota())
+        if(this.isThereQuota() && !newStudent.doesOverlap(this))
         {
             students.add(newStudent);
-        }else{
-            System.out.println("Quota Full, student cannot added to desired course");
+            newStudent.addCourse(this);
+            return true;
+        }
+        else if (!this.isThereQuota()){
+            System.out.println("Quota is full, student cannot added to desired course!");
+            return false;
+        }
+        else {
+            System.out.println("This course overlapping with your current courses!");
+            return false;
         }
         
     }
@@ -43,7 +52,7 @@ public class Course {
         else if(students.size()>=quota)
         {
             areThereQuota= false;
-            System.out.println("HATA! STUDENT SAYISI KOTAYI ÖNCEDEN AŞMIŞ");
+            System.out.println("ERROR! STUDENT NUMBER HAS ALREADY EXCEEDED THE QUOTA");
         }
         return areThereQuota;
     }
@@ -79,6 +88,20 @@ public class Course {
             }
         }
         return false;
+    }
+
+    public void printProgram() {
+        for (int i = 0; i < program.length; i++) {
+            for (int j = 0; j < program[0].length; j++) {
+                if(program[i][j]) {
+                    System.out.print("1 ");
+                }
+                else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println();
+        }
     }
 
     public String toString () {

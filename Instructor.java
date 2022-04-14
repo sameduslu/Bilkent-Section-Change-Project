@@ -4,7 +4,6 @@ public class Instructor extends Person{
     private Student favorite;
     public Instructor(String name, String ID){
         super(name, ID);
-        this.favorite = favorite;
     }
     public String getName() {
         return name;
