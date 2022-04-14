@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Student extends Person{
     private ArrayList<Student>students = new ArrayList<Student>();
-    public Student(String name, int ID){
+    public Student(String name, String ID){
         super(name,ID);
         students.add(this);
     }
@@ -23,7 +23,7 @@ public class Student extends Person{
     public void removeCourseFromProgram(Course course){
         for(int i = 0; i < columnNum; i++){
             for(int j = 0; j < rowNum; j++){
-                if(course.getBooleanMatrix()&&schedule2D[j][i]!=null){
+                if(course.getProgram()[j][i]&&schedule2D[j][i]!=null){
                     schedule2D[j][i]=null;
                 }
             }

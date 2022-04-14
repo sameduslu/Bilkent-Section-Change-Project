@@ -60,4 +60,7 @@ public class Courses {
     {
         return courses.size();
     }   
+    public Course getCourse (int index) {
+        return courses.get(index);
+    }
 }

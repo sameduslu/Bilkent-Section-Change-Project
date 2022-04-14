@@ -89,7 +89,7 @@ public class Register {
     }
 
     private static ArrayList<Student> addStudents() {
-        ArrayList<Student> result;
+        ArrayList<Student> result = new ArrayList<Student>();
         try{
             File database = new File("Names_and_IDs.txt");
             Scanner sc = new Scanner(database);
