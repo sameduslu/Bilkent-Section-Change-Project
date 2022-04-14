@@ -24,7 +24,8 @@ public class Courses {
         if(index>=0)
         {
             courses.remove(index);
-        }else{
+        }
+        else{
             System.out.println("The removal desired course can not found");
         }
     }

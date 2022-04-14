@@ -64,8 +64,12 @@ public class Register {
                             continue;
                         }
                         else {
-                            possiblePath.addCourse(math132Course);
-                            allPaths.add(possiblePath);
+                            possiblePath.addCourse(engCourse);
+                            Courses addThat = new Courses();
+                            for (int pp = 0; pp < possiblePath.getSize(); pp++) {
+                                addThat.addCourse(possiblePath.getCourse(pp));
+                            }
+                            allPaths.add(addThat);
                         }
                         if(possiblePath.getSize() == 4) {
                             possiblePath.removeCourse(engCourse);
@@ -84,7 +88,13 @@ public class Register {
             }
         }
         
-        
+        for (int i = 0; i < allPaths.size(); i++) {
+            System.out.println("Path: " + (i+1));
+            for (int j = 0; j < allPaths.get(i).getSize(); j++) {
+                System.out.println(allPaths.get(i).getCourse(j).toString());
+            }
+            System.out.println();
+        }
 
     }
 
@@ -120,7 +130,7 @@ public class Register {
             while(sc.hasNextLine()) {
                 String name, section, insName, insSurname, insID;
                 Instructor instructor;
-                boolean[][] program = new boolean[6][9];
+                boolean[][] program = new boolean[Person.rowNum][Person.columnNum];
                 name = sc.next();
                 section = sc.next();
                 insName = sc.next();
@@ -128,8 +138,8 @@ public class Register {
                 insName += (" " + insSurname);
                 insID = "" + id;
                 instructor = new Instructor (insName, insID);
-                for (int i = 0; i <= 6; i++) {
-                    for (int j = 0; j<= 9; j++) {
+                for (int i = 0; i < Person.rowNum; i++) {
+                    for (int j = 0; j< Person.columnNum; j++) {
                         int check = sc.nextInt();
                         if(check == 1) {
                             program [i][j] = true;

@@ -10,7 +10,7 @@ public class Course {
     boolean[][] program;
     Instructor instructor;
     // Queue veri yapısı gerekecek;
-    static final int quota = 5;
+    static final int quota = 20;
     /******************************************************************************************* */
     /**************************** CONSTRUCTOR ************************************************** */
     /******************************************************************************************* */
@@ -79,6 +79,13 @@ public class Course {
             }
         }
         return false;
+    }
+
+    public String toString () {
+        String result = "";
+        result += (this.name + " ") ;
+        result += (this.section);
+        return result;
     }
 
 }
