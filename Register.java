@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Register {
     public static void main (String[] args) {
+        Authentication LoginPage = new Authentication();
         ArrayList<Student> allStudents = addStudents();
 
         Courses allCourses = addCourses();
