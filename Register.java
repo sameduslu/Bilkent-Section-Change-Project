@@ -141,14 +141,14 @@ public class Register {
             }
         }
 
-        /* for (int i = 0; i < allStudents.size(); i++) {         
+        for (int i = 0; i < allStudents.size(); i++) {         
             System.out.println("Student" + (i+1) + "'s program: ");
             allStudents.get(i).printSchedule();
-        } */
+        } 
 
         for(int i = 0; i < allCourses.getSize(); i++) {
             System.out.println(allCourses.getCourse(i).isThereQuota());
-        }
+        } 
     }
 
     private static ArrayList<Student> addStudents() {
