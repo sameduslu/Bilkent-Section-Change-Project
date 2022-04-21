@@ -1,13 +1,17 @@
 import java.util.ArrayList;
 public class Student extends Person{
-    private ArrayList<Student>students = new ArrayList<Student>();
+
+    private ArrayList <Student> friends = new ArrayList<>();
+    private ArrayList <Request> requests = new ArrayList<>();
+
     public Student(String name, String ID){
         super(name,ID);
-        students.add(this);
     }
-    public ArrayList<Student> getStudents() {
-        return students;
+
+    public ArrayList<Student> getFriends() {
+        return friends;
     }
+
     public void removeCourse(Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
@@ -20,6 +24,7 @@ public class Student extends Person{
             }
         } 
     }
+
     public void removeCourseFromProgram(Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
@@ -29,4 +34,26 @@ public class Student extends Person{
             }
         } 
     }
+
+    public boolean createSingleRequest (Course wanted) {
+        if (this.doesOverlap(wanted)) {
+            return false;
+        }
+        Request single = new SingleRequest(this, wanted);
+        requests.add(single);
+        wanted.addRequestToQueue(single);
+        return true;
+    }
+
+    public boolean createMultipleRequest (Courses wanted) {
+        if(this.doesOverlap(wanted)){
+            return false;
+        }
+        Request multiple = new MultipleRequest(this, wanted);
+        requests.add(multiple);
+        for (int i = 0; i < wanted.getSize(); i++) {
+            wanted.getCourse(i).addRequestToQueue(multiple); //TODO it is wrong for now it will change when database is implemented
+        }
+        return true;
+    } 
 }
