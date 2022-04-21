@@ -1,35 +1,49 @@
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  * Course
  */
 public class Course {
-    String name;
-    String section;// sectionu string aldım
-    ArrayList<Student> students;
-    boolean[][] program;
-    Instructor instructor;
-    // Queue veri yapısı gerekecek;
-    static final int quota = 20;
+    private final String NAME;
+    private final String SECTION;
+    private final ArrayList<Student> students;
+    private final boolean[][] PROGRAM;
+    private final Instructor INSTRUCTOR;
+    private Queue <Request> requestQueue = new LinkedList<>();
+    private boolean[] requestCheck;
+    
+    static final int quota = 25;
     /******************************************************************************************* */
     /**************************** CONSTRUCTOR ************************************************** */
     /******************************************************************************************* */
     public Course(String name, String section, boolean[][] matrice, Instructor instructor){// sonradan queue alacak
-        this.name = name;
-        this.section = section;
-        this.program = matrice;
-        this.instructor=instructor;
+        this.NAME = name;
+        this.SECTION = section;
+        this.PROGRAM = matrice;
+        this.INSTRUCTOR=instructor;
+        students = new ArrayList<Student>();
+        requestCheck = new boolean[150001];
     }
     /****************************************************************************************** */
     /**************************** METHODS ***************************************************** */
     /****************************************************************************************** */
-    public void addStudent(Student newStudent)
+    public boolean addStudent(Student newStudent)
     {
-        if(this.isThereQuota())
+        if(this.isThereQuota() && !newStudent.doesOverlap(this))
         {
             students.add(newStudent);
-        }else{
-            System.out.println("Quota Full, student cannot added to desired course");
+            newStudent.addCourse(this);
+            return true;
+        }
+        else if (!this.isThereQuota()){
+            System.out.println("Quota is full, student cannot added to desired course!");
+            return false;
+        }
+        else {
+            System.out.println("This course overlapping with your current courses!");
+            return false;
         }
         
     }
@@ -43,7 +57,7 @@ public class Course {
         else if(students.size()>=quota)
         {
             areThereQuota= false;
-            System.out.println("HATA! STUDENT SAYISI KOTAYI ÖNCEDEN AŞMIŞ");
+            System.out.println("ERROR! STUDENT NUMBER HAS ALREADY EXCEEDED THE QUOTA");
         }
         return areThereQuota;
     }
@@ -54,26 +68,26 @@ public class Course {
     //                            GET METHODS
     public String getName()
     {
-        return this.name;
+        return this.NAME;
     }
     public String getSection()
     {
-        return this.section;
+        return this.SECTION;
     }
     public ArrayList<Student> getStudents(){
         return this.students;
     }
     public boolean[][] getProgram(){
-        return this.program;
+        return this.PROGRAM;
     }
     public Instructor getInstructor()
     {
-        return this.instructor;
+        return this.INSTRUCTOR;
     }
     public boolean doesOverlap (Course otherCourse) {
-        for (int i = 0; i < program.length; i++) {
-            for (int j = 0; j < program[0].length; j++) {
-                if(program[i][j] == true && otherCourse.getProgram()[i][j] == true) {
+        for (int i = 0; i < PROGRAM.length; i++) {
+            for (int j = 0; j < PROGRAM[0].length; j++) {
+                if(PROGRAM[i][j] == true && otherCourse.getProgram()[i][j] == true) {
                     return true;
                 }
             }
@@ -81,11 +95,31 @@ public class Course {
         return false;
     }
 
+    public void printProgram() {
+        for (int i = 0; i < PROGRAM.length; i++) {
+            for (int j = 0; j < PROGRAM[0].length; j++) {
+                if(PROGRAM[i][j]) {
+                    System.out.print("1 ");
+                }
+                else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public String toString () {
         String result = "";
-        result += (this.name + " ") ;
-        result += (this.section);
+        result += (this.NAME + " ") ;
+        result += (this.SECTION);
         return result;
     }
 
+    public void addRequestToQueue (Request r) {
+        requestQueue.add(r);
+        requestCheck[r.getID()] = true; 
+    }
+
+    //TODO checking the requests in every second
 }
