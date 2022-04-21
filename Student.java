@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Student extends Person{
     private ArrayList<Student>students = new ArrayList<Student>();
-    public Student(String name, int ID){
+    public Student(String name, String ID){
         super(name,ID);
         students.add(this);
     }
@@ -9,9 +9,9 @@ public class Student extends Person{
         return students;
     }
     public void removeCourse(Course course){
-        for(int i = 0; i < columnNum; i++){
-            for(int j = 0; j < rowNum; j++){
-                if(schedule2D[j][i]!=null){
+        for(int i = 0; i < rowNum; i++){
+            for(int j = 0; j < columnNum; j++){
+                if(schedule2D[i][j]!=null){
                     removeCourseFromProgram(course);
                 }
                 else{
@@ -21,10 +21,10 @@ public class Student extends Person{
         } 
     }
     public void removeCourseFromProgram(Course course){
-        for(int i = 0; i < columnNum; i++){
-            for(int j = 0; j < rowNum; j++){
-                if(course.getBooleanMatrix()&&schedule2D[j][i]!=null){
-                    schedule2D[j][i]=null;
+        for(int i = 0; i < rowNum; i++){
+            for(int j = 0; j < columnNum; j++){
+                if(course.getProgram()[i][j]&&schedule2D[i][j]!=null){
+                    schedule2D[i][j]=null;
                 }
             }
         } 
