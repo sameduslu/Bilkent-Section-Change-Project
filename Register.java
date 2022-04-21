@@ -94,7 +94,7 @@ public class Register {
             }
         }
         
-         for (int i = 0; i < allPaths.size(); i++) {
+        for (int i = 0; i < allPaths.size(); i++) {
             System.out.println("Path: " + (i+1));
             for (int j = 0; j < allPaths.get(i).getSize(); j++) {
                 System.out.println(allPaths.get(i).getCourse(j).toString());

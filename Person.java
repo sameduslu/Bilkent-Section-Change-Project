@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class Person {
+public abstract class Person {
     protected String name;
     protected String ID;
     protected Course[][] schedule2D = new Course[rowNum][columnNum];
@@ -42,13 +42,51 @@ public class Person {
     public boolean doesOverlap(Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
-                if(this.program[i][j] && course.getProgram()[i][j]){
+                if (this.program[i][j] && this.schedule2D[i][j].getName().equals(course.getName())) {
+                    continue;
+                }
+                if (this.program[i][j] && course.getProgram()[i][j]){
                     return true;
                 }
             }
         } 
         return false;
     }
+
+    public boolean doesOverlap(Courses requestingCourses){
+        Courses noIncluded = new Courses();
+        //finding the courses which is not in the requesting courses and adding them to noIncluded 
+        for (int i = 0; i < courses.getSize(); i++) {
+            boolean ctr = true;
+            for (int j = 0; j < requestingCourses.getSize(); j++) {
+                if (requestingCourses.getCourse(j).getName().equals(courses.getCourse(i).getName())) {
+                    ctr = false;
+                }
+            }
+            if (ctr) {
+                noIncluded.addCourse(courses.getCourse(i));
+            }
+        }
+        //checking the compatibility of requesting courses and no included courses
+        for (int i = 0; i < requestingCourses.getSize(); i++) {
+            for (int j = 0; j < noIncluded.getSize(); j++) {
+                if(requestingCourses.getCourse(i).doesOverlap(noIncluded.getCourse(j))){
+                    return false;
+                }
+            } 
+        }
+        //checking the compatibility of requesting courses with each other
+        for (int i = 0; i < requestingCourses.getSize(); i++) {
+            for (int j = i+1; j < requestingCourses.getSize(); j++) {
+                if(requestingCourses.getCourse(i).doesOverlap(requestingCourses.getCourse(j))){
+                    return false;
+                }
+            } 
+        }
+
+        return true;
+    }
+    
 
     public void printSchedule() {
         for (int i = 0; i < rowNum; i++) {
