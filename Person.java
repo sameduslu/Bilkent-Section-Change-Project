@@ -1,12 +1,12 @@
 public class Person {
-    protected String name;
-    protected String ID;
+    protected final String NAME;
+    protected final String ID;
     protected Course[][] schedule2D = new Course[rowNum][columnNum];
     protected static final int rowNum = 9;
     protected static final int columnNum = 6;
     protected Courses courses = new Courses();
     public Person(String name, String ID){
-        this.name = name;
+        this.NAME = name;
         this.ID = ID;
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
@@ -15,7 +15,7 @@ public class Person {
         } 
     }
     public String getName() {
-        return name;
+        return NAME;
     }
     public String getID() {
         return ID;
