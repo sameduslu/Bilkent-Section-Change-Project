@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -14,6 +15,11 @@ public class Register {
         math102Courses = new Courses();
         math132Courses = new Courses();
         eng102Courses = new Courses();
+
+        /* for(int i = 0; i < allCourses.getSize(); i++) {
+            System.out.println(allCourses.getCourse(i).toString());
+            allCourses.getCourse(i).printProgram();
+        } */
 
         for (int i = 0; i < allCourses.getSize(); i++) {
             Course tempCourse = allCourses.getCourse(i);
@@ -96,6 +102,52 @@ public class Register {
             System.out.println();
         }
 
+        Random rand = new Random();
+
+        for (int i = 0; i < allStudents.size(); i++) {         
+
+            boolean isHappened = false;
+
+            int cnt = 0;
+
+            while (!isHappened) {
+                int pathNumber = rand.nextInt(allPaths.size());
+
+                if(cnt == 1000) {
+                    break;
+                }
+
+                boolean ctr = true;
+
+                for (int j = 0; j < allPaths.get(pathNumber).getSize(); j++) {
+                    ctr &= allPaths.get(pathNumber).getCourse(j).isThereQuota();
+                    ctr &= !(allStudents.get(i).doesOverlap(allPaths.get(pathNumber).getCourse(j)));
+                    //System.out.println(ctr + " " + pathNumber);
+                }
+    
+                if (ctr) {
+                    for (int j = 0; j < allPaths.get(pathNumber).getSize(); j++) {
+                        allPaths.get(pathNumber).getCourse(j).addStudent(allStudents.get(i));
+                    }
+                    isHappened = true;
+                }
+                cnt ++;
+            }
+            
+            if (cnt == 1000) {
+                System.out.println("It is impossible to arrange students!" + i);
+                break;
+            }
+        }
+
+        for (int i = 0; i < allStudents.size(); i++) {         
+            System.out.println("Student" + (i+1) + "'s program: ");
+            allStudents.get(i).printSchedule();
+        } 
+
+        for(int i = 0; i < allCourses.getSize(); i++) {
+            System.out.println(allCourses.getCourse(i).isThereQuota());
+        } 
     }
 
     private static ArrayList<Student> addStudents() {
@@ -150,6 +202,7 @@ public class Register {
                     }
                 }
                 Course lesson = new Course (name, section, program, instructor);
+                instructor.addCourse(lesson);
                 result.addCourse(lesson);
                 id++;
             }
