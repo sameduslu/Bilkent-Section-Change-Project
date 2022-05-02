@@ -22,14 +22,14 @@ public class StudentController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/students")
-    List<Student> all() {
+    public List<Student> all() {
         List<Student> all = repository.findAll();
         return all;
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/student")
-    Student newItem(@RequestBody Student student) {
+    public Student newItem(@RequestBody Student student) {
         return repository.save(student);
     }
 }

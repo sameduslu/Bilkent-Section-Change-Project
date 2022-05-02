@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document("course")
@@ -14,12 +15,13 @@ public class Course {
     private String name;
     private String section;
 
-    private List<Student> students;
+    @DBRef
+    private List<Student> students = new ArrayList<>();
     private boolean[][] program;
     @DBRef
     private Instructor instructor;
 
-    static final int QUOTA = 5;
+    public static final int QUOTA = 5;
 
     public String getName() {
         return name;
@@ -67,5 +69,11 @@ public class Course {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Course)) return false;
+        return this.id.equals(((Course) o).id);
     }
 }

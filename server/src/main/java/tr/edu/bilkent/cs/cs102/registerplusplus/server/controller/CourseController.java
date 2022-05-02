@@ -21,14 +21,14 @@ public class CourseController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/courses")
-    List<Course> all() {
+    public List<Course> all() {
         List<Course> all = repository.findAll();
         return all;
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/course")
-    Course newItem(@RequestBody Course course) {
+    public Course newItem(@RequestBody Course course) {
         return repository.save(course);
     }
 }
