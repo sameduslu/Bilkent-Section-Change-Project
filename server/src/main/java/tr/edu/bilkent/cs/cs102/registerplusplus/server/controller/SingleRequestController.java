@@ -49,16 +49,21 @@ public class SingleRequestController {
         for (SingleRequest req : requests) {
             boolean b = processRequest(req);
             if (b) {
-                //todo
+                //todo list update and return to beginning
             }
         }
     }
 
     private boolean processRequest(SingleRequest req) {
         Student owner = req.getRequestOwner();
-        Course wanted = req.getWantedCourse();
-        if (!isThereQuota(wanted)) return false;
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
+        Course wanted = req.getWantedCourse();
+        if (courseByStudentId.contains(wanted)){
+            singleRequestRepository.delete(req);
+            return true;
+        }
+        if (!isThereQuota(wanted)) return false;
+
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
             return processSectionChangeRequest(req, courseByStudentId);
         }

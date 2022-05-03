@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="services, tests, extra changes to repos and entities">
+    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="section change request, tests, refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/RegisterPlusPlusServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/RegisterPlusPlusServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Instructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/DatabaseInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/DatabaseInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,22 +104,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplicationTests.courseCreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
-      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="courseCreateTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DemoApplicationTests.courseOverlapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -160,6 +136,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DemoApplicationTests.studentIsInTheSectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
+      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
+      <option name="METHOD_NAME" value="studentIsInTheSectionTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
@@ -183,10 +175,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.DemoApplicationTests" />
+        <item itemvalue="JUnit.DemoApplicationTests.studentIsInTheSectionTest" />
         <item itemvalue="JUnit.DemoApplicationTests.sectionChangeTest" />
         <item itemvalue="Spring Boot.RegisterPlusPlusServer" />
         <item itemvalue="JUnit.DemoApplicationTests.courseOverlapTest" />
-        <item itemvalue="JUnit.DemoApplicationTests.courseCreateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +195,7 @@
       <workItem from="1649925248189" duration="3000" />
       <workItem from="1650520192469" duration="3035000" />
       <workItem from="1650567818536" duration="27000" />
-      <workItem from="1651413318220" duration="45707000" />
+      <workItem from="1651413318220" duration="47208000" />
     </task>
     <task id="LOCAL-00001" summary="changed the order of indexes&#10;added a todo">
       <created>1649919282787</created>
@@ -247,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651517636029</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="section change request, tests, refactor">
+      <created>1651611773533</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651611773533</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,27 +304,7 @@
     <MESSAGE value="server" />
     <MESSAGE value="services, tests, extra changes and repos" />
     <MESSAGE value="services, tests, extra changes to repos and entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="services, tests, extra changes to repos and entities" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java</url>
-          <line>202</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/CourseService.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="section change request, tests, refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="section change request, tests, refactor" />
   </component>
 </project>

@@ -23,6 +23,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -198,10 +199,22 @@ class DemoApplicationTests {
         createStudent1();
         createCourse1A();
         createCourse1B();
-        createCourse2();
         createSingleRequest(COURSE_1A_ID, "1", "Burhan");
         createSingleRequest(COURSE_1B_ID, "1", "Burhan");
         checkStudentEnrolledInCourse(COURSE_1B_ID, "1");
         checkStudentNotEnrolledInCourse(COURSE_1A_ID, "1");
     }
+
+    @Test
+    public void studentIsAlreadyInTheSectionTest(){
+        createStudent1();
+        createCourse1A();
+        createSingleRequest(COURSE_1A_ID, "1", "Burhan");
+        createSingleRequest(COURSE_1A_ID, "1", "Burhan");
+        Course dbCourse = courseRepository.findCourseById(COURSE_1A_ID);
+        List<Student> students = dbCourse.getStudents();
+        assertEquals(1, students.size());
+    }
+
+    //todo quota is full, student in the section tries to take the same section
 }
