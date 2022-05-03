@@ -18,7 +18,7 @@ public class CourseService {
         this.studentService = studentService;
     }
 
-    public Course addStudentToCourse(Student student, Course course){
+    public Course addStudentToCourse(Student student, Course course) {
         Course dbCourse = repository.findCourseById(course.getId());
         List<Student> students = dbCourse.getStudents();
         students.add(student);
@@ -29,5 +29,14 @@ public class CourseService {
 
     public List<Course> getCourseByStudentId(Student student) {
         return repository.findCourseByStudentsId(student.getId());
+    }
+
+    public void removeStudentFromCourse(Student student, Course course) {
+        Course dbCourse = repository.findCourseById(course.getId());
+        List<Student> students = dbCourse.getStudents();
+        students.remove(student);
+        dbCourse.setStudents(students);
+        studentService.removeCourse(student, course);
+        repository.save(dbCourse);
     }
 }

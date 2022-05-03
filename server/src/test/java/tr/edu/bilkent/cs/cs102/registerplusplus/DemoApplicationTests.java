@@ -31,6 +31,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 })
 class DemoApplicationTests {
 
+    public static final String COURSE_1A_ID = "CS102-1";
+    public static final String COURSE_1B_ID = "CS102-2";
+
+
     @Configuration
     @Import(RegisterPlusPlusServer.class)
     public static class TestConfiguration {
@@ -68,22 +72,31 @@ class DemoApplicationTests {
 
     @Test
     public void courseCreateTest() {
-        Course course = createCourse1();
+        Course course = createCourse1A();
 
         List<Course> all = courseController.all();
-        Optional<Course> result = all.stream().filter(course1 -> course1.getId().equals("CS102-1")).findAny();
+        Optional<Course> result = all.stream().filter(course1 -> course1.getId().equals(COURSE_1A_ID)).findAny();
         assertTrue(result.isPresent());
         Course dbCourse = result.get();
         assertThat(course.getName(), is(dbCourse.getName()));
     }
 
-    private Course createCourse1() {
+    private Course createCourse1A() {
         boolean[][] program = new boolean[9][6];
         program[1][5] = true;
         program[2][4] = true;
         program[3][5] = true;
         program[6][5] = true;
         return createCourse("CS102", "1", program);
+    }
+
+    private Course createCourse1B() {
+        boolean[][] program = new boolean[9][6];
+        program[2][5] = true;
+        program[3][4] = true;
+        program[3][5] = true;
+        program[4][1] = true;
+        return createCourse("CS102", "2", program);
     }
 
     private Course createCourse2() {
@@ -127,16 +140,16 @@ class DemoApplicationTests {
 
     @Test
     public void studentSingleRequestTest() {
-        createCourse1();
+        createCourse1A();
         createStudent1();
 
-        createSingleRequest("CS102-1", "1", "Burhan");
+        createSingleRequest(COURSE_1A_ID, "1", "Burhan");
 
         List<SingleRequest> all = singleRequestController.all();
         Optional<SingleRequest> result = all.stream().filter(s -> s.getRequestOwner().getId().equals("1")).findAny();
         assertTrue(result.isEmpty());
 
-        checkStudentEnrolledInCourse("CS102-1", "1");
+        checkStudentEnrolledInCourse(COURSE_1A_ID, "1");
     }
 
     private void checkStudentEnrolledInCourse(String courseId, String studentId) {
@@ -161,19 +174,34 @@ class DemoApplicationTests {
     @Test
     public void courseOverlapTest() {
         createStudent1();
-        createCourse1();
+        createCourse1A();
         createCourse2();
 
-        createSingleRequest("CS102-1", "1", "Burhan");
-        checkStudentEnrolledInCourse("CS102-1", "1");
+        createSingleRequest(COURSE_1A_ID, "1", "Burhan");
+        checkStudentEnrolledInCourse(COURSE_1A_ID, "1");
 
         createSingleRequest("MATH102-1", "1", "Burhan");
 
-        Course course = courseController.all().stream().filter(c -> c.getId().equals("MATH102-1")).findAny().get();
+        checkStudentNotEnrolledInCourse("MATH102-1", "1");
+    }
+
+    private void checkStudentNotEnrolledInCourse(String courseId, String studentId) {
+        Course course = courseController.all().stream().filter(c -> c.getId().equals(courseId)).findAny().get();
         List<Student> students = course.getStudents();
         assertThat(students, is(not(nullValue())));
-        Optional<Student> any = students.stream().filter(s -> s.getId().equals("1")).findAny();
+        Optional<Student> any = students.stream().filter(s -> s.getId().equals(studentId)).findAny();
         assertThat(any.isEmpty(), is(true));
     }
 
+    @Test
+    public void sectionChangeTest() {
+        createStudent1();
+        createCourse1A();
+        createCourse1B();
+        createCourse2();
+        createSingleRequest(COURSE_1A_ID, "1", "Burhan");
+        createSingleRequest(COURSE_1B_ID, "1", "Burhan");
+        checkStudentEnrolledInCourse(COURSE_1B_ID, "1");
+        checkStudentNotEnrolledInCourse(COURSE_1A_ID, "1");
+    }
 }
