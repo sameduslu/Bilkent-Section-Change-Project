@@ -45,11 +45,11 @@ public class SingleRequestController {
 
     private void processRequests() {
         List<SingleRequest> requests = singleRequestRepository.findAll();
-        int size = requests.size();
-        for (SingleRequest req : requests) {
-            boolean b = processRequest(req);
+        for (int i = 0; i < requests.size(); i++) {
+            boolean b = processRequest(requests.get(i));
             if (b) {
-                //todo list update and return to beginning
+                i = 0;
+                requests = singleRequestRepository.findAll();
             }
         }
     }
@@ -58,7 +58,7 @@ public class SingleRequestController {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         Course wanted = req.getWantedCourse();
-        if (courseByStudentId.contains(wanted)){
+        if (courseByStudentId.contains(wanted)) {
             singleRequestRepository.delete(req);
             return true;
         }
