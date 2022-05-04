@@ -1,6 +1,6 @@
 public abstract class Request {
 
-    Student requestOwner;
+    private Student requestOwner;
 
     public static int requestNumber = 0;
 

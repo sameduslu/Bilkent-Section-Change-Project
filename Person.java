@@ -1,12 +1,12 @@
 import java.util.Arrays;
 public abstract class Person {
-    protected String name;
-    protected String ID;
+
+    protected String name, ID;
     protected Course[][] schedule2D = new Course[rowNum][columnNum];
     protected boolean[][] program = new boolean[rowNum][columnNum]; 
-    protected static final int rowNum = 9;
-    protected static final int columnNum = 6;
+    protected static final int rowNum = 9, columnNum = 6;
     protected Courses courses = new Courses();
+
     public Person(String name, String ID){
         this.name = name;
         this.ID = ID;
@@ -15,21 +15,16 @@ public abstract class Person {
             Arrays.fill(program[i],false);
         } 
     }
+
     public String getName() {
         return name;
     }
+
     public String getID() {
         return ID;
     }
-    public void addCourse(Course course){
-        if(this.doesOverlap(course)==false){
-            this.addCourseToProgram(course);
-        }
-        else{
-            System.out.println("The course specified overlaps with another course.");
-        }
-    }
-    private void addCourseToProgram(Course course) {
+
+    public void addCourse (Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
                 if(course.getProgram()[i][j]){
@@ -38,9 +33,16 @@ public abstract class Person {
                 }
             }
         } 
+        courses.addCourse(course);
     }
-    public boolean doesOverlap(Course course){
-        for(int i = 0; i < rowNum; i++){
+
+    public boolean doesOverlap (Course course){
+        for (int i = 0; i < courses.getSize(); i++) {
+            if (course.equals(courses.getCourse(i))) {
+                return true;
+            }
+        }
+        for (int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){
                 if (this.program[i][j] && this.schedule2D[i][j].getName().equals(course.getName())) {
                     continue;
@@ -53,7 +55,7 @@ public abstract class Person {
         return false;
     }
 
-    public boolean doesOverlap(Courses requestingCourses){
+    public boolean doesOverlap (Courses requestingCourses){
         Courses noIncluded = new Courses();
         //finding the courses which is not in the requesting courses and adding them to noIncluded 
         for (int i = 0; i < courses.getSize(); i++) {
@@ -67,11 +69,12 @@ public abstract class Person {
                 noIncluded.addCourse(courses.getCourse(i));
             }
         }
+        
         //checking the compatibility of requesting courses and no included courses
         for (int i = 0; i < requestingCourses.getSize(); i++) {
             for (int j = 0; j < noIncluded.getSize(); j++) {
                 if(requestingCourses.getCourse(i).doesOverlap(noIncluded.getCourse(j))){
-                    return false;
+                    return true;
                 }
             } 
         }
@@ -79,12 +82,12 @@ public abstract class Person {
         for (int i = 0; i < requestingCourses.getSize(); i++) {
             for (int j = i+1; j < requestingCourses.getSize(); j++) {
                 if(requestingCourses.getCourse(i).doesOverlap(requestingCourses.getCourse(j))){
-                    return false;
+                    return true;
                 }
             } 
         }
 
-        return true;
+        return false;
     }
     
 
