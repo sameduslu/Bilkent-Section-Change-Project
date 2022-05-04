@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import JavaApplication1.src.LoginPage.LoginPage;
+
 public class Register {
     public static void main (String[] args) {
-        Authentication LoginPage = new Authentication();
+        LoginPage loginpage = new LoginPage();
         ArrayList<Student> allStudents = addStudents();
 
         Courses allCourses = addCourses();
