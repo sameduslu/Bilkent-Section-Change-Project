@@ -1,0 +1,2 @@
+#to initialize the db, run this command
+docker volume create mongodbdata
