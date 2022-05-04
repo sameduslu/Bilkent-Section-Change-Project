@@ -1,6 +1,6 @@
 public class SingleRequest extends Request {
 
-    Course wantedCourse;
+    private Course wantedCourse;
 
     public SingleRequest (Student owner, Course wanted) {
         super (owner);
@@ -10,5 +10,9 @@ public class SingleRequest extends Request {
     @Override
     public boolean isPossible() {
         return wantedCourse.isThereQuota();
+    }
+
+    public Course getWantedCourse() {
+        return wantedCourse;
     }
 }
