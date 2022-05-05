@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("singleRequest")
 public class SingleRequest extends Request {
 
+
     @DBRef
     private Course wantedCourse;
 

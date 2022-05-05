@@ -223,7 +223,7 @@ class DemoApplicationTests {
         List<Student> students = dbCourse.getStudents();
         assertEquals(1, students.size());
     }
-    
+
     @Test
     public void studentFromFullSectionWantsToGoThereTest(){
         createStudent1();
@@ -240,5 +240,22 @@ class DemoApplicationTests {
         createSingleRequest(COURSE_1A_ID, "1");
         assertTrue(singleRequestController.all().isEmpty());
         checkStudentEnrolledInCourse("CS102-1", "1");
+    }
+
+    @Test
+    public void multipleRequestTest(){
+        createStudent1();
+        createCourse1B();
+        createCourse2();
+        createMultipleRequest("1", List.of("CS102-2", "MATH102-1"));
+        checkStudentEnrolledInCourse("CS102-2", "1");
+        checkStudentEnrolledInCourse("MATH102-1", "1");
+    }
+
+    private void createMultipleRequest(String studentId, List<String> courseIds) {
+        Optional<Student> anyS = studentController.all().stream().filter(s -> s.getId().equals(studentId)).findAny();
+        assertTrue(anyS.isPresent());
+        String studentName = anyS.get().getName();
+        //todo
     }
 }

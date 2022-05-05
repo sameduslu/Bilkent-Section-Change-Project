@@ -10,6 +10,16 @@ public abstract class Request {
     @DBRef
     private Student requestOwner;
 
+    protected long timeStamp = System.currentTimeMillis();
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public Student getRequestOwner() {
         return requestOwner;
     }
