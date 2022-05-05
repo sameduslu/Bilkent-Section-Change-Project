@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 
 /**
@@ -61,8 +62,7 @@ public class Course {
         return quota-students.size();
     }
     //                            GET METHODS
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
     public String getSection()
@@ -88,13 +88,13 @@ public class Course {
             }
         }
         return false;
-    }kk + l
+    }
 
     public void printProgram() {
-        for (int i = 1; i < program.length; i++) {
+        for (int i = 0; i < program.length; i++) {
             for (int j = 0; j < program[0].length; j++) {
                 if(program[i][j]) {
-                    System.out.print("1");
+                    System.out.print("1 ");
                 }
                 else {
                     System.out.print("0 ");

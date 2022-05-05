@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package LoginPage;
+package loginpage;
 
+import schedulepage.SchedulePage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import main.Student;
 
 /**
  *
@@ -15,12 +18,11 @@ import javax.swing.JFrame;
  */
 public class LoginPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Authentication
-     */
-    public LoginPage() {
+    private ArrayList<Student> students;
+    public LoginPage(ArrayList<Student> students) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.students = students;
     }
 
     @SuppressWarnings("unchecked")
@@ -31,12 +33,20 @@ public class LoginPage extends javax.swing.JFrame {
         jButtonLogin = new javax.swing.JButton();
         jLabelClose = new javax.swing.JLabel();
         jLabelMinimize = new javax.swing.JLabel();
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPasswordFieldPassword = new javax.swing.JPasswordField();
         jTextFieldID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+=======
+        jLabelRegister = new javax.swing.JLabel();
+        jLabelID = new javax.swing.JLabel();
+        jPasswordFieldPassword = new javax.swing.JPasswordField();
+        jTextFieldID = new javax.swing.JTextField();
+        jLabelPassword = new javax.swing.JLabel();
+>>>>>>> Görkem_Workspace
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -89,8 +99,49 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/My_project_8.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabelRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/My_project_8.png"))); // NOI18N
+
+        jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelID.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/b.png"))); // NOI18N
+        jLabelID.setLabelFor(jTextFieldID);
+        jLabelID.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabelID.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabelIDInputMethodTextChanged(evt);
+            }
+        });
+
+        jPasswordFieldPassword.setBackground(new java.awt.Color(220, 172, 146));
+        jPasswordFieldPassword.setText("jPasswordField1");
+        jPasswordFieldPassword.setBorder(null);
+        jPasswordFieldPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldPasswordActionPerformed(evt);
+            }
+        });
+
+        jTextFieldID.setBackground(new java.awt.Color(220, 172, 146));
+        jTextFieldID.setText("jTextFieldID");
+        jTextFieldID.setBorder(null);
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDActionPerformed(evt);
+            }
+        });
+
+        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/b.png"))); // NOI18N
+        jLabelPassword.setLabelFor(jTextFieldID);
+        jLabelPassword.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelPassword.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jLabelPasswordInputMethodTextChanged(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/b.png"))); // NOI18N
@@ -143,6 +194,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(jLabelMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(363, 363, 363)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,9 +229,13 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
+=======
+>>>>>>> Görkem_Workspace
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(363, 363, 363)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(401, 401, 401)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(92, 92, 92))
@@ -189,6 +245,41 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)))
+=======
+                        .addComponent(jLabelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 401, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelClose, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+>>>>>>> Görkem_Workspace
                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -222,7 +313,7 @@ public class LoginPage extends javax.swing.JFrame {
         String studentID = jTextFieldID.getText();
         String studentPassword = jPasswordFieldPassword.getText();
         try{
-            File database = new File("C:\\Users\\Pc\\Desktop\\Enanılmaz C\\22003214\\cs102\\proje\\loQin pAqE\\JavaApplication1\\src\\LoginPage\\Names_and_IDs_Passwords.txt");
+            File database = new File("C:\\Users\\Pc\\Desktop\\Enanılmaz C\\22003214\\cs102\\proje\\Bilkent-Section-Change-Project\\Names_and_IDs_Passwords.txt");
             Scanner sc = new Scanner(database);
             while(sc.hasNextLine()) {
                 String name = sc.next();
@@ -230,8 +321,11 @@ public class LoginPage extends javax.swing.JFrame {
                 name += (" " + surname); 
                 String id = sc.next();
                 String password = sc.next();
-                if (studentID.equals(id) && studentPassword.equals(password)) {
-                    System.exit(0);
+                if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
+                    SchedulePage sPage = new SchedulePage(students.get(0));
+                    sPage.setVisible(true);
+                    this.dispose();
+                    break;
                 }
             }
             System.out.println("not registered!!");
@@ -243,6 +337,7 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLoginMouseClicked
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
@@ -277,8 +372,35 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+=======
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLoginActionPerformed
+
+    private void jLabelIDInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabelIDInputMethodTextChanged
+
+    }//GEN-LAST:event_jLabelIDInputMethodTextChanged
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
+
+    private void jPasswordFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldPasswordActionPerformed
+
+    private void jLabelPasswordInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jLabelPasswordInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPasswordInputMethodTextChanged
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonLogin;
+>>>>>>> Görkem_Workspace
     private javax.swing.JLabel jLabelClose;
+    private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelMinimize;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelRegister;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JTextField jTextFieldID;

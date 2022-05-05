@@ -1,14 +1,15 @@
+package main;
+
+import loginpage.LoginPage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import JavaApplication1.src.LoginPage.LoginPage;
 
 public class Register {
     public static void main (String[] args) {
-        LoginPage loginpage = new LoginPage();
         ArrayList<Student> allStudents = addStudents();
 
         Courses allCourses = addCourses();
@@ -25,7 +26,8 @@ public class Register {
         } */
 
         for (int i = 0; i < allCourses.getSize(); i++) {
-            Course tempCourse = allCourses.getCourse(i);
+            Course tempCourse;
+            tempCourse = allCourses.getCourse(i);
             
             if (tempCourse.getName().equals("CS102")) {
                 cs102Courses.addCourse(tempCourse);
@@ -134,7 +136,7 @@ public class Register {
                     }
                     isHappened = true;
                 }
-                cnt ++;
+                cnt++;
             }
             
             if (cnt == 1000) {
@@ -150,13 +152,17 @@ public class Register {
 
         for(int i = 0; i < allCourses.getSize(); i++) {
             System.out.println(allCourses.getCourse(i).isThereQuota());
-        } 
+        }
+        
+        LoginPage loginpage = new LoginPage(allStudents);
+        loginpage.setVisible(true);
+        
     }
 
     private static ArrayList<Student> addStudents() {
         ArrayList<Student> result = new ArrayList<Student>();
         try{
-            File database = new File("Names_and_IDs.txt");
+            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\Names_and_IDs.txt");
             Scanner sc = new Scanner(database);
             while(sc.hasNextLine()) {
                 String name = sc.next();
@@ -179,7 +185,7 @@ public class Register {
     private static Courses addCourses() {
         Courses result = new Courses();
         try{
-            File database = new File("Course_Database.txt");
+            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\Course_Database.txt");
             Scanner sc = new Scanner(database);
             int id = 1000;
             while(sc.hasNextLine()) {
