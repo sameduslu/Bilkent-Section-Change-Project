@@ -24,6 +24,10 @@ public abstract class Person {
         return ID;
     }
 
+    public Courses getCourses () {
+        return courses;
+    }
+
     public void addCourse (Course course){
         for(int i = 0; i < rowNum; i++){
             for(int j = 0; j < columnNum; j++){

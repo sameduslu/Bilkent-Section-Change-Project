@@ -12,7 +12,17 @@ public class SingleRequest extends Request {
         return wantedCourse.isThereQuota();
     }
 
+    @Override
+    public boolean isStillValid() {
+        if (this.getRequestOwner().doesOverlap(wantedCourse)) {
+            return false;
+        }
+        return true;
+    }
+    
     public Course getWantedCourse() {
         return wantedCourse;
     }
+
+    
 }
