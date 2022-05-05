@@ -11,6 +11,7 @@ public class Register {
     private static Queue <Request> requestQueue = new LinkedList<>();
     private static Courses allCourses;
     private static ArrayList<Student> allStudents;
+    private static ArrayList <Request> forumRequests = new ArrayList<>();
     public static void main (String[] args) {
         allStudents = addStudents();
 
@@ -156,7 +157,7 @@ public class Register {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         } 
 
-        //test();
+        test();
 
     }
 
@@ -234,15 +235,42 @@ public class Register {
     }
 
     /**
+     * This method add request to the forum
+     */
+    protected static void addRequestToForum (Request r) {
+        forumRequests.add(r);
+    }
+
+    /**
+     * This method removes request from the queue when student want
+     */
+    protected static void removeRequestFromQueue (Request r) {
+        requestQueue.remove(r);
+    }
+
+    /**
+     * This method removes request from the forum when student want
+     */
+    protected static void removeRequestFromForum (Request r) {
+        forumRequests.remove(r);
+    }
+
+
+    /**
      * This method checks the applicability of the requests
      */
     private static void checkTheRequests() {
         for (int i = 0; i < requestQueue.size(); i++) {
             Request currentRequest = ((LinkedList<Request>) requestQueue).get(i);
+            if (!currentRequest.isStillValid()) {
+                currentRequest.getRequestOwner().removeRequest(currentRequest);
+                i--;
+                continue;
+            }
             if (currentRequest.isPossible()) {
                 processRequest(currentRequest);
-                requestQueue.remove(currentRequest);
-                i--;
+                currentRequest.getRequestOwner().removeRequest(currentRequest);
+                i = 0;
             }
         }
     }
@@ -283,6 +311,32 @@ public class Register {
             }
         }
     }
+
+    /**
+     * This method process the request in the forum when the client accept the trade offer
+     */
+    protected static void processForumRequest (ForumRequest fr, Student acceptor) {
+        Student owner = fr.getRequestOwner();
+        fr.getWantedCourse().removeStudent(acceptor);
+        fr.getCurrentCourse().removeStudent(owner);
+        fr.getWantedCourse().addStudent(owner);
+        fr.getCurrentCourse().addStudent(acceptor);
+        fr.getRequestOwner().removeForumRequest(fr);
+    }
+
+
+    /**
+     * This method checks the validity of the forum requests and remove the unvalid ones
+     */
+    public static void checkForumRequests() {
+        for (int i = 0; i < forumRequests.size(); i++) {
+            ForumRequest ff = (ForumRequest) forumRequests.get(i);
+            if (!ff.isStillValid()) {
+                ff.getRequestOwner().removeForumRequest(ff);
+            }
+        }
+    }
+
 
     /**
      * This methods controls the functionality of requests

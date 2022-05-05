@@ -13,6 +13,8 @@ public abstract class Request {
 
     public abstract boolean isPossible();
 
+    public abstract boolean isStillValid();
+
     public Student getRequestOwner() {
         return requestOwner;
     }
