@@ -1,6 +1,6 @@
 public class SingleRequest extends Request {
 
-    Course wantedCourse;
+    private Course wantedCourse;
 
     public SingleRequest (Student owner, Course wanted) {
         super (owner);
@@ -11,4 +11,18 @@ public class SingleRequest extends Request {
     public boolean isPossible() {
         return wantedCourse.isThereQuota();
     }
+
+    @Override
+    public boolean isStillValid() {
+        if (this.getRequestOwner().doesOverlap(wantedCourse)) {
+            return false;
+        }
+        return true;
+    }
+    
+    public Course getWantedCourse() {
+        return wantedCourse;
+    }
+
+    
 }

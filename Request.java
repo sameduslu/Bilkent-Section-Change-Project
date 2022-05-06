@@ -1,6 +1,6 @@
 public abstract class Request {
 
-    Student requestOwner;
+    private Student requestOwner;
 
     public static int requestNumber = 0;
 
@@ -12,6 +12,8 @@ public abstract class Request {
     }
 
     public abstract boolean isPossible();
+
+    public abstract boolean isStillValid();
 
     public Student getRequestOwner() {
         return requestOwner;

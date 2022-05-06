@@ -1,14 +1,21 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Register {
-    public static void main (String[] args) {
-        ArrayList<Student> allStudents = addStudents();
 
-        Courses allCourses = addCourses();
+    private static Queue <Request> requestQueue = new LinkedList<>();
+    private static Courses allCourses;
+    private static ArrayList<Student> allStudents;
+    private static ArrayList <Request> forumRequests = new ArrayList<>();
+    public static void main (String[] args) {
+        allStudents = addStudents();
+
+        allCourses = addCourses();
 
         Courses cs102Courses,math102Courses,math132Courses,eng102Courses;
         cs102Courses = new Courses();
@@ -94,13 +101,13 @@ public class Register {
             }
         }
         
-        for (int i = 0; i < allPaths.size(); i++) {
+        /*for (int i = 0; i < allPaths.size(); i++) {
             System.out.println("Path: " + (i+1));
             for (int j = 0; j < allPaths.get(i).getSize(); j++) {
                 System.out.println(allPaths.get(i).getCourse(j).toString());
             }
             System.out.println();
-        }
+        }*/
 
         Random rand = new Random();
 
@@ -111,6 +118,7 @@ public class Register {
             int cnt = 0;
 
             while (!isHappened) {
+
                 int pathNumber = rand.nextInt(allPaths.size());
 
                 if(cnt == 1000) {
@@ -148,6 +156,9 @@ public class Register {
         for(int i = 0; i < allCourses.getSize(); i++) {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         } 
+
+        test();
+
     }
 
     private static ArrayList<Student> addStudents() {
@@ -214,5 +225,161 @@ public class Register {
 
 
         return result;
+    }
+
+    /**
+     * This method add given request to queue
+     */
+    protected static void addRequestToQueue (Request r) {
+        requestQueue.add(r);
+    }
+
+    /**
+     * This method add request to the forum
+     */
+    protected static void addRequestToForum (Request r) {
+        forumRequests.add(r);
+    }
+
+    /**
+     * This method removes request from the queue when student want
+     */
+    protected static void removeRequestFromQueue (Request r) {
+        requestQueue.remove(r);
+    }
+
+    /**
+     * This method removes request from the forum when student want
+     */
+    protected static void removeRequestFromForum (Request r) {
+        forumRequests.remove(r);
+    }
+
+
+    /**
+     * This method checks the applicability of the requests
+     */
+    private static void checkTheRequests() {
+        for (int i = 0; i < requestQueue.size(); i++) {
+            Request currentRequest = ((LinkedList<Request>) requestQueue).get(i);
+            if (!currentRequest.isStillValid()) {
+                currentRequest.getRequestOwner().removeRequest(currentRequest);
+                i--;
+                continue;
+            }
+            if (currentRequest.isPossible()) {
+                processRequest(currentRequest);
+                currentRequest.getRequestOwner().removeRequest(currentRequest);
+                i = 0;
+            }
+        }
+    }
+
+    /**
+     * This method process the given request
+     */
+    private static void processRequest (Request r) {
+
+        //If it is a single request
+        if (r.getClass().getName().equals("SingleRequest")) {
+            Course wanted = ((SingleRequest) r).getWantedCourse();
+            Student owner = r.getRequestOwner();
+            Course removeThat = null;
+            for (int j = 0; j < owner.courses.getSize(); j++) {
+                if (owner.courses.getCourse(j).getName().equals(wanted.getName())) {
+                    removeThat = owner.courses.getCourse(j);
+                }
+            }
+            removeThat.removeStudent(owner);
+            wanted.addStudent(owner);
+        }
+
+        //If it is a multiple request
+        else {
+            Courses wanteds = ((MultipleRequest) r).getWantedCourses();
+            Student owner = r.getRequestOwner();
+            for (int p = 0; p < wanteds.getSize(); p++) {
+                Course wanted = wanteds.getCourse(p);
+                Course removeThat = null;
+                for (int j = 0; j < owner.courses.getSize(); j++) {
+                    if (owner.courses.getCourse(j).getName().equals(wanted.getName())) {
+                        removeThat = owner.courses.getCourse(j);
+                    }
+                }
+                removeThat.removeStudent(owner);
+                wanted.addStudent(owner);
+            }
+        }
+    }
+
+    /**
+     * This method process the request in the forum when the client accept the trade offer
+     */
+    protected static void processForumRequest (ForumRequest fr, Student acceptor) {
+        Student owner = fr.getRequestOwner();
+        fr.getWantedCourse().removeStudent(acceptor);
+        fr.getCurrentCourse().removeStudent(owner);
+        fr.getWantedCourse().addStudent(owner);
+        fr.getCurrentCourse().addStudent(acceptor);
+        fr.getRequestOwner().removeForumRequest(fr);
+    }
+
+
+    /**
+     * This method checks the validity of the forum requests and remove the unvalid ones
+     */
+    public static void checkForumRequests() {
+        for (int i = 0; i < forumRequests.size(); i++) {
+            ForumRequest ff = (ForumRequest) forumRequests.get(i);
+            if (!ff.isStillValid()) {
+                ff.getRequestOwner().removeForumRequest(ff);
+            }
+        }
+    }
+
+
+    /**
+     * This methods controls the functionality of requests
+     */
+    public static void test() {
+
+        System.out.print ("Enter the index of the wanted course for student 1: ");
+        Student ss = allStudents.get(0);
+        Scanner in = new Scanner(System.in);
+        int wantedIndex = in.nextInt();
+        Course cc = allCourses.getCourse(wantedIndex);
+        ss.createSingleRequest(cc);
+        checkTheRequests();
+        ss.printSchedule();
+        for (int i = 0; i < ss.courses.getSize(); i++) {
+            System.out.println (ss.courses.getCourse(i));
+        }
+
+
+        System.out.print ("Enter the number of the wanted courses for student 1: ");
+        int kk = in.nextInt();
+        Courses wanteds = new Courses();
+        for (int i = 1; i <= kk; i++) {
+            System.out.print ("Enter the index of the wanted course for student 1: ");
+            int wantedIndex1 = in.nextInt();
+            wanteds.addCourse(allCourses.getCourse(wantedIndex1));
+        }
+        ss.createMultipleRequest(wanteds);
+        checkTheRequests();
+        ss.printSchedule();
+        for (int i = 0; i < ss.courses.getSize(); i++) {
+            System.out.println (ss.courses.getCourse(i));
+        }
+
+
+        System.out.print ("Enter the index of the wanted course for student 1: ");
+        wantedIndex = in.nextInt();
+        cc = allCourses.getCourse(wantedIndex);
+        ss.createSingleRequest(cc);
+        checkTheRequests();
+        ss.printSchedule();
+        for (int i = 0; i < ss.courses.getSize(); i++) {
+            System.out.println (ss.courses.getCourse(i));
+        }
     }
 }

@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
 
 /**
  * Course
@@ -11,8 +9,6 @@ public class Course {
     private final ArrayList<Student> students;
     private final boolean[][] PROGRAM;
     private final Instructor INSTRUCTOR;
-    private Queue <Request> requestQueue = new LinkedList<>();
-    private boolean[] requestCheck;
     
     static final int quota = 25;
     /******************************************************************************************* */
@@ -22,33 +18,24 @@ public class Course {
         this.NAME = name;
         this.SECTION = section;
         this.PROGRAM = matrice;
-        this.INSTRUCTOR=instructor;
+        this.INSTRUCTOR = instructor;
         students = new ArrayList<Student>();
-        requestCheck = new boolean[150001];
     }
     /****************************************************************************************** */
     /**************************** METHODS ***************************************************** */
     /****************************************************************************************** */
-    public boolean addStudent(Student newStudent)
+    public void addStudent(Student newStudent)
     {
-        if(this.isThereQuota() && !newStudent.doesOverlap(this))
-        {
-            students.add(newStudent);
-            newStudent.addCourse(this);
-            return true;
-        }
-        else if (!this.isThereQuota()){
-            System.out.println("Quota is full, student cannot added to desired course!");
-            return false;
-        }
-        else {
-            System.out.println("This course overlapping with your current courses!");
-            return false;
-        }
-        
+        students.add(newStudent);
+        newStudent.addCourse(this);     
     }
-    public boolean isThereQuota()
-    {
+
+    public void removeStudent (Student removedStudent) {
+        students.remove(removedStudent);
+        removedStudent.removeCourse(this);
+    }
+
+    public boolean isThereQuota() {
         boolean areThereQuota = true;
         if(students.size()==quota)
         {
@@ -61,32 +48,34 @@ public class Course {
         }
         return areThereQuota;
     }
-    public int getAvailableQuota()
-    {
+
+    public int getAvailableQuota() {
         return quota-students.size();
     }
     //                            GET METHODS
-    public String getName()
-    {
+    public String getName() {
         return this.NAME;
     }
-    public String getSection()
-    {
+
+    public String getSection() {
         return this.SECTION;
     }
-    public ArrayList<Student> getStudents(){
+
+    public ArrayList<Student> getStudents() {
         return this.students;
     }
-    public boolean[][] getProgram(){
+
+    public boolean[][] getProgram() {
         return this.PROGRAM;
     }
-    public Instructor getInstructor()
-    {
+
+    public Instructor getInstructor() {
         return this.INSTRUCTOR;
     }
+
     public boolean doesOverlap (Course otherCourse) {
         for (int i = 0; i < PROGRAM.length; i++) {
-            for (int j = 0; j < PROGRAM[0].length; j++) {
+            for (int j = 0; j < PROGRAM[j].length; j++) {
                 if(PROGRAM[i][j] == true && otherCourse.getProgram()[i][j] == true) {
                     return true;
                 }
@@ -115,11 +104,4 @@ public class Course {
         result += (this.SECTION);
         return result;
     }
-
-    public void addRequestToQueue (Request r) {
-        requestQueue.add(r);
-        requestCheck[r.getID()] = true; 
-    }
-
-    //TODO checking the requests in every second
 }
