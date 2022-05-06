@@ -1,10 +1,8 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
 
 import org.springframework.stereotype.Service;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.MultipleRequest;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.SingleRequest;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
 
@@ -21,11 +19,14 @@ public class RequestProcessorService {
 
     private final MultipleRequestRepository multipleRequestRepository;
 
+    private final ForumRequestRepository forumRequestRepository;
 
-    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository) {
+
+    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository) {
         this.courseService = courseService;
         this.singleRequestRepository = singleRequestRepository;
         this.multipleRequestRepository = multipleRequestRepository;
+        this.forumRequestRepository = forumRequestRepository;
     }
 
 
@@ -94,14 +95,10 @@ public class RequestProcessorService {
                 newCourses.add(c);
             }
         }
-        boolean[][] originalProgram = owner.getProgram();
-        boolean[][] tempProgram = new boolean[originalProgram.length][];
-        for (int i = 0; i < originalProgram.length; i++) {
-            tempProgram[i] = originalProgram[i].clone();
-        }
+        boolean[][] tempProgram = cloneProgramOfStudent(owner);
         for (Course c : alreadyTaking) {
             Course course = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
-            courseChangeTempProgram(course, tempProgram);
+            removeCourseFromTempProgram(course, tempProgram);
         }
         for (Course c : wantedCourses) {
             boolean[][] wantedProgram = c.getProgram();
@@ -126,6 +123,15 @@ public class RequestProcessorService {
         }
         multipleRequestRepository.delete(req);
         return true;
+    }
+
+    private boolean[][] cloneProgramOfStudent(Student student) {
+        boolean[][] originalProgram = student.getProgram();
+        boolean[][] tempProgram = new boolean[originalProgram.length][];
+        for (int i = 0; i < originalProgram.length; i++) {
+            tempProgram[i] = originalProgram[i].clone();
+        }
+        return tempProgram;
     }
 
     private boolean processSingleRequest(SingleRequest req) {
@@ -161,12 +167,8 @@ public class RequestProcessorService {
         Course wanted = req.getWantedCourse();
         boolean[][] wantedProgram = wanted.getProgram();
         Course course = courseByStudentId.stream().filter(c -> c.getName().equals(wanted.getName())).findAny().get(); //todo isPresent check?
-        boolean[][] originalProgram = owner.getProgram();
-        boolean[][] tempProgram = new boolean[originalProgram.length][];
-        for (int i = 0; i < originalProgram.length; i++) {
-            tempProgram[i] = originalProgram[i].clone();
-        }
-        courseChangeTempProgram(course, tempProgram);
+        boolean[][] tempProgram = cloneProgramOfStudent(owner);
+        removeCourseFromTempProgram(course, tempProgram);
         for (int i = 0; i < tempProgram.length; i++) {
             for (int j = 0; j < tempProgram[i].length; j++) {
                 if (wantedProgram[i][j] && tempProgram[i][j]) {
@@ -180,7 +182,7 @@ public class RequestProcessorService {
         return true;
     }
 
-    private void courseChangeTempProgram(Course course, boolean[][] tempProgram) {
+    private void removeCourseFromTempProgram(Course course, boolean[][] tempProgram) {
         boolean[][] courseProgram = course.getProgram();
         for (int i = 0; i < courseProgram.length; i++) {
             for (int j = 0; j < courseProgram[i].length; j++) {
@@ -212,5 +214,40 @@ public class RequestProcessorService {
             }
         }
         return false;
+    }
+
+
+    public boolean processForumRequest(ForumRequest req) {
+        if (!isForumRequestPossible(req)) {
+            return false;
+        }
+        Student owner = req.getRequestOwner();
+        Student acceptor = req.getAcceptor();
+        Course ownerCourse = req.getCurrentCourse();
+        Course wantedCourse = req.getWantedCourse();
+        courseService.removeStudentFromCourse(owner, ownerCourse);
+        courseService.removeStudentFromCourse(acceptor, wantedCourse);
+        courseService.addStudentToCourse(owner, wantedCourse);
+        courseService.addStudentToCourse(acceptor, ownerCourse);
+        forumRequestRepository.delete(req);
+        processRequests();
+        return true;
+    }
+
+    private boolean isForumRequestPossible(ForumRequest req) {
+        boolean[][] ownerProgram = cloneProgramOfStudent(req.getRequestOwner());
+        boolean[][] acceptorProgram = cloneProgramOfStudent(req.getAcceptor());
+        boolean[][] ownerCourseProgram = req.getCurrentCourse().getProgram();
+        boolean[][] wantedCourseProgram = req.getWantedCourse().getProgram();
+        removeCourseFromTempProgram(req.getCurrentCourse(), ownerProgram);
+        removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        for (int i = 0; i < ownerCourseProgram.length; i++) {
+            for (int j = 0; j < ownerCourseProgram[i].length; j++) {
+                if ((ownerProgram[i][j] && wantedCourseProgram[i][j]) || (acceptorProgram[i][j] && ownerCourseProgram[i][j])) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

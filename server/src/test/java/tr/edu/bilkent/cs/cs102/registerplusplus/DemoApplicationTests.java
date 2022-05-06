@@ -267,7 +267,6 @@ class DemoApplicationTests {
         checkStudentEnrolledInCourse("MATH102-1", "1");
     }
 
-    //todo why failing when createMultipleRequest is annotated as test
     public void createMultipleRequest(String studentId, List<String> courseIds) {
         Optional<Student> anyS = studentController.all().stream().filter(s -> s.getId().equals(studentId)).findAny();
         assertTrue(anyS.isPresent());
