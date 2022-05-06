@@ -9,15 +9,19 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.RegisterPlusPlusServer;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.controller.CourseController;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.controller.MultipleRequestController;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.controller.SingleRequestController;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.controller.StudentController;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.MultipleRequest;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.SingleRequest;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +55,9 @@ class DemoApplicationTests {
     SingleRequestController singleRequestController;
 
     @Autowired
+    MultipleRequestController multipleRequestController;
+
+    @Autowired
     CourseRepository courseRepository;
 
     @Autowired
@@ -59,11 +66,15 @@ class DemoApplicationTests {
     @Autowired
     SingleRequestRepository singleRequestRepository;
 
+    @Autowired
+    MultipleRequestRepository multipleRequestRepository;
+
     @BeforeEach
     public void setup() {
         courseRepository.deleteAll();
         studentRepository.deleteAll();
         singleRequestRepository.deleteAll();
+        multipleRequestRepository.deleteAll();
     }
 
     @Test
@@ -127,15 +138,19 @@ class DemoApplicationTests {
     private Student createStudent1() {
         return createStudent("Burhan Tabak", "1");
     }
+
     private Student createStudent2() {
         return createStudent("Murat Kara", "2");
     }
+
     private Student createStudent3() {
         return createStudent("Gorkem Solun", "3");
     }
+
     private Student createStudent4() {
         return createStudent("Samed Uslu", "4");
     }
+
     private Student createStudent5() {
         return createStudent("Cenker Akan", "5");
     }
@@ -225,13 +240,13 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void studentFromFullSectionWantsToGoThereTest(){
+    public void studentFromFullSectionWantsToGoThereTest() {
         createStudent1();
         createStudent2();
         createStudent3();
         createStudent4();
         createStudent5();
-        Course c = createCourse1A();
+        createCourse1A();
         createSingleRequest(COURSE_1A_ID, "1");
         createSingleRequest(COURSE_1A_ID, "2");
         createSingleRequest(COURSE_1A_ID, "3");
@@ -243,7 +258,7 @@ class DemoApplicationTests {
     }
 
     @Test
-    public void multipleRequestTest(){
+    public void multipleRequestTest() {
         createStudent1();
         createCourse1B();
         createCourse2();
@@ -252,10 +267,21 @@ class DemoApplicationTests {
         checkStudentEnrolledInCourse("MATH102-1", "1");
     }
 
-    private void createMultipleRequest(String studentId, List<String> courseIds) {
+    //todo why failing when createMultipleRequest is annotated as test
+    public void createMultipleRequest(String studentId, List<String> courseIds) {
         Optional<Student> anyS = studentController.all().stream().filter(s -> s.getId().equals(studentId)).findAny();
         assertTrue(anyS.isPresent());
         String studentName = anyS.get().getName();
-        //todo
+        MultipleRequest req = new MultipleRequest();
+        List<Course> wantedCourses = new ArrayList<>();
+        for (String cName : courseIds) {
+            Course c = courseRepository.findCourseById(cName);
+            wantedCourses.add(c);
+        }
+        req.setWantedCourses(wantedCourses);
+        Student student = new Student(studentName, studentId);
+        req.setRequestOwner(student);
+
+        multipleRequestController.newItem(req);
     }
 }

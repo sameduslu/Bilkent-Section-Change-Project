@@ -4,23 +4,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.SingleRequest;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.List;
 
-import static tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Person.columnNum;
-import static tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Person.rowNum;
-
 @RestController
 public class SingleRequestController {
 
     private final SingleRequestRepository singleRequestRepository;
-    private final CourseService courseService;
+    private final CourseService courseService; //todo why not remove
 
     private final RequestProcessorService requestProcessorService;
 

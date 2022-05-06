@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="refactor, controls, single change request revision, tests">
+    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="server">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/InstructorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/MultipleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/MultipleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/SingleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/SingleRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Çağrı_Workspace" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +78,8 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "build.tools"
+    "settings.editor.selected.configurable": "build.tools",
+    "spring.configuration.checksum": "74385931c9a692c50c7de0f42f3f83fc"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -87,7 +100,22 @@
       <recent name="tr.edu.bilkent.cs.cs102.registerplusplus.server.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DemoApplicationTests">
+  <component name="RunManager" selected="JUnit.DemoApplicationTests (1)">
+    <configuration name="DemoApplicationTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
+      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -103,8 +131,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplicationTests.sectionChangeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="DemoApplicationTests.createMultipleRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
@@ -113,14 +141,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
       <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="sectionChangeTest" />
+      <option name="METHOD_NAME" value="createMultipleRequest(java.lang.String,java.util.List)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplicationTests.studentFromFullSectionWantsToGoThereTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="DemoApplicationTests.multipleRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
@@ -129,23 +157,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
       <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="studentFromFullSectionWantsToGoThereTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DemoApplicationTests.studentIsInTheSectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
-      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="studentIsInTheSectionTest" />
+      <option name="METHOD_NAME" value="multipleRequestTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -158,8 +170,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterPlusPlusServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="RegisterPlusPlusServer (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tr.edu.bilkent.cs.cs102.registerplusplus.server.RegisterPlusPlusServer" />
       <extension name="coverage">
         <pattern>
@@ -173,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DemoApplicationTests (1)" />
+        <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
+        <item itemvalue="JUnit.DemoApplicationTests.createMultipleRequest" />
+        <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
         <item itemvalue="JUnit.DemoApplicationTests" />
-        <item itemvalue="JUnit.DemoApplicationTests.studentFromFullSectionWantsToGoThereTest" />
-        <item itemvalue="JUnit.DemoApplicationTests.studentIsInTheSectionTest" />
-        <item itemvalue="JUnit.DemoApplicationTests.sectionChangeTest" />
-        <item itemvalue="Spring Boot.RegisterPlusPlusServer" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +207,7 @@
       <workItem from="1650520192469" duration="3035000" />
       <workItem from="1650567818536" duration="27000" />
       <workItem from="1651413318220" duration="51507000" />
+      <workItem from="1651740317521" duration="16298000" />
     </task>
     <task id="LOCAL-00001" summary="changed the order of indexes&#10;added a todo">
       <created>1649919282787</created>
