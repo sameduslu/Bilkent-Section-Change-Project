@@ -630,7 +630,7 @@ public class SectionChangePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1190, 0, 25, 67);
+        jLabelMinimize.setBounds(1190, 0, 31, 58);
 
         jButtonForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -666,7 +666,7 @@ public class SectionChangePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1230, 0, 35, 67);
+        jLabelClose.setBounds(1230, 0, 32, 58);
 
         jButtonMultiChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonMultiChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -700,7 +700,7 @@ public class SectionChangePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(HomeButton);
-        HomeButton.setBounds(1150, 10, 40, 40);
+        HomeButton.setBounds(1130, 0, 60, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
