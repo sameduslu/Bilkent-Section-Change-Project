@@ -5,6 +5,8 @@
 package SectionChange;
 
 import SchedulePage.SchedulePage;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -766,7 +768,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
          JFrame singleSection = new JFrame();
-         JPanel panel = new JPanel();
+         JPanel panel = new JPanel(new GridLayout(10, 1, 10, 5));
          Courses courses = new Courses();
          singleSection.setSize(350,350);
          singleSection.setLocationRelativeTo(null);
@@ -781,6 +783,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
                 JFrame frame2 = new JFrame();
                 for(int i = 0; i < 3; i++){
                     JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    
                     panel2.add(buttonsOfFirst);
                 }
                 frame2.add(panel2);
@@ -794,6 +797,12 @@ public class SchedulePage2 extends javax.swing.JFrame {
                 JFrame frame2 = new JFrame();
                 for(int i = 3; i < 6; i++){
                     JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    buttonsOfFirst.addActionListener(new ActionListener(){
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            
+                        }
+                    });
                     panel2.add(buttonsOfFirst);
                 }
                 frame2.add(panel2);
@@ -830,6 +839,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
          panel.add(b3);
          panel.add(b2);
          panel.add(b1);
+         panel.setBackground(Color.decode("#DCAC92"));
          singleSection.add(panel);
          singleSection.setVisible(true);
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed

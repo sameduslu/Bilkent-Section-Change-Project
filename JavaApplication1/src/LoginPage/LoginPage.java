@@ -211,6 +211,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
         // TODO add your handling code here:
         String studentID = jTextFieldID.getText();
+        int count = 0;
         String studentPassword = jPasswordFieldPassword.getText();
         try{
             File database = new File("/Users/cagri/Desktop/School/Spring_Semester/CS-102/CS102-Project/Bilkent-Section-Change-Project/Names_and_IDs.txt");
@@ -222,11 +223,12 @@ public class LoginPage extends javax.swing.JFrame {
                 String id = sc.next();
                 String password = sc.next();
                 if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
-                    SchedulePage sPage = new SchedulePage(students.get(0));
+                    SchedulePage sPage = new SchedulePage(students.get(count));
                     sPage.setVisible(true);
                     this.dispose();
                     break;
                 }
+                count++;
             }
             System.out.println("not registered!!");
             sc.close();
