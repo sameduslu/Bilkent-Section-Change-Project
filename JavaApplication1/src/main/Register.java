@@ -159,7 +159,7 @@ public class Register {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         } 
 
-        LoginPage loginpage = new LoginPage(allStudents);
+        LoginPage loginpage = new LoginPage(allStudents, allCourses);
         loginpage.setVisible(true);
         loginpage.setLocationRelativeTo(null);
         //test();

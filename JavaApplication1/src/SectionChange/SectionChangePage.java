@@ -5,6 +5,8 @@
 package SectionChange;
 
 import SchedulePage.SchedulePage;
+import SingleMultipleChange.MultipleChange;
+import SingleMultipleChange.SingleChange;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -27,7 +29,9 @@ import javax.swing.JPanel;
 public class SectionChangePage extends javax.swing.JFrame {
 
     private Student student;
-    public SectionChangePage(Student student) {
+    private Courses courses;
+    public SectionChangePage(Student student, Courses courses) {
+        this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
         this.student = student;
@@ -115,7 +119,7 @@ public class SectionChangePage extends javax.swing.JFrame {
         jButtonForum = new javax.swing.JButton();
         jLabelClose = new javax.swing.JLabel();
         jButtonMultiChange = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        HomeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 172, 146));
@@ -685,17 +689,17 @@ public class SectionChangePage extends javax.swing.JFrame {
         jPanel1.add(jButtonMultiChange);
         jButtonMultiChange.setBounds(790, 310, 460, 160);
 
-        jButton1.setBackground(new java.awt.Color(220, 172, 146));
-        jButton1.setForeground(new java.awt.Color(220, 172, 146));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        HomeButton.setBackground(new java.awt.Color(220, 172, 146));
+        HomeButton.setForeground(new java.awt.Color(220, 172, 146));
+        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
+        HomeButton.setBorder(null);
+        HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                HomeButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(1150, 10, 40, 40);
+        jPanel1.add(HomeButton);
+        HomeButton.setBounds(1150, 10, 40, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -764,7 +768,7 @@ public class SectionChangePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-         JFrame singleSection = new JFrame();
+         /*JFrame singleSection = new JFrame();
          JPanel panel = new JPanel(new GridLayout(10, 1, 10, 5));
          Courses courses = new Courses();
          singleSection.setSize(350,350);
@@ -838,7 +842,9 @@ public class SectionChangePage extends javax.swing.JFrame {
          panel.add(b1);
          panel.setBackground(Color.decode("#DCAC92"));
          singleSection.add(panel);
-         singleSection.setVisible(true);
+         singleSection.setVisible(true);*/
+         SingleChange singleChange = new SingleChange(this.student, courses);
+         singleChange.setVisible(true);
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
     private void jButtonForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonForumMouseClicked
@@ -869,17 +875,19 @@ public class SectionChangePage extends javax.swing.JFrame {
 
     private void jButtonMultiChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiChangeActionPerformed
         // TODO add your handling code here:
+        MultipleChange multiChange = new MultipleChange(this.student, courses);
+        multiChange.setVisible(true);
     }//GEN-LAST:event_jButtonMultiChangeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SchedulePage sPage = new SchedulePage(this.student);
+    private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
+        SchedulePage sPage = new SchedulePage(this.student, courses);
         sPage.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_HomeButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton HomeButton;
     private javax.swing.JButton jButtonForum;
     private javax.swing.JButton jButtonMultiChange;
     private javax.swing.JButton jButtonSectionChange;

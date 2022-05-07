@@ -6,6 +6,7 @@ package SchedulePage;
 
 import SectionChange.SectionChangePage;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
 
 /**
@@ -15,7 +16,9 @@ import main.Student;
 public class SchedulePage extends javax.swing.JFrame {
 
     private Student student;
-    public SchedulePage(Student student) {
+    private Courses courses;
+    public SchedulePage(Student student, Courses courses) {
+        this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
         this.student = student;
@@ -711,7 +714,7 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        SectionChangePage sPage1 = new SectionChangePage(this.student);
+        SectionChangePage sPage1 = new SectionChangePage(this.student, courses);
         sPage1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed

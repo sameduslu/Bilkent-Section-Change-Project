@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
 
 /**
@@ -19,8 +20,10 @@ import main.Student;
 public class LoginPage extends javax.swing.JFrame {
 
     private ArrayList<Student> students;
-    public LoginPage(ArrayList<Student> students) {
+    private Courses courses;
+    public LoginPage(ArrayList<Student> students, Courses courses) {
         this.students = students;
+        this.courses = courses;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -213,7 +216,7 @@ public class LoginPage extends javax.swing.JFrame {
         String studentID = jTextFieldID.getText();
         String studentPassword = jPasswordFieldPassword.getText();
         if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
-                SchedulePage sPage = new SchedulePage(students.get(0));
+                SchedulePage sPage = new SchedulePage(students.get(0), courses);
                 sPage.setVisible(true);
                 this.dispose();
         }
