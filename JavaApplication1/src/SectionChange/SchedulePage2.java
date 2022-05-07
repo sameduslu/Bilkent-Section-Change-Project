@@ -4,9 +4,18 @@
  */
 package SectionChange;
 
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import javax.swing.JButton;
 import schedulepage.*;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,6 +29,10 @@ public class SchedulePage2 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.student = student;
         initComponents();
+        
+    }
+    public void close(){
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     /**
@@ -95,8 +108,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jTextField85 = new javax.swing.JTextField();
         jTextField86 = new javax.swing.JTextField();
         jButtonSectionChange = new javax.swing.JButton();
-        jButtonOpenForum = new javax.swing.JButton();
-        jButtonFriends = new javax.swing.JButton();
+        jButtonMultiChange = new javax.swing.JButton();
         jLabelMinimize = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
 
@@ -108,18 +120,18 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(173, 112, 96));
-        jLabel1.setFont(new java.awt.Font("PT Sans Caption", 1, 40)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("PT Sans Caption", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(173, 112, 96));
         jLabel1.setText("Current Schedule");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(150, 0, 450, 70);
+        jLabel1.setBounds(50, -20, 440, 100);
 
         jPanel2.setBackground(new java.awt.Color(220, 172, 146));
         jPanel2.setLayout(new java.awt.GridLayout(10, 6, 20, 20));
 
         jTextField20.setEditable(false);
         jTextField20.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField20.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField20.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField20.setForeground(new java.awt.Color(220, 172, 146));
         jTextField20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField20.setText("Hours");
@@ -132,7 +144,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField18.setEditable(false);
         jTextField18.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField18.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField18.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField18.setForeground(new java.awt.Color(220, 172, 146));
         jTextField18.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField18.setText("Mon");
@@ -140,7 +152,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField30.setEditable(false);
         jTextField30.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField30.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField30.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField30.setForeground(new java.awt.Color(220, 172, 146));
         jTextField30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField30.setText("Tue");
@@ -153,7 +165,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField32.setEditable(false);
         jTextField32.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField32.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField32.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField32.setForeground(new java.awt.Color(220, 172, 146));
         jTextField32.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField32.setText("Wed");
@@ -166,7 +178,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField33.setEditable(false);
         jTextField33.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField33.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField33.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField33.setForeground(new java.awt.Color(220, 172, 146));
         jTextField33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField33.setText("Thurs");
@@ -174,7 +186,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField34.setEditable(false);
         jTextField34.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField34.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
+        jTextField34.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
         jTextField34.setForeground(new java.awt.Color(220, 172, 146));
         jTextField34.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField34.setText("Fri");
@@ -182,7 +194,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField21.setEditable(false);
         jTextField21.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField21.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField21.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField21.setForeground(new java.awt.Color(220, 172, 146));
         jTextField21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField21.setText("8.30-9.20");
@@ -225,7 +237,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField22.setEditable(false);
         jTextField22.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField22.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField22.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField22.setForeground(new java.awt.Color(220, 172, 146));
         jTextField22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField22.setText("9.30-10.20");
@@ -268,7 +280,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField38.setEditable(false);
         jTextField38.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField38.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField38.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField38.setForeground(new java.awt.Color(220, 172, 146));
         jTextField38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField38.setText("10.30-11.20");
@@ -312,7 +324,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField39.setEditable(false);
         jTextField39.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField39.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField39.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField39.setForeground(new java.awt.Color(220, 172, 146));
         jTextField39.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField39.setText("11.30-12.20");
@@ -355,7 +367,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField40.setEditable(false);
         jTextField40.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField40.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField40.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField40.setForeground(new java.awt.Color(220, 172, 146));
         jTextField40.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField40.setText("12.30-13.20");
@@ -394,7 +406,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField41.setEditable(false);
         jTextField41.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField41.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField41.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField41.setForeground(new java.awt.Color(220, 172, 146));
         jTextField41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField41.setText("13.30-14.20");
@@ -438,7 +450,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField44.setEditable(false);
         jTextField44.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField44.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField44.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField44.setForeground(new java.awt.Color(220, 172, 146));
         jTextField44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField44.setText("14.30.15.20");
@@ -482,7 +494,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField50.setEditable(false);
         jTextField50.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField50.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField50.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField50.setForeground(new java.awt.Color(220, 172, 146));
         jTextField50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField50.setText("15.30-16.20");
@@ -530,7 +542,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
         jTextField81.setEditable(false);
         jTextField81.setBackground(new java.awt.Color(173, 112, 96));
-        jTextField81.setFont(new java.awt.Font("PT Sans Caption", 1, 14)); // NOI18N
+        jTextField81.setFont(new java.awt.Font("PT Sans Caption", 1, 12)); // NOI18N
         jTextField81.setForeground(new java.awt.Color(220, 172, 146));
         jTextField81.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField81.setText("16.30-17.20");
@@ -572,13 +584,13 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jPanel2.add(jTextField86);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 70, 720, 630);
+        jPanel2.setBounds(10, 60, 730, 650);
 
         jButtonSectionChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonSectionChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonSectionChange.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
-        jButtonSectionChange.setText("SECTION CHANGE");
+        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonSectionChange.setText("SINGLE SECTION CHANGE");
         jButtonSectionChange.setToolTipText("");
         jButtonSectionChange.setBorder(null);
         jButtonSectionChange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -594,51 +606,29 @@ public class SchedulePage2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSectionChange);
-        jButtonSectionChange.setBounds(900, 110, 250, 90);
+        jButtonSectionChange.setBounds(790, 200, 460, 160);
 
-        jButtonOpenForum.setBackground(new java.awt.Color(220, 172, 146));
-        jButtonOpenForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jButtonOpenForum.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonOpenForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
-        jButtonOpenForum.setText("OPEN FORUM");
-        jButtonOpenForum.setToolTipText("");
-        jButtonOpenForum.setBorder(null);
-        jButtonOpenForum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonOpenForum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonOpenForum.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonMultiChange.setBackground(new java.awt.Color(220, 172, 146));
+        jButtonMultiChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jButtonMultiChange.setForeground(new java.awt.Color(172, 112, 96));
+        jButtonMultiChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonMultiChange.setText("MULTIPLE-CHANGE REQUEST ");
+        jButtonMultiChange.setToolTipText("");
+        jButtonMultiChange.setBorder(null);
+        jButtonMultiChange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMultiChange.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonMultiChange.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonOpenForumMouseClicked(evt);
+                jButtonMultiChangeMouseClicked(evt);
             }
         });
-        jButtonOpenForum.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMultiChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOpenForumActionPerformed(evt);
+                jButtonMultiChangeActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonOpenForum);
-        jButtonOpenForum.setBounds(900, 270, 250, 90);
-
-        jButtonFriends.setBackground(new java.awt.Color(220, 172, 146));
-        jButtonFriends.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jButtonFriends.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonFriends.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
-        jButtonFriends.setText("FRIENDS");
-        jButtonFriends.setToolTipText("");
-        jButtonFriends.setBorder(null);
-        jButtonFriends.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonFriends.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonFriends.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonFriendsMouseClicked(evt);
-            }
-        });
-        jButtonFriends.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFriendsActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonFriends);
-        jButtonFriends.setBounds(900, 430, 250, 90);
+        jPanel1.add(jButtonMultiChange);
+        jButtonMultiChange.setBounds(790, 440, 460, 160);
 
         jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
@@ -652,7 +642,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1200, 0, 25, 67);
+        jLabelMinimize.setBounds(1190, 0, 31, 58);
 
         jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
@@ -666,13 +656,16 @@ public class SchedulePage2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1240, 0, 35, 67);
+        jLabelClose.setBounds(1230, 0, 32, 58);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -735,24 +728,97 @@ public class SchedulePage2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        // TODO add your handling code here:
+         JFrame singleSection = new JFrame();
+         JPanel panel = new JPanel();
+         Courses courses = new Courses();
+         singleSection.setSize(350,350);
+         singleSection.setLocationRelativeTo(null);
+         JButton b1 = new JButton("MATH102");
+         JButton b2 = new JButton("CS102");
+         JButton b3 = new JButton("MATH132");
+         JButton b4 = new JButton("ENG102");
+         b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panel2 = new JPanel();
+                JFrame frame2 = new JFrame();
+                for(int i = 0; i < 3; i++){
+                    JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    panel2.add(buttonsOfFirst);
+                }
+                frame2.add(panel2);
+                frame2.setVisible(true);
+            }
+         });
+         b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panel2 = new JPanel();
+                JFrame frame2 = new JFrame();
+                for(int i = 3; i < 6; i++){
+                    JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    panel2.add(buttonsOfFirst);
+                }
+                frame2.add(panel2);
+                frame2.setVisible(true);
+            }
+         });
+         b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panel2 = new JPanel();
+                JFrame frame2 = new JFrame();
+                for(int i = 6; i < 9; i++){
+                    JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    panel2.add(buttonsOfFirst);
+                }
+                frame2.add(panel2);
+                frame2.setVisible(true);
+            }
+         });
+         b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel panel2 = new JPanel();
+                JFrame frame2 = new JFrame();
+                for(int i = 9; i < 12; i++){
+                    JButton buttonsOfFirst = new JButton("" + courses.getCourses().get(i));
+                    panel2.add(buttonsOfFirst);
+                }
+                frame2.add(panel2);
+                frame2.setVisible(true);
+            }
+         });
+         panel.add(b4);
+         panel.add(b3);
+         panel.add(b2);
+         panel.add(b1);
+         singleSection.add(panel);
+         singleSection.setVisible(true);
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
-    private void jButtonOpenForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOpenForumMouseClicked
+    private void jButtonMultiChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMultiChangeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonOpenForumMouseClicked
+    }//GEN-LAST:event_jButtonMultiChangeMouseClicked
 
-    private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonOpenForumActionPerformed
-
-    private void jButtonFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFriendsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFriendsMouseClicked
-
-    private void jButtonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFriendsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFriendsActionPerformed
+    private void jButtonMultiChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiChangeActionPerformed
+         JFrame multiSection = new JFrame();
+         JPanel panel = new JPanel();
+         Courses courses = new Courses();
+         multiSection.setSize(350,350);
+         multiSection.setLocationRelativeTo(null);
+         JButton b1 = new JButton("MATH102");
+         JButton b2 = new JButton("CS102");
+         JButton b3 = new JButton("MATH132");
+         JButton b4 = new JButton("ENG102");
+         
+         panel.add(b4);
+         panel.add(b3);
+         panel.add(b2);
+         panel.add(b1);
+         multiSection.add(panel);
+         multiSection.setVisible(true);
+    }//GEN-LAST:event_jButtonMultiChangeActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
         // TODO add your handling code here:
@@ -770,8 +836,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonFriends;
-    private javax.swing.JButton jButtonOpenForum;
+    private javax.swing.JButton jButtonMultiChange;
     private javax.swing.JButton jButtonSectionChange;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelClose;

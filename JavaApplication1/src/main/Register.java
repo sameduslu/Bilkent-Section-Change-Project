@@ -1,6 +1,6 @@
 package main;
 
-import loginpage.LoginPage;
+import LoginPage.LoginPage;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
@@ -162,7 +162,7 @@ public class Register {
     private static ArrayList<Student> addStudents() {
         ArrayList<Student> result = new ArrayList<Student>();
         try{
-            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\Names_and_IDs.txt");
+            File database = new File("/Users/cagri/Desktop/School/Spring_Semester/CS-102/CS102-Project/Bilkent-Section-Change-Project/Names_and_IDs.txt");
             Scanner sc = new Scanner(database);
             while(sc.hasNextLine()) {
                 String name = sc.next();
@@ -185,7 +185,7 @@ public class Register {
     private static Courses addCourses() {
         Courses result = new Courses();
         try{
-            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\Course_Database.txt");
+            File database = new File("/Users/cagri/Desktop/School/Spring_Semester/CS-102/CS102-Project/Bilkent-Section-Change-Project/Course_Database.txt");
             Scanner sc = new Scanner(database);
             int id = 1000;
             while(sc.hasNextLine()) {

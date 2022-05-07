@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package schedulepage;
+package SchedulePage;
 
+import SectionChange.SchedulePage2;
 import javax.swing.JFrame;
 import main.Student;
 
@@ -20,7 +21,6 @@ public class SchedulePage extends javax.swing.JFrame {
         this.student = student;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -734,7 +734,9 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        // TODO add your handling code here:
+        SchedulePage2 sPage1 = new SchedulePage2(this.student);
+        sPage1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
     private void jButtonOpenForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOpenForumMouseClicked
