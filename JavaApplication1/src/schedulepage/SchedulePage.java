@@ -5,8 +5,9 @@
 package SchedulePage;
 
 import Forum.Forum;
-import SectionChange.SchedulePage2;
+import SectionChange.SectionChangePage;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
 
 /**
@@ -16,7 +17,9 @@ import main.Student;
 public class SchedulePage extends javax.swing.JFrame {
 
     private Student student;
-    public SchedulePage(Student student) {
+    private Courses courses;
+    public SchedulePage(Student student, Courses courses) {
+        this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
         this.student = student;
@@ -629,7 +632,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1200, 0, 31, 58);
+        jLabelMinimize.setBounds(1190, 0, 25, 67);
 
         jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
@@ -643,7 +646,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1240, 0, 32, 58);
+        jLabelClose.setBounds(1230, 0, 35, 67);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -712,7 +715,7 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        SchedulePage2 sPage1 = new SchedulePage2(this.student);
+        SectionChangePage sPage1 = new SectionChangePage(this.student, courses);
         sPage1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
@@ -722,8 +725,10 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonOpenForumMouseClicked
 
     private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
-        Forum forumPage = new Forum(this.student);
+        // TODO add your handling code here:
+        Forum forumPage = new Forum(this.student, courses);
         forumPage.setVisible(true);
+        forumPage.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButtonOpenForumActionPerformed
 

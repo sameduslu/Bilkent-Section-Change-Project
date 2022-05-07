@@ -15,53 +15,24 @@ public class Courses {
     /*************************************************************************************** */
     /**************************** METHODS ************************************************** */
     /*************************************************************************************** */
-    public void addCourse(Course newCourse){
+    public void addCourse (Course newCourse)
+    {
         courses.add(newCourse);
     }
 
-    public void removeCourse(Course removedCourse)
-    {
-        int index = this.findCourseIndex(removedCourse);
-        if(index>=0)
-        {
-            courses.remove(index);
-        }
-        else{
-            System.out.println("The removal desired course can not found");
-        }
+    public void removeCourse (Course removedCourse) {
+        courses.remove(removedCourse);
     }
-    public void changeCourse(Course oldCourse, Course newCourse)
-    {
-        int index = this.findCourseIndex(oldCourse);
-        if(index>=0)
-        {
-            courses.set(index, newCourse);
-        }else{
-            System.out.println("Can not found the Old Course");
-        }
-    }
-    // helper method 
-    public int findCourseIndex(Course removedCourse)// returns the matching indec of the removed course
-    {
-        int index = -1;
-        for(int i =0;i<courses.size();i++)
-        {
-            if(courses.get(i).equals(removedCourse))
-            {
-                index = i;
-            }
-        }
-        return index;
-    }
-    //                  Get methods
-    public ArrayList<Course> getCourses()
-    {
+    
+    //Get methods
+    public ArrayList<Course> getCourses() {
         return this.courses;
     }
-    public int getSize()
-    {
+
+    public int getSize() {
         return courses.size();
-    }   
+    }
+
     public Course getCourse (int index) {
         return courses.get(index);
     }

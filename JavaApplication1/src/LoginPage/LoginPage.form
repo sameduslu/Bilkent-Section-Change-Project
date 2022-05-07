@@ -58,37 +58,27 @@
                   <EmptySpace min="-2" pref="363" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-<<<<<<< HEAD
-                          <Component id="jLabel1" min="-2" pref="516" max="-2" attributes="0"/>
-=======
                           <Component id="jLabelRegister" min="-2" pref="516" max="-2" attributes="0"/>
->>>>>>> Görkem_Workspace
-                          <EmptySpace min="0" pref="401" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="391" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jLabel3" min="-2" pref="302" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" pref="302" max="-2" attributes="0"/>
-=======
                               <Component id="jLabelID" min="-2" pref="302" max="-2" attributes="0"/>
                               <Component id="jLabelPassword" min="-2" pref="302" max="-2" attributes="0"/>
->>>>>>> Görkem_Workspace
                           </Group>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPasswordFieldPassword" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
                               <Group type="102" attributes="0">
-                                  <Component id="jTextFieldID" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" pref="68" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jPasswordFieldPassword" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldID" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-=======
-                              <Component id="jTextFieldID" min="-2" max="-2" attributes="0"/>
->>>>>>> Görkem_Workspace
-                              <Component id="jButtonLogin" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButtonLogin" min="-2" pref="249" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -102,32 +92,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelClose" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="jLabelMinimize" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                  </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="289" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="153" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" pref="153" max="-2" attributes="0"/>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="401" max="-2" attributes="0"/>
-                          <Component id="jLabel2" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jTextFieldID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jPasswordFieldPassword" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-=======
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="jLabelRegister" min="-2" pref="289" max="-2" attributes="0"/>
@@ -142,10 +106,9 @@
                   <Component id="jTextFieldID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jPasswordFieldPassword" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
->>>>>>> Görkem_Workspace
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jButtonLogin" min="-2" pref="98" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -225,13 +188,7 @@
             </Property>
           </Properties>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JLabel" name="jLabel2">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-=======
         <Component class="javax.swing.JLabel" name="jLabelID">
->>>>>>> Görkem_Workspace
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -243,11 +200,7 @@
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
           <Events>
-<<<<<<< HEAD
-            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jLabel3InputMethodTextChanged"/>
-=======
             <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jLabelIDInputMethodTextChanged"/>
->>>>>>> Görkem_Workspace
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordFieldPassword">
@@ -278,11 +231,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldIDActionPerformed"/>
           </Events>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JLabel" name="jLabel4">
-=======
         <Component class="javax.swing.JLabel" name="jLabelPassword">
->>>>>>> Görkem_Workspace
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -294,11 +243,7 @@
             <Property name="verticalAlignment" type="int" value="3"/>
           </Properties>
           <Events>
-<<<<<<< HEAD
-            <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jLabel4InputMethodTextChanged"/>
-=======
             <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jLabelPasswordInputMethodTextChanged"/>
->>>>>>> Görkem_Workspace
           </Events>
         </Component>
       </SubComponents>

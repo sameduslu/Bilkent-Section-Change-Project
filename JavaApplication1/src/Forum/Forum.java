@@ -6,6 +6,7 @@ package Forum;
 
 import SchedulePage.SchedulePage;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
 
 /**
@@ -15,14 +16,15 @@ import main.Student;
 public class Forum extends javax.swing.JFrame {
 
     private Student student;
-
+    private Courses courses;
     /**
      * Creates new form Forum
      */
-    public Forum(Student student) {
+    public Forum(Student student, Courses courses) {
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
         this.student = student;
+        this.courses = courses;
         initComponents();
     }
 
@@ -53,6 +55,7 @@ public class Forum extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1268, 720));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1268, 720));
         setSize(new java.awt.Dimension(1268, 720));
         getContentPane().setLayout(null);
@@ -197,22 +200,23 @@ public class Forum extends javax.swing.JFrame {
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(145, 145, 145))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
+                        .addGap(3, 3, 3)
                         .addComponent(jLabelMinimize)
-                        .addGap(9, 9, 9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelClose)
-                        .addContainerGap())))
+                        .addGap(12, 12, 12))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMinimize)
-                    .addComponent(jLabelClose)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelClose)
+                        .addComponent(jLabelMinimize))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +267,7 @@ public class Forum extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SchedulePage sPage = new SchedulePage(this.student);
+        SchedulePage sPage = new SchedulePage(this.student, courses);
         sPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

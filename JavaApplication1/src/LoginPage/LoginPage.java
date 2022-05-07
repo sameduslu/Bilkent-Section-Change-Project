@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package LoginPage;
+package loginpage;
 
 import SchedulePage.SchedulePage;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import main.Courses;
 import main.Student;
 
 /**
@@ -19,10 +20,12 @@ import main.Student;
 public class LoginPage extends javax.swing.JFrame {
 
     private ArrayList<Student> students;
-    public LoginPage(ArrayList<Student> students) {
+    private Courses courses;
+    public LoginPage(ArrayList<Student> students, Courses courses) {
+        this.students = students;
+        this.courses = courses;
         initComponents();
         this.setLocationRelativeTo(null);
-        this.students = students;
     }
 
     @SuppressWarnings("unchecked")
@@ -148,17 +151,21 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 401, Short.MAX_VALUE))
+                        .addGap(0, 391, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,9 +186,9 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(46, 46, 46)
                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,30 +218,11 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
         // TODO add your handling code here:
         String studentID = jTextFieldID.getText();
-        int count = 0;
         String studentPassword = jPasswordFieldPassword.getText();
-        try{
-            File database = new File("/Users/cagri/Desktop/School/Spring_Semester/CS-102/CS102-Project/Bilkent-Section-Change-Project/Names_and_IDs.txt");
-            Scanner sc = new Scanner(database);
-            while(sc.hasNextLine()) {
-                String name = sc.next();
-                String surname = sc.next();
-                name += (" " + surname); 
-                String id = sc.next();
-                String password = sc.next();
-                if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
-                    SchedulePage sPage = new SchedulePage(students.get(count));
-                    sPage.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-                count++;
-            }
-            System.out.println("not registered!!");
-            sc.close();
-        }
-        catch (FileNotFoundException err)  {
-            System.out.println("Error occured!");
+        if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
+                SchedulePage sPage = new SchedulePage(students.get(0), courses);
+                sPage.setVisible(true);
+                this.dispose();
         }
     }//GEN-LAST:event_jButtonLoginMouseClicked
 
