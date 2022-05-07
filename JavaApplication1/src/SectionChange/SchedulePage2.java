@@ -4,6 +4,7 @@
  */
 package SectionChange;
 
+import SchedulePage.SchedulePage;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,9 +109,11 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jTextField85 = new javax.swing.JTextField();
         jTextField86 = new javax.swing.JTextField();
         jButtonSectionChange = new javax.swing.JButton();
-        jButtonMultiChange = new javax.swing.JButton();
         jLabelMinimize = new javax.swing.JLabel();
+        jButtonForum = new javax.swing.JButton();
         jLabelClose = new javax.swing.JLabel();
+        jButtonMultiChange = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 172, 146));
@@ -124,7 +127,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(173, 112, 96));
         jLabel1.setText("Current Schedule");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, -20, 440, 100);
+        jLabel1.setBounds(70, -20, 440, 100);
 
         jPanel2.setBackground(new java.awt.Color(220, 172, 146));
         jPanel2.setLayout(new java.awt.GridLayout(10, 6, 20, 20));
@@ -606,7 +609,57 @@ public class SchedulePage2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSectionChange);
-        jButtonSectionChange.setBounds(790, 200, 460, 160);
+        jButtonSectionChange.setBounds(790, 100, 460, 160);
+
+        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+        jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMinimize.setText("-");
+        jLabelMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelMinimizeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabelMinimize);
+        jLabelMinimize.setBounds(1190, 0, 31, 58);
+
+        jButtonForum.setBackground(new java.awt.Color(220, 172, 146));
+        jButtonForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        jButtonForum.setForeground(new java.awt.Color(172, 112, 96));
+        jButtonForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonForum.setText("FORUM");
+        jButtonForum.setToolTipText("");
+        jButtonForum.setBorder(null);
+        jButtonForum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonForum.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonForum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonForumMouseClicked(evt);
+            }
+        });
+        jButtonForum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonForumActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonForum);
+        jButtonForum.setBounds(790, 520, 460, 160);
+
+        jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+        jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelClose.setText("X");
+        jLabelClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelCloseMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabelClose);
+        jLabelClose.setBounds(1230, 0, 32, 58);
 
         jButtonMultiChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonMultiChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -628,35 +681,18 @@ public class SchedulePage2 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonMultiChange);
-        jButtonMultiChange.setBounds(790, 440, 460, 160);
+        jButtonMultiChange.setBounds(790, 310, 460, 160);
 
-        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
-        jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMinimize.setText("-");
-        jLabelMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMinimizeMouseClicked(evt);
+        jButton1.setBackground(new java.awt.Color(220, 172, 146));
+        jButton1.setForeground(new java.awt.Color(220, 172, 146));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1190, 0, 31, 58);
-
-        jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
-        jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelClose.setText("X");
-        jLabelClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelCloseMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1230, 0, 32, 58);
+        jPanel1.add(jButton1);
+        jButton1.setBounds(1140, 20, 40, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -797,11 +833,11 @@ public class SchedulePage2 extends javax.swing.JFrame {
          singleSection.setVisible(true);
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
-    private void jButtonMultiChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMultiChangeMouseClicked
+    private void jButtonForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonForumMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMultiChangeMouseClicked
+    }//GEN-LAST:event_jButtonForumMouseClicked
 
-    private void jButtonMultiChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiChangeActionPerformed
+    private void jButtonForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForumActionPerformed
          JFrame multiSection = new JFrame();
          JPanel panel = new JPanel();
          Courses courses = new Courses();
@@ -818,7 +854,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
          panel.add(b1);
          multiSection.add(panel);
          multiSection.setVisible(true);
-    }//GEN-LAST:event_jButtonMultiChangeActionPerformed
+    }//GEN-LAST:event_jButtonForumActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
         // TODO add your handling code here:
@@ -834,8 +870,24 @@ public class SchedulePage2 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
+    private void jButtonMultiChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonMultiChangeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMultiChangeMouseClicked
+
+    private void jButtonMultiChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiChangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMultiChangeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SchedulePage sPage = new SchedulePage(this.student);
+        sPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonForum;
     private javax.swing.JButton jButtonMultiChange;
     private javax.swing.JButton jButtonSectionChange;
     private javax.swing.JLabel jLabel1;
