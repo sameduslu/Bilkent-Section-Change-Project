@@ -3,10 +3,14 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("singleRequest")
-public class SingleRequest extends Request {
+@Document("forumRequest")
+public class ForumRequest extends Request {
+
     @DBRef
     private Course wantedCourse;
+
+    @DBRef
+    private Course currentCourse;
 
     public Course getWantedCourse() {
         return wantedCourse;
@@ -14,5 +18,13 @@ public class SingleRequest extends Request {
 
     public void setWantedCourse(Course wantedCourse) {
         this.wantedCourse = wantedCourse;
+    }
+
+    public Course getCurrentCourse() {
+        return currentCourse;
+    }
+
+    public void setCurrentCourse(Course currentCourse) {
+        this.currentCourse = currentCourse;
     }
 }

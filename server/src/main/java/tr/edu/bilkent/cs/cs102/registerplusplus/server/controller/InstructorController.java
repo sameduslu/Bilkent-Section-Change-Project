@@ -22,8 +22,7 @@ public class InstructorController {
     // tag::get-aggregate-root[]
     @GetMapping("/instructors")
     List<Instructor> all() {
-        List<Instructor> all = repository.findAll();
-        return all;
+        return repository.findAll();
     }
     // end::get-aggregate-root[]
 

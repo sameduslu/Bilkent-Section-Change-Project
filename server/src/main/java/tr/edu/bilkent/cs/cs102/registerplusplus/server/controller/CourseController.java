@@ -22,8 +22,7 @@ public class CourseController {
     // tag::get-aggregate-root[]
     @GetMapping("/courses")
     public List<Course> all() {
-        List<Course> all = repository.findAll();
-        return all;
+        return repository.findAll();
     }
     // end::get-aggregate-root[]
 

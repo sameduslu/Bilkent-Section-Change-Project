@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="server" />
+        <module name="registerplusplus-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="registerplusplus-server" target="13" />
       <module name="server" target="13" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="registerplusplus-server" options="-parameters" />
       <module name="server" options="-parameters" />
     </option>
   </component>
