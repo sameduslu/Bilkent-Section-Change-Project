@@ -686,13 +686,14 @@ public class SchedulePage2 extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(220, 172, 146));
         jButton1.setForeground(new java.awt.Color(220, 172, 146));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(1140, 20, 40, 30);
+        jButton1.setBounds(1150, 10, 40, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -838,22 +839,7 @@ public class SchedulePage2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonForumMouseClicked
 
     private void jButtonForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForumActionPerformed
-         JFrame multiSection = new JFrame();
-         JPanel panel = new JPanel();
-         Courses courses = new Courses();
-         multiSection.setSize(350,350);
-         multiSection.setLocationRelativeTo(null);
-         JButton b1 = new JButton("MATH102");
-         JButton b2 = new JButton("CS102");
-         JButton b3 = new JButton("MATH132");
-         JButton b4 = new JButton("ENG102");
-         
-         panel.add(b4);
-         panel.add(b3);
-         panel.add(b2);
-         panel.add(b1);
-         multiSection.add(panel);
-         multiSection.setVisible(true);
+        
     }//GEN-LAST:event_jButtonForumActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
