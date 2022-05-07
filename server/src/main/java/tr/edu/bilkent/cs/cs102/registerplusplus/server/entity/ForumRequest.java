@@ -12,23 +12,12 @@ public class ForumRequest extends Request {
     @DBRef
     private Course currentCourse;
 
-    @DBRef
-    private Student acceptor;
-
     public Course getWantedCourse() {
         return wantedCourse;
     }
 
     public void setWantedCourse(Course wantedCourse) {
         this.wantedCourse = wantedCourse;
-    }
-
-    public Student getAcceptor() {
-        return acceptor;
-    }
-
-    public void setAcceptor(Student acceptor) {
-        this.acceptor = acceptor;
     }
 
     public Course getCurrentCourse() {

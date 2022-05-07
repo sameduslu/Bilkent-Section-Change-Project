@@ -33,7 +33,7 @@ public class MultipleRequestController {
     @PostMapping("/multipleRequest")
     public MultipleRequest newItem(@RequestBody MultipleRequest multipleRequest) {
         MultipleRequest save = multipleRequestRepository.save(multipleRequest);
-        requestProcessorService.processRequests();
+        requestProcessorService.processNonForumRequests();
         return save;
     }
 }

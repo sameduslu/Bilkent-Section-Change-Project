@@ -29,8 +29,7 @@ public class RequestProcessorService {
         this.forumRequestRepository = forumRequestRepository;
     }
 
-
-    public void processRequests() {
+    public void processNonForumRequests() {
         List<SingleRequest> singleRequests = singleRequestRepository.findAll();
         List<MultipleRequest> multipleRequests = multipleRequestRepository.findAll();
         Collections.sort(singleRequests);
@@ -77,61 +76,6 @@ public class RequestProcessorService {
             }
             i2++;
         }
-    }
-
-    private boolean processMultipleRequest(MultipleRequest req) {
-        List<Course> wantedCourses = req.getWantedCourses();
-        Student owner = req.getRequestOwner();
-        List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
-        List<Course> newCourses = new ArrayList<>();
-        List<Course> alreadyTaking = new ArrayList<>();
-        for (Course c : wantedCourses) {
-            if (isFull(c)) {
-                return false;
-            }
-            if (courseByStudentId.contains(c)) {
-                alreadyTaking.add(c);
-            } else {
-                newCourses.add(c);
-            }
-        }
-        boolean[][] tempProgram = cloneProgramOfStudent(owner);
-        for (Course c : alreadyTaking) {
-            Course course = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
-            removeCourseFromTempProgram(course, tempProgram);
-        }
-        for (Course c : wantedCourses) {
-            boolean[][] wantedProgram = c.getProgram();
-            for (int i = 0; i < tempProgram.length; i++) {
-                for (int j = 0; j < tempProgram[i].length; j++) {
-                    if (wantedProgram[i][j] && tempProgram[i][j]) {
-                        return false;
-                    }
-                    if (!tempProgram[i][j] && wantedProgram[i][j]) {
-                        tempProgram[i][j] = true;
-                    }
-                }
-            }
-        }
-        for (Course c : newCourses) {
-            courseService.addStudentToCourse(owner, c);
-        }
-        for (Course c : alreadyTaking) {
-            Course changingCourse = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
-            courseService.removeStudentFromCourse(owner, changingCourse);
-            courseService.addStudentToCourse(owner, c);
-        }
-        multipleRequestRepository.delete(req);
-        return true;
-    }
-
-    private boolean[][] cloneProgramOfStudent(Student student) {
-        boolean[][] originalProgram = student.getProgram();
-        boolean[][] tempProgram = new boolean[originalProgram.length][];
-        for (int i = 0; i < originalProgram.length; i++) {
-            tempProgram[i] = originalProgram[i].clone();
-        }
-        return tempProgram;
     }
 
     private boolean processSingleRequest(SingleRequest req) {
@@ -182,6 +126,78 @@ public class RequestProcessorService {
         return true;
     }
 
+    private boolean processMultipleRequest(MultipleRequest req) {
+        List<Course> wantedCourses = req.getWantedCourses();
+        Student owner = req.getRequestOwner();
+        List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
+        List<Course> newCourses = new ArrayList<>();
+        List<Course> alreadyTaking = new ArrayList<>();
+        for (Course c : wantedCourses) {
+            if (isFull(c)) {
+                return false;
+            }
+            if (courseByStudentId.contains(c)) {
+                alreadyTaking.add(c);
+            } else {
+                newCourses.add(c);
+            }
+        }
+        boolean[][] tempProgram = cloneProgramOfStudent(owner);
+        for (Course c : alreadyTaking) {
+            Course course = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
+            removeCourseFromTempProgram(course, tempProgram);
+        }
+        for (Course c : wantedCourses) {
+            boolean[][] wantedProgram = c.getProgram();
+            for (int i = 0; i < tempProgram.length; i++) {
+                for (int j = 0; j < tempProgram[i].length; j++) {
+                    if (wantedProgram[i][j] && tempProgram[i][j]) {
+                        return false;
+                    }
+                    if (!tempProgram[i][j] && wantedProgram[i][j]) {
+                        tempProgram[i][j] = true;
+                    }
+                }
+            }
+        }
+        for (Course c : newCourses) {
+            courseService.addStudentToCourse(owner, c);
+        }
+        for (Course c : alreadyTaking) {
+            Course changingCourse = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
+            courseService.removeStudentFromCourse(owner, changingCourse);
+            courseService.addStudentToCourse(owner, c);
+        }
+        multipleRequestRepository.delete(req);
+        return true;
+    }
+
+    public boolean processForumRequest(ForumRequest req, Student acceptor) {
+        if (!isForumRequestPossible(req, acceptor)) {
+            return false;
+        }
+        Student owner = req.getRequestOwner();
+        //Student acceptor = req.getAcceptor();
+        Course ownerCourse = req.getCurrentCourse();
+        Course wantedCourse = req.getWantedCourse();
+        courseService.removeStudentFromCourse(owner, ownerCourse);
+        courseService.removeStudentFromCourse(acceptor, wantedCourse);
+        courseService.addStudentToCourse(owner, wantedCourse);
+        courseService.addStudentToCourse(acceptor, ownerCourse);
+        forumRequestRepository.delete(req);
+        processNonForumRequests();
+        return true;
+    }
+
+    private boolean[][] cloneProgramOfStudent(Student student) {
+        boolean[][] originalProgram = student.getProgram();
+        boolean[][] tempProgram = new boolean[originalProgram.length][];
+        for (int i = 0; i < originalProgram.length; i++) {
+            tempProgram[i] = originalProgram[i].clone();
+        }
+        return tempProgram;
+    }
+
     private void removeCourseFromTempProgram(Course course, boolean[][] tempProgram) {
         boolean[][] courseProgram = course.getProgram();
         for (int i = 0; i < courseProgram.length; i++) {
@@ -196,7 +212,6 @@ public class RequestProcessorService {
     private boolean doesStudentTakeCourse(Course wanted, List<Course> coursesByStudentId) {
         return coursesByStudentId.stream().anyMatch(c -> c.getName().equals(wanted.getName()));
     }
-
 
     public boolean isFull(Course c) {
         return c.getStudents().size() >= Course.QUOTA;
@@ -216,27 +231,9 @@ public class RequestProcessorService {
         return false;
     }
 
-
-    public boolean processForumRequest(ForumRequest req) {
-        if (!isForumRequestPossible(req)) {
-            return false;
-        }
-        Student owner = req.getRequestOwner();
-        Student acceptor = req.getAcceptor();
-        Course ownerCourse = req.getCurrentCourse();
-        Course wantedCourse = req.getWantedCourse();
-        courseService.removeStudentFromCourse(owner, ownerCourse);
-        courseService.removeStudentFromCourse(acceptor, wantedCourse);
-        courseService.addStudentToCourse(owner, wantedCourse);
-        courseService.addStudentToCourse(acceptor, ownerCourse);
-        forumRequestRepository.delete(req);
-        processRequests();
-        return true;
-    }
-
-    private boolean isForumRequestPossible(ForumRequest req) {
+    private boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
         boolean[][] ownerProgram = cloneProgramOfStudent(req.getRequestOwner());
-        boolean[][] acceptorProgram = cloneProgramOfStudent(req.getAcceptor());
+        boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
         boolean[][] ownerCourseProgram = req.getCurrentCourse().getProgram();
         boolean[][] wantedCourseProgram = req.getWantedCourse().getProgram();
         removeCourseFromTempProgram(req.getCurrentCourse(), ownerProgram);

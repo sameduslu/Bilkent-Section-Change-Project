@@ -36,7 +36,7 @@ public class SingleRequestController {
     @PostMapping("/singleRequest")
     public SingleRequest newItem(@RequestBody SingleRequest singleRequest) {
         SingleRequest save = singleRequestRepository.save(singleRequest);
-        requestProcessorService.processRequests();
+        requestProcessorService.processNonForumRequests();
         return save;
     }
 }

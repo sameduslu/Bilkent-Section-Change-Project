@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" afterDir="false" />
+    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="forum request process methods">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequestApproval.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -163,9 +165,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.DemoApplicationTests" />
+        <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
         <item itemvalue="Docker.docker: Compose Deployment" />
         <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
-        <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -186,6 +188,9 @@
       <workItem from="1651740317521" duration="16950000" />
       <workItem from="1651828976240" duration="89000" />
       <workItem from="1651834691107" duration="5931000" />
+      <workItem from="1651843748719" duration="678000" />
+      <workItem from="1651865972898" duration="4418000" />
+      <workItem from="1651914286277" duration="3854000" />
     </task>
     <task id="LOCAL-00001" summary="changed the order of indexes&#10;added a todo">
       <created>1649919282787</created>
@@ -250,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651795569882</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="forum request process methods">
+      <created>1651843879433</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1651843879433</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +323,12 @@
     <MESSAGE value="section change request, tests, refactor" />
     <MESSAGE value="refactor, controls, single change request revision, tests" />
     <MESSAGE value="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting" />
+    <MESSAGE value="forum request process methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="forum request process methods" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/project$DemoApplicationTests.ic" NAME="DemoApplicationTests Coverage Results" MODIFIED="1651917534803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tr.edu.bilkent.cs.cs102.registerplusplus.*</FILTER>
+    </SUITE>
   </component>
 </project>
