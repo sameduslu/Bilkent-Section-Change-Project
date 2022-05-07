@@ -4,6 +4,7 @@
  */
 package SectionChange;
 
+import Forum.Forum;
 import SchedulePage.SchedulePage;
 import SingleMultipleChange.MultipleChange;
 import SingleMultipleChange.SingleChange;
@@ -852,7 +853,10 @@ public class SectionChangePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonForumMouseClicked
 
     private void jButtonForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForumActionPerformed
-        
+        Forum forumPage = new Forum(this.student, courses);
+        forumPage.setVisible(true);
+        forumPage.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButtonForumActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed

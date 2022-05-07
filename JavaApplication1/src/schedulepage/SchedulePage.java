@@ -4,6 +4,7 @@
  */
 package SchedulePage;
 
+import Forum.Forum;
 import SectionChange.SectionChangePage;
 import javax.swing.JFrame;
 import main.Courses;
@@ -631,7 +632,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1200, 0, 31, 58);
+        jLabelMinimize.setBounds(1190, 0, 25, 67);
 
         jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
@@ -645,7 +646,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1240, 0, 32, 58);
+        jLabelClose.setBounds(1230, 0, 35, 67);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -725,6 +726,10 @@ public class SchedulePage extends javax.swing.JFrame {
 
     private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
         // TODO add your handling code here:
+        Forum forumPage = new Forum(this.student, courses);
+        forumPage.setVisible(true);
+        forumPage.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButtonOpenForumActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
