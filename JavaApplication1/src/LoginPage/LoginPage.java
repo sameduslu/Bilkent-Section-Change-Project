@@ -4,7 +4,7 @@
  */
 package loginpage;
 
-import schedulepage.SchedulePage;
+import SchedulePage.SchedulePage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ public class LoginPage extends javax.swing.JFrame {
 
     private ArrayList<Student> students;
     public LoginPage(ArrayList<Student> students) {
+        this.students = students;
         initComponents();
         this.setLocationRelativeTo(null);
-        this.students = students;
     }
 
     @SuppressWarnings("unchecked")
@@ -212,27 +212,10 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String studentID = jTextFieldID.getText();
         String studentPassword = jPasswordFieldPassword.getText();
-        try{
-            File database = new File("C:\\Users\\Pc\\Desktop\\Enanılmaz C\\22003214\\cs102\\proje\\Bilkent-Section-Change-Project\\Names_and_IDs_Passwords.txt");
-            Scanner sc = new Scanner(database);
-            while(sc.hasNextLine()) {
-                String name = sc.next();
-                String surname = sc.next();
-                name += (" " + surname); 
-                String id = sc.next();
-                String password = sc.next();
-                if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
-                    SchedulePage sPage = new SchedulePage(students.get(0));
-                    sPage.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-            }
-            System.out.println("not registered!!");
-            sc.close();
-        }
-        catch (FileNotFoundException err)  {
-            System.out.println("Error occured!");
+        if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
+                SchedulePage sPage = new SchedulePage(students.get(0));
+                sPage.setVisible(true);
+                this.dispose();
         }
     }//GEN-LAST:event_jButtonLoginMouseClicked
 

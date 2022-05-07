@@ -6,6 +6,7 @@ import java.util.Random;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import loginpage.LoginPage;
 
 public class Register {
 
@@ -158,14 +159,17 @@ public class Register {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         } 
 
-        test();
+        LoginPage loginpage = new LoginPage(allStudents);
+        loginpage.setVisible(true);
+        loginpage.setLocationRelativeTo(null);
+        //test();
 
     }
 
     private static ArrayList<Student> addStudents() {
         ArrayList<Student> result = new ArrayList<Student>();
         try{
-            File database = new File("Names_and_IDs.txt");
+            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\Names_and_IDs.txt");
             Scanner sc = new Scanner(database);
             while(sc.hasNextLine()) {
                 String name = sc.next();
@@ -188,7 +192,7 @@ public class Register {
     private static Courses addCourses() {
         Courses result = new Courses();
         try{
-            File database = new File("Course_Database.txt");
+            File database = new File("C:\\Users\\Pc\\Desktop\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\Course_Database.txt");
             Scanner sc = new Scanner(database);
             int id = 1000;
             while(sc.hasNextLine()) {

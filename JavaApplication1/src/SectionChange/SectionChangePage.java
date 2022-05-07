@@ -4,7 +4,7 @@
  */
 package SectionChange;
 
-import schedulepage.SchedulePage;
+import SchedulePage.SchedulePage;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;

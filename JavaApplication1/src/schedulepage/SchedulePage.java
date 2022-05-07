@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package schedulepage;
+package SchedulePage;
 
+import SectionChange.SectionChangePage;
 import javax.swing.JFrame;
 import main.Student;
 
@@ -20,7 +21,6 @@ public class SchedulePage extends javax.swing.JFrame {
         this.student = student;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,7 +95,6 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField86 = new javax.swing.JTextField();
         jButtonSectionChange = new javax.swing.JButton();
         jButtonOpenForum = new javax.swing.JButton();
-        jButtonFriends = new javax.swing.JButton();
         jLabelMinimize = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
 
@@ -593,7 +592,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSectionChange);
-        jButtonSectionChange.setBounds(900, 110, 250, 90);
+        jButtonSectionChange.setBounds(900, 230, 250, 90);
 
         jButtonOpenForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonOpenForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -615,29 +614,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonOpenForum);
-        jButtonOpenForum.setBounds(900, 270, 250, 90);
-
-        jButtonFriends.setBackground(new java.awt.Color(220, 172, 146));
-        jButtonFriends.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
-        jButtonFriends.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonFriends.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
-        jButtonFriends.setText("FRIENDS");
-        jButtonFriends.setToolTipText("");
-        jButtonFriends.setBorder(null);
-        jButtonFriends.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonFriends.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonFriends.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonFriendsMouseClicked(evt);
-            }
-        });
-        jButtonFriends.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFriendsActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonFriends);
-        jButtonFriends.setBounds(900, 430, 250, 90);
+        jButtonOpenForum.setBounds(900, 450, 250, 90);
 
         jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
@@ -651,7 +628,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1200, 0, 25, 67);
+        jLabelMinimize.setBounds(1200, 0, 31, 58);
 
         jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
@@ -665,7 +642,7 @@ public class SchedulePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1240, 0, 35, 67);
+        jLabelClose.setBounds(1240, 0, 32, 58);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -734,7 +711,9 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        // TODO add your handling code here:
+        SectionChangePage sPage1 = new SectionChangePage(this.student);
+        sPage1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
     private void jButtonOpenForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOpenForumMouseClicked
@@ -744,14 +723,6 @@ public class SchedulePage extends javax.swing.JFrame {
     private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonOpenForumActionPerformed
-
-    private void jButtonFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFriendsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFriendsMouseClicked
-
-    private void jButtonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFriendsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFriendsActionPerformed
 
     private void jTextField80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField80ActionPerformed
         // TODO add your handling code here:
@@ -769,7 +740,6 @@ public class SchedulePage extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonFriends;
     private javax.swing.JButton jButtonOpenForum;
     private javax.swing.JButton jButtonSectionChange;
     private javax.swing.JLabel jLabel1;
