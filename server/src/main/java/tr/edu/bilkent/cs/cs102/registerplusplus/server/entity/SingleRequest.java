@@ -15,4 +15,13 @@ public class SingleRequest extends Request {
     public void setWantedCourse(Course wantedCourse) {
         this.wantedCourse = wantedCourse;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof SingleRequest)){
+            return false;
+        }
+        return this.getRequestOwner().equals(((SingleRequest) o).getRequestOwner()) && this.wantedCourse.equals(((SingleRequest) o).wantedCourse);
+    }
+
 }

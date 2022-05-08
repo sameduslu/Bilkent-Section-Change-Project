@@ -27,4 +27,12 @@ public class ForumRequest extends Request {
     public void setCurrentCourse(Course currentCourse) {
         this.currentCourse = currentCourse;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof ForumRequest)){
+            return false;
+        }
+        return this.getRequestOwner().equals(((ForumRequest) o).getRequestOwner()) && this.wantedCourse.equals(((ForumRequest) o).wantedCourse);
+    }
 }

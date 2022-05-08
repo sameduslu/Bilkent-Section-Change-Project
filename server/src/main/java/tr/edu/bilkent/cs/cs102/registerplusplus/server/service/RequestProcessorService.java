@@ -2,6 +2,7 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
 
 import org.springframework.stereotype.Service;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
@@ -21,12 +22,15 @@ public class RequestProcessorService {
 
     private final ForumRequestRepository forumRequestRepository;
 
+    private final CourseRepository courseRepository;
 
-    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository) {
+
+    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository) {
         this.courseService = courseService;
         this.singleRequestRepository = singleRequestRepository;
         this.multipleRequestRepository = multipleRequestRepository;
         this.forumRequestRepository = forumRequestRepository;
+        this.courseRepository = courseRepository;
     }
 
     public void processNonForumRequests() {
@@ -39,7 +43,7 @@ public class RequestProcessorService {
             SingleRequest singleRequest = singleRequests.get(i1);
             MultipleRequest multipleRequest = multipleRequests.get(i2);
             if (singleRequest.compareTo(multipleRequest) <= 0) {
-                if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(),courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+                if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
                     continue;
                 }
@@ -51,8 +55,7 @@ public class RequestProcessorService {
                     continue;
                 }
                 i1++;
-            } 
-            else {
+            } else {
                 if (isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                     multipleRequestRepository.delete(multipleRequest);
                     continue;
@@ -69,7 +72,7 @@ public class RequestProcessorService {
         }
         while (i1 < singleRequests.size()) {
             SingleRequest singleRequest = singleRequests.get(i1);
-            if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(),courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+            if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                 singleRequestRepository.delete(singleRequest);
                 continue;
             }
@@ -114,9 +117,6 @@ public class RequestProcessorService {
     }
 
     private boolean processNewCourseRequest(SingleRequest req, List<Course> courseByStudentId) {
-        //TODO if owner loses one of the offering courses in the forum 
-        //or one of the new courses start to overlap with wanted course in the forum
-        //this forum request should be deleted immediately
 
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
@@ -126,19 +126,18 @@ public class RequestProcessorService {
         }
         courseService.addStudentToCourse(owner, wanted);
         singleRequestRepository.delete(req);
+        updateForumRequests(req.getRequestOwner());
         return true;
     }
 
     private boolean processSectionChangeRequest(SingleRequest req, List<Course> courseByStudentId) {
-        //TODO if owner loses one of the offering courses in the forum 
-        //or one of the new courses start to overlap with wanted course in the forum
-        //this forum request should be deleted immediately
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
         Course course = courseByStudentId.stream().filter(c -> c.getName().equals(wanted.getName())).findAny().get(); //todo isPresent check?
         courseService.removeStudentFromCourse(owner, course);
         courseService.addStudentToCourse(owner, wanted);
         singleRequestRepository.delete(req);
+        updateForumRequests(req.getRequestOwner());
         return true;
     }
 
@@ -193,7 +192,7 @@ public class RequestProcessorService {
         return true;
     }*/
 
-    private boolean processMultipleRequest (MultipleRequest req) {
+    private boolean processMultipleRequest(MultipleRequest req) {
         List<Course> wantedCourses = req.getWantedCourses();
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
@@ -216,7 +215,18 @@ public class RequestProcessorService {
             courseService.addStudentToCourse(owner, wanted);
         }
         multipleRequestRepository.delete(req);
+        updateForumRequests(req.getRequestOwner());
         return true;
+    }
+
+    private void updateForumRequests(Student requestOwner) {
+        List<ForumRequest> requests = forumRequestRepository.findForumRequestByRequestOwner_Id(requestOwner.getId());
+        List<Course> courses = courseRepository.findCourseByStudentsId(requestOwner.getId());
+        for (ForumRequest req : requests) {
+            if (!courses.contains(req.getCurrentCourse()) || !isStillValid(req.getWantedCourse(), requestOwner, courses)) {
+                forumRequestRepository.delete(req);
+            }
+        }
     }
 
     public boolean processForumRequest(ForumRequest req, Student acceptor) {
@@ -292,22 +302,22 @@ public class RequestProcessorService {
         return false;
     }
 
-    public boolean isStillValid(Course course, Student student, List<Course> coursesOfStudent) {
-        if (coursesOfStudent.contains(course)) return true;
+    public boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
+        if (coursesOfStudent.contains(wantedCourse)) return false;
         boolean[][] studentProgram = student.getProgram();
-        boolean[][] courseProgram = course.getProgram();
+        boolean[][] courseProgram = wantedCourse.getProgram();
         Course[][] studentSchedule = student.getSchedule();
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
-                if (studentSchedule[i][j].getName().equals(course.getName())) {
+                if (studentSchedule[i][j].getName().equals(wantedCourse.getName())) {
                     continue;
                 }
                 if (studentProgram[i][j] && courseProgram[i][j]) {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
@@ -329,21 +339,21 @@ public class RequestProcessorService {
         //checking the compatibility of requesting courses and no included courses
         for (int i = 0; i < wantedCourses.size(); i++) {
             for (int j = 0; j < noIncluded.size(); j++) {
-                if (wantedCourses.get(i).doesOverlap(noIncluded.get(j))){
-                    return true;
+                if (wantedCourses.get(i).doesOverlap(noIncluded.get(j))) {
+                    return false;
                 }
-            } 
+            }
         }
 
         //checking the compatibility of requesting courses with each other
         for (int i = 0; i < wantedCourses.size(); i++) {
-            for (int j = i+1; j < wantedCourses.size(); j++) {
-                if(wantedCourses.get(i).doesOverlap(wantedCourses.get(j))){
-                    return true;
+            for (int j = i + 1; j < wantedCourses.size(); j++) {
+                if (wantedCourses.get(i).doesOverlap(wantedCourses.get(j))) {
+                    return false;
                 }
-            } 
+            }
         }
 
-        return false;
+        return coursesOfStudent.stream().noneMatch(wantedCourses::contains);
     }
 }

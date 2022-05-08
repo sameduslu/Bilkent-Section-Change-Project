@@ -259,9 +259,9 @@ class DemoApplicationTests {
 
     @Test
     public void multipleRequestTest() {
-        createStudent1();
-        createCourse1B();
-        createCourse2();
+        Student s1 = createStudent1();
+        Course c1b = createCourse1B();
+        Course c2 = createCourse2();
         createMultipleRequest("1", List.of("CS102-2", "MATH102-1"));
         checkStudentEnrolledInCourse("CS102-2", "1");
         checkStudentEnrolledInCourse("MATH102-1", "1");

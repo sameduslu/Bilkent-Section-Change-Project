@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document("course")
-public class Course {
+public class Course implements Comparable<Course>{
 
     @Id
     private String id;
@@ -87,5 +87,10 @@ public class Course {
     public boolean equals(Object o) {
         if (!(o instanceof Course)) return false;
         return this.id.equals(((Course) o).id);
+    }
+
+    @Override
+    public int compareTo(Course o) {
+        return this.id.compareTo(o.id);
     }
 }
