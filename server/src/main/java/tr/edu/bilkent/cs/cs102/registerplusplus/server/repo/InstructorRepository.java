@@ -6,5 +6,4 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Instructor;
 
 @Repository
 public interface InstructorRepository extends MongoRepository<Instructor, String> {
-    //todo queries
 }

@@ -9,10 +9,12 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.SingleRequest;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class SingleRequestController {
@@ -24,11 +26,14 @@ public class SingleRequestController {
 
     private final CourseRepository courseRepository;
 
-    SingleRequestController(SingleRequestRepository singleRequestRepository, CourseService courseService, RequestProcessorService requestProcessorService, CourseRepository courseRepository) {
+    private final StudentRepository studentRepository;
+
+    SingleRequestController(SingleRequestRepository singleRequestRepository, CourseService courseService, RequestProcessorService requestProcessorService, CourseRepository courseRepository, StudentRepository studentRepository) {
         this.singleRequestRepository = singleRequestRepository;
         this.courseService = courseService;
         this.requestProcessorService = requestProcessorService;
         this.courseRepository = courseRepository;
+        this.studentRepository = studentRepository;
     }
 
     // Aggregate root
@@ -41,9 +46,14 @@ public class SingleRequestController {
 
     @PostMapping("/singleRequest")
     public String newItem(@RequestBody SingleRequest singleRequest) {
-        Student requestOwner = singleRequest.getRequestOwner();
+        Optional<Student> reqOwnerById = studentRepository.findById(singleRequest.getRequestOwner().getId());
+        if (reqOwnerById.isEmpty()){
+            return "Bad Request";
+        }
+        Student requestOwner = reqOwnerById.get();
+        Course wantedCourse = courseRepository.findCourseById(singleRequest.getWantedCourse().getId());
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if(!requestProcessorService.isStillValid(singleRequest.getWantedCourse(), requestOwner, coursesOfStudent)){
+        if(!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)){
             return "Not compatible";
         }
         if (singleRequestRepository.findSingleRequestByRequestOwner_Id(requestOwner.getId()).contains(singleRequest)){

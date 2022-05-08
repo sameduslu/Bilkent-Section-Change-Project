@@ -9,12 +9,13 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.MultipleRequest;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -27,11 +28,14 @@ public class MultipleRequestController {
 
     private final RequestProcessorService requestProcessorService;
 
-    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseService courseService, CourseRepository courseRepository, RequestProcessorService requestProcessorService) {
+    private final StudentRepository studentRepository;
+
+    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseService courseService, CourseRepository courseRepository, RequestProcessorService requestProcessorService, StudentRepository studentRepository) {
         this.multipleRequestRepository = multipleRequestRepository;
         this.courseService = courseService;
         this.courseRepository = courseRepository;
         this.requestProcessorService = requestProcessorService;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping("/multipleRequests")
@@ -41,7 +45,11 @@ public class MultipleRequestController {
 
     @PostMapping("/multipleRequest")
     public String newItem(@RequestBody MultipleRequest multipleRequest) {
-        Student requestOwner = multipleRequest.getRequestOwner();
+        Optional<Student> reqOwnerById = studentRepository.findById(multipleRequest.getRequestOwner().getId());
+        if (reqOwnerById.isEmpty()){
+            return "Bad Request";
+        }
+        Student requestOwner = reqOwnerById.get();
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
         if(!requestProcessorService.isStillValid(multipleRequest.getWantedCourses(), requestOwner, coursesOfStudent)){
             return "Not compatible";

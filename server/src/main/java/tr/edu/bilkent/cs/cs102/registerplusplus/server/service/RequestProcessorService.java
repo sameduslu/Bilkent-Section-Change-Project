@@ -56,7 +56,7 @@ public class RequestProcessorService {
                 }
                 i1++;
             } else {
-                if (isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+                if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                     multipleRequestRepository.delete(multipleRequest);
                     continue;
                 }
@@ -86,7 +86,7 @@ public class RequestProcessorService {
         }
         while (i2 < multipleRequests.size()) {
             MultipleRequest multipleRequest = multipleRequests.get(i2);
-            if (isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+            if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                 multipleRequestRepository.delete(multipleRequest);
                 continue;
             }
@@ -309,7 +309,7 @@ public class RequestProcessorService {
         Course[][] studentSchedule = student.getSchedule();
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
-                if (studentSchedule[i][j].getName().equals(wantedCourse.getName())) {
+                if (studentProgram[i][j] && studentSchedule[i][j].getName().equals(wantedCourse.getName())) {
                     continue;
                 }
                 if (studentProgram[i][j] && courseProgram[i][j]) {

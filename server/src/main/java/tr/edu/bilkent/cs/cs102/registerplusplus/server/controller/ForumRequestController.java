@@ -15,6 +15,7 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ForumRequestController {
@@ -43,9 +44,10 @@ public class ForumRequestController {
 
     @PostMapping("/forumRequest")
     public String newItem(@RequestBody ForumRequest forumRequest) {
-        Student requestOwner = forumRequest.getRequestOwner();
+        Student requestOwner = studentRepository.findById(forumRequest.getRequestOwner().getId()).get();
+        Course wantedCourse = courseRepository.findCourseById(forumRequest.getWantedCourse().getId());
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if (!requestProcessorService.isStillValid(forumRequest.getWantedCourse(), requestOwner, coursesOfStudent)){
+        if (!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)){
             return "Not compatible";
         }
         if (forumRequestRepository.findForumRequestByRequestOwner_Id(requestOwner.getId()).contains(forumRequest)){
@@ -58,8 +60,14 @@ public class ForumRequestController {
     public String approve(@RequestBody ForumRequestApproval forumRequestApproval) {
         String forumRequestId = forumRequestApproval.getForumRequestId();
         String acceptorId = forumRequestApproval.getAcceptorId();
-        ForumRequest forumRequest = forumRequestRepository.findById(forumRequestId).get(); //todo isPresent check
-        Student acceptor = studentRepository.findById(acceptorId).get();//todo isPresent check
+        Optional<Student> acceptorById = studentRepository.findById(acceptorId);
+        Optional<ForumRequest> forumRequestById = forumRequestRepository.findById(forumRequestId);
+        if (forumRequestById.isEmpty() || acceptorById.isEmpty()){
+            return "Bad Request";
+        }
+
+        ForumRequest forumRequest = forumRequestById.get();
+        Student acceptor = acceptorById.get();
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(acceptorId);
         if (!coursesOfStudent.contains(forumRequest.getWantedCourse())){
             return String.format("Forum request id: %s Acceptor id: %s is not executed since acceptor does not have the wanted course", forumRequestId, acceptorId);

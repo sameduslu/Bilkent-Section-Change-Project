@@ -5,6 +5,8 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 
+import java.util.Optional;
+
 @Service
 public class StudentService {
 
@@ -15,7 +17,7 @@ public class StudentService {
     }
 
     public void updateProgram(Student student, Course course) {
-        Student dbStudent = studentRepository.findById(student.getId()).get();
+        Student dbStudent = getDBStudentById(student);
         boolean[][] courseProgram = course.getProgram();
         boolean[][] studentProgram = dbStudent.getProgram();
         Course[][] studentSchedule = dbStudent.getSchedule();
@@ -32,8 +34,16 @@ public class StudentService {
         studentRepository.save(dbStudent);
     }
 
+    private Student getDBStudentById(Student student) {
+        Optional<Student> studentById = studentRepository.findById(student.getId());
+        if (studentById.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+        return studentById.get();
+    }
+
     public void removeCourse(Student student, Course course) {
-        Student dbStudent = studentRepository.findById(student.getId()).get();
+        Student dbStudent = getDBStudentById(student);
         boolean[][] courseProgram = course.getProgram();
         boolean[][] studentProgram = dbStudent.getProgram();
         for (int i = 0; i < 9; i++) {

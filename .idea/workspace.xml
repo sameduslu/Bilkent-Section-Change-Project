@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="forum request process methods">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/maven_wrapper.xml" beforeDir="false" />
+    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="buggy, close to finalized server code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/MultipleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/MultipleRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/SingleRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/SingleRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/MultipleRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/MultipleRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/SingleRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/SingleRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/DatabaseInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/DatabaseInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/InstructorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/InstructorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +111,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DemoApplicationTests.courseOverlapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
+      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
+      <option name="METHOD_NAME" value="courseOverlapTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplicationTests.multipleRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="registerplusplus-server" />
       <extension name="coverage">
@@ -127,6 +138,22 @@
       <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
       <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
       <option name="METHOD_NAME" value="multipleRequestTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoApplicationTests.studentSingleRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
+      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
+      <option name="METHOD_NAME" value="studentSingleRequestTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -153,16 +180,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="docker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="server/docker/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Docker.docker: Compose Deployment" />
+      <item itemvalue="JUnit.DemoApplicationTests.courseOverlapTest" />
+      <item itemvalue="JUnit.DemoApplicationTests.studentSingleRequestTest" />
       <item itemvalue="JUnit.DemoApplicationTests" />
       <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
       <item itemvalue="Spring Boot.DemoApplication" />
@@ -172,8 +192,9 @@
       <list>
         <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
         <item itemvalue="JUnit.DemoApplicationTests" />
+        <item itemvalue="JUnit.DemoApplicationTests.courseOverlapTest" />
+        <item itemvalue="JUnit.DemoApplicationTests.studentSingleRequestTest" />
         <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
-        <item itemvalue="Docker.docker: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651843879433</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="buggy, close to finalized server code">
+      <created>1652038431349</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652038431349</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +358,19 @@
     <MESSAGE value="refactor, controls, single change request revision, tests" />
     <MESSAGE value="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting" />
     <MESSAGE value="forum request process methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="forum request process methods" />
+    <MESSAGE value="buggy, close to finalized server code" />
+    <option name="LAST_COMMIT_MESSAGE" value="buggy, close to finalized server code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java</url>
+          <line>261</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/project$DemoApplicationTests.ic" NAME="DemoApplicationTests Coverage Results" MODIFIED="1651917534803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
