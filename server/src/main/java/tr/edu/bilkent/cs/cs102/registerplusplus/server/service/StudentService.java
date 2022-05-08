@@ -18,11 +18,16 @@ public class StudentService {
         Student dbStudent = studentRepository.findById(student.getId()).get();
         boolean[][] courseProgram = course.getProgram();
         boolean[][] studentProgram = dbStudent.getProgram();
+        Course[][] studentSchedule = dbStudent.getSchedule();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 6; j++) {
-                if (courseProgram[i][j]) studentProgram[i][j] = true;
+                if (courseProgram[i][j]){
+                    studentProgram[i][j] = true;
+                    studentSchedule[i][j] = course;
+                }
             }
         }
+        dbStudent.setSchedule(studentSchedule); 
         dbStudent.setProgram(studentProgram);
         studentRepository.save(dbStudent);
     }

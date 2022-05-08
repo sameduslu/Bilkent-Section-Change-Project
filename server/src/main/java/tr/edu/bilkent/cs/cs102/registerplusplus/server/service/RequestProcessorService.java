@@ -126,6 +126,19 @@ public class RequestProcessorService {
         return true;
     }
 
+    private boolean processSectionChangeRequest2 (SingleRequest req, List<Course> courseByStudentId) {
+        Student owner = req.getRequestOwner();
+        Course wanted = req.getWantedCourse();
+        Course course = courseByStudentId.stream().filter(c -> c.getName().equals(wanted.getName())).findAny().get(); //todo isPresent check?
+        if (doesOverlap(wanted, owner, courseByStudentId)) {
+            return false;
+        }
+        courseService.removeStudentFromCourse(owner, course);
+        courseService.addStudentToCourse(owner, wanted);
+        singleRequestRepository.delete(req);
+        return true;
+    }
+
     private boolean processMultipleRequest(MultipleRequest req) {
         List<Course> wantedCourses = req.getWantedCourses();
         Student owner = req.getRequestOwner();
@@ -167,6 +180,28 @@ public class RequestProcessorService {
             Course changingCourse = courseByStudentId.stream().filter(co -> co.getName().equals(c.getName())).findAny().get();
             courseService.removeStudentFromCourse(owner, changingCourse);
             courseService.addStudentToCourse(owner, c);
+        }
+        multipleRequestRepository.delete(req);
+        return true;
+    }
+
+    private boolean processMultipleRequest2 (MultipleRequest req) {
+        List<Course> wantedCourses = req.getWantedCourses();
+        Student owner = req.getRequestOwner();
+        List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
+        if (doesOverlap (wantedCourses, owner, courseByStudentId)) {
+            return false;
+        }
+        for (int p = 0; p < wantedCourses.size(); p++) {
+            Course wanted = wantedCourses.get(p);
+            Course removeThat = null;
+            for (int j = 0; j < courseByStudentId.size(); j++) {
+                if (courseByStudentId.get(j).getName().equals(wanted.getName())) {
+                    removeThat = courseByStudentId.get(j);
+                }
+            }
+            courseService.removeStudentFromCourse(owner, removeThat);
+            courseService.addStudentToCourse(owner, wanted);
         }
         multipleRequestRepository.delete(req);
         return true;
@@ -218,16 +253,57 @@ public class RequestProcessorService {
     }
 
     public boolean doesOverlap(Course course, Student student, List<Course> coursesOfStudent) {
-        if (coursesOfStudent.contains(course)) return false;
+        if (coursesOfStudent.contains(course)) return true;
         boolean[][] studentProgram = student.getProgram();
         boolean[][] courseProgram = course.getProgram();
+        Course[][] studentSchedule = student.getSchedule();
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
+                if (studentSchedule[i][j].getName().equals(course.getName())) {
+                    continue;
+                }
                 if (studentProgram[i][j] && courseProgram[i][j]) {
                     return true;
                 }
             }
         }
+        return false;
+    }
+
+    public boolean doesOverlap(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
+        List<Course> noIncluded = new ArrayList<>();
+
+        //finding the courses which is not in the requesting courses and adding them to noIncluded 
+        for (int i = 0; i < coursesOfStudent.size(); i++) {
+            boolean ctr = true;
+            for (int j = 0; j < wantedCourses.size(); j++) {
+                if (wantedCourses.get(j).getName().equals(coursesOfStudent.get(i).getName())) {
+                    ctr = false;
+                }
+            }
+            if (ctr) {
+                noIncluded.add(coursesOfStudent.get(i));
+            }
+        }
+
+        //checking the compatibility of requesting courses and no included courses
+        for (int i = 0; i < wantedCourses.size(); i++) {
+            for (int j = 0; j < noIncluded.size(); j++) {
+                if (wantedCourses.get(i).doesOverlap(noIncluded.get(j))){
+                    return true;
+                }
+            } 
+        }
+
+        //checking the compatibility of requesting courses with each other
+        for (int i = 0; i < wantedCourses.size(); i++) {
+            for (int j = i+1; j < wantedCourses.size(); j++) {
+                if(wantedCourses.get(i).doesOverlap(wantedCourses.get(j))){
+                    return true;
+                }
+            } 
+        }
+
         return false;
     }
 
