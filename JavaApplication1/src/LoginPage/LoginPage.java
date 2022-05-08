@@ -37,8 +37,8 @@ public class LoginPage extends javax.swing.JFrame {
         jLabelClose = new javax.swing.JLabel();
         jLabelMinimize = new javax.swing.JLabel();
         jLabelRegister = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jID = new javax.swing.JTextField();
+        jPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -93,23 +93,38 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabelRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/My_project_8.png"))); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(212, 212, 212));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("USER ID");
-        jTextField2.setAlignmentX(1.5F);
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jID.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jID.setForeground(new java.awt.Color(212, 212, 212));
+        jID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jID.setText("USER ID");
+        jID.setAlignmentX(1.5F);
+        jID.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
+        jID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jIDMouseClicked(evt);
+            }
+        });
+        jID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jIDActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(212, 212, 212));
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setText("AAAAAAAAAAAAA");
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
+        jPassword.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jPassword.setForeground(new java.awt.Color(212, 212, 212));
+        jPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPassword.setText("AAAAAAAAAAAAA");
+        jPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
+        jPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordMouseClicked(evt);
+            }
+        });
+        jPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,8 +145,8 @@ public class LoginPage extends javax.swing.JFrame {
                     .addComponent(jButtonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
+                            .addComponent(jPassword)
+                            .addComponent(jID, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))
                         .addGap(317, 317, 317)))
                 .addGap(141, 141, 141))
         );
@@ -144,9 +159,9 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -190,18 +205,32 @@ public class LoginPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jIDActionPerformed
+
+    private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordActionPerformed
+
+    private void jIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIDMouseClicked
+        // TODO add your handling code here:
+        jID.setText("");
+    }//GEN-LAST:event_jIDMouseClicked
+
+    private void jPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordMouseClicked
+        // TODO add your handling code here:
+        jPassword.setText("");
+    }//GEN-LAST:event_jPasswordMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
+    private javax.swing.JTextField jID;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelMinimize;
     private javax.swing.JLabel jLabelRegister;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jPassword;
     // End of variables declaration//GEN-END:variables
 }

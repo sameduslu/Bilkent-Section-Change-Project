@@ -4,7 +4,10 @@
  */
 package Forum;
 
+import ResultMessage.Accepted;
+import ResultMessage.Denied;
 import SchedulePage.SchedulePage;
+import java.util.HashSet;
 import javax.swing.JFrame;
 import main.Courses;
 import main.Student;
@@ -41,28 +44,26 @@ public class Forum extends javax.swing.JFrame {
         jLabelMinimize = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jForumAcceptButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jForumAcceptButton3 = new javax.swing.JButton();
+        jForumAcceptButton2 = new javax.swing.JButton();
         forum2 = new javax.swing.JTextField();
         forum3 = new javax.swing.JTextField();
         forum1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        jForumAcceptButton4 = new javax.swing.JButton();
         forum4 = new javax.swing.JTextField();
         forum5 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        jForumAcceptButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1268, 720));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1268, 720));
         setSize(new java.awt.Dimension(1268, 720));
-        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(220, 172, 146));
 
-        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+        jLabelMinimize.setFont(new java.awt.Font("Lucida Fax", 1, 48)); // NOI18N
         jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
         jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMinimize.setText("-");
@@ -96,11 +97,12 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(220, 172, 146));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jForumAcceptButton5.setBackground(new java.awt.Color(220, 172, 146));
+        jForumAcceptButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
+        jForumAcceptButton5.setBorder(null);
+        jForumAcceptButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jForumAcceptButton5ActionPerformed(evt);
             }
         });
 
@@ -109,19 +111,21 @@ public class Forum extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(173, 112, 96));
         jLabel1.setText("FORUM");
 
-        jButton3.setBackground(new java.awt.Color(220, 172, 146));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jForumAcceptButton3.setBackground(new java.awt.Color(220, 172, 146));
+        jForumAcceptButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
+        jForumAcceptButton3.setBorder(null);
+        jForumAcceptButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jForumAcceptButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(220, 172, 146));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jForumAcceptButton2.setBackground(new java.awt.Color(220, 172, 146));
+        jForumAcceptButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
+        jForumAcceptButton2.setBorder(null);
+        jForumAcceptButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jForumAcceptButton2ActionPerformed(evt);
             }
         });
 
@@ -141,11 +145,12 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(220, 172, 146));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jForumAcceptButton4.setBackground(new java.awt.Color(220, 172, 146));
+        jForumAcceptButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
+        jForumAcceptButton4.setBorder(null);
+        jForumAcceptButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jForumAcceptButton4ActionPerformed(evt);
             }
         });
 
@@ -163,11 +168,12 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(220, 172, 146));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jForumAcceptButton1.setBackground(new java.awt.Color(220, 172, 146));
+        jForumAcceptButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/A.png"))); // NOI18N
+        jForumAcceptButton1.setBorder(null);
+        jForumAcceptButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jForumAcceptButton1ActionPerformed(evt);
             }
         });
 
@@ -179,79 +185,83 @@ public class Forum extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(forum1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(forum4, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(forum2, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(forum3, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(forum5, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(145, 145, 145))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
+                        .addGap(583, 583, 583)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabelMinimize)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelClose)
-                        .addGap(12, 12, 12))))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelClose))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(forum5, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jForumAcceptButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(forum1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jForumAcceptButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(forum2, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jForumAcceptButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(forum4, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jForumAcceptButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(forum3, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jForumAcceptButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelClose)
-                        .addComponent(jLabelMinimize))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMinimize)
+                    .addComponent(jLabelClose))
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(forum5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jForumAcceptButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(forum1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(forum2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(forum4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(forum1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jForumAcceptButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(forum2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jForumAcceptButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(forum4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jForumAcceptButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(forum3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                    .addComponent(jForumAcceptButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1270, 720);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,25 +282,25 @@ public class Forum extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jForumAcceptButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jForumAcceptButton5ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jForumAcceptButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jForumAcceptButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jForumAcceptButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jForumAcceptButton2ActionPerformed
 
     private void forum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forum2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_forum2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jForumAcceptButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jForumAcceptButton4ActionPerformed
 
     private void forum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forum1ActionPerformed
         // TODO add your handling code here:
@@ -304,9 +314,21 @@ public class Forum extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_forum5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jForumAcceptButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        boolean passed = true;
+        if(passed){
+            Accepted accept = new Accepted("abc");
+            accept.setLocationRelativeTo(null);
+            accept.setVisible(true);
+        }
+        else{
+            Denied denied = new Denied("bcd");
+            denied.setLocationRelativeTo(null);
+            denied.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_jForumAcceptButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField forum1;
@@ -315,11 +337,11 @@ public class Forum extends javax.swing.JFrame {
     private javax.swing.JTextField forum4;
     private javax.swing.JTextField forum5;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jForumAcceptButton1;
+    private javax.swing.JButton jForumAcceptButton2;
+    private javax.swing.JButton jForumAcceptButton3;
+    private javax.swing.JButton jForumAcceptButton4;
+    private javax.swing.JButton jForumAcceptButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelMinimize;

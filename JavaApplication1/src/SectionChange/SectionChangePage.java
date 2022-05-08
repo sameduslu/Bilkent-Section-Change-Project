@@ -116,11 +116,11 @@ public class SectionChangePage extends javax.swing.JFrame {
         jTextField85 = new javax.swing.JTextField();
         jTextField86 = new javax.swing.JTextField();
         jButtonSectionChange = new javax.swing.JButton();
-        jLabelMinimize = new javax.swing.JLabel();
         jButtonForum = new javax.swing.JButton();
         jLabelClose = new javax.swing.JLabel();
         jButtonMultiChange = new javax.swing.JButton();
         HomeButton = new javax.swing.JButton();
+        jLabelMinimize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(220, 172, 146));
@@ -387,31 +387,26 @@ public class SectionChangePage extends javax.swing.JFrame {
         jTextField61.setEditable(false);
         jTextField61.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField61.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField61.setText(student.getCourseAt(5,1));
         jPanel2.add(jTextField61);
 
         jTextField62.setEditable(false);
         jTextField62.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField62.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField62.setText(student.getCourseAt(5,2));
         jPanel2.add(jTextField62);
 
         jTextField63.setEditable(false);
         jTextField63.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField63.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField63.setText(student.getCourseAt(5,3));
         jPanel2.add(jTextField63);
 
         jTextField64.setEditable(false);
         jTextField64.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField64.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField64.setText(student.getCourseAt(5,4));
         jPanel2.add(jTextField64);
 
         jTextField65.setEditable(false);
         jTextField65.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField65.setText(student.getCourseAt(5,5));
         jPanel2.add(jTextField65);
 
         jTextField41.setEditable(false);
@@ -431,31 +426,31 @@ public class SectionChangePage extends javax.swing.JFrame {
         jTextField66.setEditable(false);
         jTextField66.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField66.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField66.setText(student.getCourseAt(6,1));
+        jTextField66.setText(student.getCourseAt(5,1));
         jPanel2.add(jTextField66);
 
         jTextField67.setEditable(false);
         jTextField67.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField67.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField67.setText(student.getCourseAt(6,2));
+        jTextField67.setText(student.getCourseAt(5,2));
         jPanel2.add(jTextField67);
 
         jTextField68.setEditable(false);
         jTextField68.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField68.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField68.setText(student.getCourseAt(6,3));
+        jTextField68.setText(student.getCourseAt(5,3));
         jPanel2.add(jTextField68);
 
         jTextField69.setEditable(false);
         jTextField69.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField69.setText(student.getCourseAt(6,4));
+        jTextField69.setText(student.getCourseAt(5,4));
         jPanel2.add(jTextField69);
 
         jTextField70.setEditable(false);
         jTextField70.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField70.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField70.setText(student.getCourseAt(6,5));
+        jTextField70.setText(student.getCourseAt(5,5));
         jPanel2.add(jTextField70);
 
         jTextField44.setEditable(false);
@@ -475,31 +470,31 @@ public class SectionChangePage extends javax.swing.JFrame {
         jTextField71.setEditable(false);
         jTextField71.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField71.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField71.setText(student.getCourseAt(7,1));
+        jTextField71.setText(student.getCourseAt(6,1));
         jPanel2.add(jTextField71);
 
         jTextField72.setEditable(false);
         jTextField72.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField72.setText(student.getCourseAt(7,2));
+        jTextField72.setText(student.getCourseAt(6,2));
         jPanel2.add(jTextField72);
 
         jTextField73.setEditable(false);
         jTextField73.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField73.setText(student.getCourseAt(7,3));
+        jTextField73.setText(student.getCourseAt(6,3));
         jPanel2.add(jTextField73);
 
         jTextField74.setEditable(false);
         jTextField74.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField74.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField74.setText(student.getCourseAt(7,4));
+        jTextField74.setText(student.getCourseAt(6,4));
         jPanel2.add(jTextField74);
 
         jTextField75.setEditable(false);
         jTextField75.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField75.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField75.setText(student.getCourseAt(7,5));
+        jTextField75.setText(student.getCourseAt(6,5));
         jPanel2.add(jTextField75);
 
         jTextField50.setEditable(false);
@@ -518,25 +513,25 @@ public class SectionChangePage extends javax.swing.JFrame {
         jTextField76.setEditable(false);
         jTextField76.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField76.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField76.setText(student.getCourseAt(8,1));
+        jTextField76.setText(student.getCourseAt(7,1));
         jPanel2.add(jTextField76);
 
         jTextField77.setEditable(false);
         jTextField77.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField77.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField77.setText(student.getCourseAt(8,2));
+        jTextField77.setText(student.getCourseAt(7,2));
         jPanel2.add(jTextField77);
 
         jTextField78.setEditable(false);
         jTextField78.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField78.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField78.setText(student.getCourseAt(8,3));
+        jTextField78.setText(student.getCourseAt(7,3));
         jPanel2.add(jTextField78);
 
         jTextField79.setEditable(false);
         jTextField79.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField79.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField79.setText(student.getCourseAt(8,4));
+        jTextField79.setText(student.getCourseAt(7,4));
         jPanel2.add(jTextField79);
 
         jTextField80.setEditable(false);
@@ -547,7 +542,7 @@ public class SectionChangePage extends javax.swing.JFrame {
                 jTextField80ActionPerformed(evt);
             }
         });
-        jTextField80.setText(student.getCourseAt(8,5));
+        jTextField80.setText(student.getCourseAt(7,5));
         jPanel2.add(jTextField80);
 
         jTextField81.setEditable(false);
@@ -571,26 +566,31 @@ public class SectionChangePage extends javax.swing.JFrame {
                 jTextField82ActionPerformed(evt);
             }
         });
+        jTextField82.setText(student.getCourseAt(8,1));
         jPanel2.add(jTextField82);
 
         jTextField83.setEditable(false);
         jTextField83.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField83.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField83.setText(student.getCourseAt(8,2));
         jPanel2.add(jTextField83);
 
         jTextField84.setEditable(false);
         jTextField84.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField84.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField84.setText(student.getCourseAt(8,3));
         jPanel2.add(jTextField84);
 
         jTextField85.setEditable(false);
         jTextField85.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField85.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField85.setText(student.getCourseAt(8,4));
         jPanel2.add(jTextField85);
 
         jTextField86.setEditable(false);
         jTextField86.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField86.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField86.setText(student.getCourseAt(8,5));
         jPanel2.add(jTextField86);
 
         jPanel1.add(jPanel2);
@@ -617,20 +617,6 @@ public class SectionChangePage extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSectionChange);
         jButtonSectionChange.setBounds(790, 100, 460, 160);
-
-        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
-        jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMinimize.setText("-");
-        jLabelMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabelMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMinimizeMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabelMinimize);
-        jLabelMinimize.setBounds(1190, 0, 25, 67);
 
         jButtonForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -666,7 +652,7 @@ public class SectionChangePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabelClose);
-        jLabelClose.setBounds(1230, 0, 35, 67);
+        jLabelClose.setBounds(1230, 0, 32, 58);
 
         jButtonMultiChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonMultiChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
@@ -700,7 +686,21 @@ public class SectionChangePage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(HomeButton);
-        HomeButton.setBounds(1150, 10, 40, 40);
+        HomeButton.setBounds(1130, 0, 60, 50);
+
+        jLabelMinimize.setFont(new java.awt.Font("Lucida Fax", 1, 48)); // NOI18N
+        jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMinimize.setText("-");
+        jLabelMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelMinimizeMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabelMinimize);
+        jLabelMinimize.setBounds(1190, 0, 31, 58);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -845,6 +845,7 @@ public class SectionChangePage extends javax.swing.JFrame {
          singleSection.add(panel);
          singleSection.setVisible(true);*/
          SingleChange singleChange = new SingleChange(this.student, courses);
+         singleChange.setLocationRelativeTo(null);
          singleChange.setVisible(true);
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
@@ -863,11 +864,6 @@ public class SectionChangePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField80ActionPerformed
 
-    private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
-        // TODO add your handling code here:
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabelMinimizeMouseClicked
-
     private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -880,6 +876,7 @@ public class SectionChangePage extends javax.swing.JFrame {
     private void jButtonMultiChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiChangeActionPerformed
         // TODO add your handling code here:
         MultipleChange multiChange = new MultipleChange(this.student, courses);
+        multiChange.setLocationRelativeTo(null);
         multiChange.setVisible(true);
     }//GEN-LAST:event_jButtonMultiChangeActionPerformed
 
@@ -888,6 +885,11 @@ public class SectionChangePage extends javax.swing.JFrame {
         sPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HomeButtonActionPerformed
+
+    private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
+        // TODO add your handling code here:
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_jLabelMinimizeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

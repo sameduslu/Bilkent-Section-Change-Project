@@ -1,4 +1,5 @@
 package main;
+import ResultMessage.Accepted;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -158,7 +159,6 @@ public class Register {
         for(int i = 0; i < allCourses.getSize(); i++) {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         } 
-
         LoginPage loginpage = new LoginPage(allStudents, allCourses);
         loginpage.setVisible(true);
         loginpage.setLocationRelativeTo(null);
@@ -227,8 +227,6 @@ public class Register {
             System.out.println("Error occured!");
             err.printStackTrace();
         }
-
-
         return result;
     }
 

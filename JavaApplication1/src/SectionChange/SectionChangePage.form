@@ -530,9 +530,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField61.setText(student.getCourseAt(5,1));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField62">
               <Properties>
@@ -542,9 +539,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField62.setText(student.getCourseAt(5,2));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField63">
               <Properties>
@@ -554,9 +548,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField63.setText(student.getCourseAt(5,3));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField64">
               <Properties>
@@ -566,9 +557,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField64.setText(student.getCourseAt(5,4));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField65">
               <Properties>
@@ -578,9 +566,6 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField65.setText(student.getCourseAt(5,5));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField41">
               <Properties>
@@ -611,7 +596,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField66.setText(student.getCourseAt(6,1));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField66.setText(student.getCourseAt(5,1));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField67">
@@ -623,7 +608,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField67.setText(student.getCourseAt(6,2));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField67.setText(student.getCourseAt(5,2));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField68">
@@ -635,7 +620,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField68.setText(student.getCourseAt(6,3));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField68.setText(student.getCourseAt(5,3));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField69">
@@ -647,7 +632,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField69.setText(student.getCourseAt(6,4));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField69.setText(student.getCourseAt(5,4));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField70">
@@ -659,7 +644,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField70.setText(student.getCourseAt(6,5));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField70.setText(student.getCourseAt(5,5));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField44">
@@ -691,7 +676,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField71.setText(student.getCourseAt(7,1));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField71.setText(student.getCourseAt(6,1));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField72">
@@ -703,7 +688,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField72.setText(student.getCourseAt(7,2));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField72.setText(student.getCourseAt(6,2));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField73">
@@ -715,7 +700,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField73.setText(student.getCourseAt(7,3));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField73.setText(student.getCourseAt(6,3));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField74">
@@ -727,7 +712,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField74.setText(student.getCourseAt(7,4));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField74.setText(student.getCourseAt(6,4));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField75">
@@ -739,7 +724,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField75.setText(student.getCourseAt(7,5));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField75.setText(student.getCourseAt(6,5));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField50">
@@ -770,7 +755,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField76.setText(student.getCourseAt(8,1));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField76.setText(student.getCourseAt(7,1));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField77">
@@ -782,7 +767,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField77.setText(student.getCourseAt(8,2));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField77.setText(student.getCourseAt(7,2));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField78">
@@ -794,7 +779,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField78.setText(student.getCourseAt(8,3));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField78.setText(student.getCourseAt(7,3));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField79">
@@ -806,7 +791,7 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField79.setText(student.getCourseAt(8,4));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField79.setText(student.getCourseAt(7,4));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField80">
@@ -821,7 +806,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField80ActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jTextField80.setText(student.getCourseAt(8,5));"/>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jTextField80.setText(student.getCourseAt(7,5));"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField81">
@@ -854,6 +839,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField82ActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jTextField82.setText(student.getCourseAt(8,1));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField83">
               <Properties>
@@ -863,6 +851,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField83.setText(student.getCourseAt(8,2));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField84">
               <Properties>
@@ -872,6 +863,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField84.setText(student.getCourseAt(8,3));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField85">
               <Properties>
@@ -881,6 +875,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField85.setText(student.getCourseAt(8,4));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField86">
               <Properties>
@@ -890,6 +887,9 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextField86.setText(student.getCourseAt(8,5));"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -924,30 +924,6 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="790" y="100" width="460" height="160"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelMinimize">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Lucida Handwriting" size="48" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="-"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
-            </Property>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelMinimizeMouseClicked"/>
-          </Events>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1190" y="0" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -1063,7 +1039,31 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1150" y="10" width="40" height="40"/>
+              <AbsoluteConstraints x="1130" y="0" width="60" height="50"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelMinimize">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Fax" size="48" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="-"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelMinimizeMouseClicked"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="1190" y="0" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
