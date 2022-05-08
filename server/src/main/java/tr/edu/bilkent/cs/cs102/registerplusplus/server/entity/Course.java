@@ -71,6 +71,18 @@ public class Course {
         this.id = id;
     }
 
+    public boolean doesOverlap (Course otherCourse) {
+        boolean[][] otherProgram = otherCourse.getProgram();
+        for (int i = 0; i < program.length; i++) {
+            for (int j = 0; j < program[i].length; j++) {
+                if (program[i][j] && otherProgram[i][j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Course)) return false;
