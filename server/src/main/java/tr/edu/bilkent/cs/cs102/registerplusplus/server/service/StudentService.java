@@ -19,8 +19,8 @@ public class StudentService {
         boolean[][] courseProgram = course.getProgram();
         boolean[][] studentProgram = dbStudent.getProgram();
         Course[][] studentSchedule = dbStudent.getSchedule();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < studentProgram.length; i++) {
+            for (int j = 0; j < studentProgram[i].length; j++) {
                 if (courseProgram[i][j]){
                     studentProgram[i][j] = true;
                     studentSchedule[i][j] = course;

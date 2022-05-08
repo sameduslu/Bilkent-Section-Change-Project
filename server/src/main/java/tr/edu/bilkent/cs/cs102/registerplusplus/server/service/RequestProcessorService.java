@@ -82,7 +82,7 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         Course wanted = req.getWantedCourse();
-        if (courseByStudentId.contains(wanted)) {
+        if (courseByStudentId.contains(wanted) || doesOverlap(wanted, owner, courseByStudentId)) {
             singleRequestRepository.delete(req);
             // return error
             return true;
@@ -99,7 +99,8 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
         if (doesOverlap(wanted, owner, courseByStudentId)) {
-            return false;
+            singleRequestRepository.delete(req);
+            return true;
         }
         courseService.addStudentToCourse(owner, wanted);
         singleRequestRepository.delete(req);
@@ -190,7 +191,8 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         if (doesOverlap (wantedCourses, owner, courseByStudentId)) {
-            return false;
+            multipleRequestRepository.delete(req);
+            return true;
         }
         for (int p = 0; p < wantedCourses.size(); p++) {
             Course wanted = wantedCourses.get(p);
@@ -321,6 +323,15 @@ public class RequestProcessorService {
                 }
             }
         }
+        return true;
+    }
+
+    private boolean isForumRequestPossible2 (ForumRequest req, Student acceptor) {
+        boolean ctr = false;
+        Course wanted = req.getWantedCourse();
+        Course current = req.getCurrentCourse();
+        //match kontrolü flow şeysiyle daha kolay yaparsın
+        for (int i = 0; i < )
         return true;
     }
 }
