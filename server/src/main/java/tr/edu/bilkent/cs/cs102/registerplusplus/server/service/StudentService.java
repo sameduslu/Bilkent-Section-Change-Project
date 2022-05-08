@@ -26,4 +26,17 @@ public class StudentService {
         dbStudent.setProgram(studentProgram);
         studentRepository.save(dbStudent);
     }
+
+    public void removeCourse(Student student, Course course) {
+        Student dbStudent = studentRepository.findById(student.getId()).get();
+        boolean[][] courseProgram = course.getProgram();
+        boolean[][] studentProgram = dbStudent.getProgram();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (courseProgram[i][j]) studentProgram[i][j] = false;
+            }
+        }
+        dbStudent.setProgram(studentProgram);
+        studentRepository.save(dbStudent);
+    }
 }

@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="server">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/59a1e6b4-c70c-447e-ac93-b9098468342b.xml" afterDir="false" />
+    <list default="true" id="304797a7-95fd-4edf-8a17-d0b8a9cbd819" name="Changes" comment="forum request process methods">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequestApproval.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/ForumRequestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/MultipleRequestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/entity/ForumRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/repo/ForumRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/service/RequestProcessorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Çağrı_Workspace" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,30 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
-    "jdk.selected.JAVA_MODULE": "15",
-    "last_opened_file_path": "D:/cs102/project/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "build.tools"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable&quot;: &quot;ALL&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;15&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/cs102/project/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;,
+    &quot;show.run.dashboard.notification&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;74385931c9a692c50c7de0f42f3f83fc&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="tr.edu.bilkent.cs.cs102.registerplusplus.server.entity" />
@@ -98,7 +96,7 @@
   </component>
   <component name="RunManager" selected="JUnit.DemoApplicationTests">
     <configuration name="DemoApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+      <module name="registerplusplus-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
@@ -112,8 +110,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplicationTests.courseCreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="DemoApplicationTests.multipleRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="registerplusplus-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
@@ -122,23 +120,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
       <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="courseCreateTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DemoApplicationTests.courseOverlapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tr.edu.bilkent.cs.cs102.registerplusplus.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus" />
-      <option name="MAIN_CLASS_NAME" value="tr.edu.bilkent.cs.cs102.registerplusplus.DemoApplicationTests" />
-      <option name="METHOD_NAME" value="courseOverlapTest" />
+      <option name="METHOD_NAME" value="multipleRequestTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -151,8 +133,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterPlusPlusServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="server" />
+    <configuration name="RegisterPlusPlusServer (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" />
+      <module name="registerplusplus-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tr.edu.bilkent.cs.cs102.registerplusplus.server.RegisterPlusPlusServer" />
       <extension name="coverage">
         <pattern>
@@ -167,19 +150,24 @@
     <configuration name="docker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
           <option name="sourceFilePath" value="server/docker/docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.docker: Compose Deployment" />
+      <item itemvalue="JUnit.DemoApplicationTests" />
+      <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
+      <item itemvalue="Spring Boot.DemoApplication" />
+      <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.DemoApplicationTests" />
-        <item itemvalue="JUnit.DemoApplicationTests.courseOverlapTest" />
-        <item itemvalue="JUnit.DemoApplicationTests.courseCreateTest" />
-        <item itemvalue="Spring Boot.RegisterPlusPlusServer" />
+        <item itemvalue="Spring Boot.RegisterPlusPlusServer (1)" />
         <item itemvalue="Docker.docker: Compose Deployment" />
+        <item itemvalue="JUnit.DemoApplicationTests.multipleRequestTest" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +184,13 @@
       <workItem from="1649925248189" duration="3000" />
       <workItem from="1650520192469" duration="3035000" />
       <workItem from="1650567818536" duration="27000" />
-      <workItem from="1651413318220" duration="38130000" />
+      <workItem from="1651413318220" duration="51507000" />
+      <workItem from="1651740317521" duration="16950000" />
+      <workItem from="1651828976240" duration="89000" />
+      <workItem from="1651834691107" duration="5931000" />
+      <workItem from="1651843748719" duration="678000" />
+      <workItem from="1651865972898" duration="4418000" />
+      <workItem from="1651914286277" duration="3854000" />
     </task>
     <task id="LOCAL-00001" summary="changed the order of indexes&#10;added a todo">
       <created>1649919282787</created>
@@ -233,7 +227,42 @@
       <option name="project" value="LOCAL" />
       <updated>1651498086893</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="services, tests, extra changes to repos and entities">
+      <created>1651517636029</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651517636029</updated>
+    </task>
+    <task id="LOCAL-00007" summary="section change request, tests, refactor">
+      <created>1651611773533</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651611773533</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactor, controls, single change request revision, tests">
+      <created>1651613393434</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1651613393434</updated>
+    </task>
+    <task id="LOCAL-00009" summary="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting">
+      <created>1651795569882</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1651795569882</updated>
+    </task>
+    <task id="LOCAL-00010" summary="forum request process methods">
+      <created>1651843879433</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1651843879433</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +273,39 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Burhan_Workspace" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Burhan_Workspace" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -257,27 +318,17 @@
     <MESSAGE value="course database update" />
     <MESSAGE value="structure" />
     <MESSAGE value="server" />
-    <option name="LAST_COMMIT_MESSAGE" value="server" />
+    <MESSAGE value="services, tests, extra changes and repos" />
+    <MESSAGE value="services, tests, extra changes to repos and entities" />
+    <MESSAGE value="section change request, tests, refactor" />
+    <MESSAGE value="refactor, controls, single change request revision, tests" />
+    <MESSAGE value="multiple request controller, multiple request processing method for request processor service, tests, code cleanup, reformatting" />
+    <MESSAGE value="forum request process methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="forum request process methods" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/tr/edu/bilkent/cs/cs102/registerplusplus/DemoApplicationTests.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/tr/edu/bilkent/cs/cs102/registerplusplus/server/controller/SingleRequestController.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/project$DemoApplicationTests.ic" NAME="DemoApplicationTests Coverage Results" MODIFIED="1651917534803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tr.edu.bilkent.cs.cs102.registerplusplus.*</FILTER>
+    </SUITE>
   </component>
 </project>

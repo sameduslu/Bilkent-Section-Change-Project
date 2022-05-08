@@ -2,10 +2,7 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.repo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 
 @Configuration
 public class DatabaseInitializer {

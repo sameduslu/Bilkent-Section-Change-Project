@@ -13,8 +13,7 @@ import java.util.List;
 public class StudentController {
     private final StudentRepository repository;
 
-    StudentController(
-            StudentRepository repository) {
+    StudentController(StudentRepository repository) {
         this.repository = repository;
     }
 
@@ -23,8 +22,7 @@ public class StudentController {
     // tag::get-aggregate-root[]
     @GetMapping("/students")
     public List<Student> all() {
-        List<Student> all = repository.findAll();
-        return all;
+        return repository.findAll();
     }
     // end::get-aggregate-root[]
 
