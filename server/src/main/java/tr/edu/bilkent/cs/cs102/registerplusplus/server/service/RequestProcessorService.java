@@ -330,8 +330,18 @@ public class RequestProcessorService {
         boolean ctr = false;
         Course wanted = req.getWantedCourse();
         Course current = req.getCurrentCourse();
+        Student owner = req.getRequestOwner();
+        List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         //match kontrolü flow şeysiyle daha kolay yaparsın
-        for (int i = 0; i < )
+        for (int i = 0; i < courseByStudentId.size(); i++) {
+            if (courseByStudentId.get(i).getName().equals(current.getName())) {
+                ctr = true;
+            }
+        }
+        if (!ctr) {
+            return false;
+        }
+
         return true;
     }
 }
