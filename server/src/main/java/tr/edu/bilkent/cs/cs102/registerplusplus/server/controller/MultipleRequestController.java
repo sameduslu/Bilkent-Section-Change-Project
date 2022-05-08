@@ -32,6 +32,7 @@ public class MultipleRequestController {
 
     @PostMapping("/multipleRequest")
     public MultipleRequest newItem(@RequestBody MultipleRequest multipleRequest) {
+        // TODO check the request with isStillValid and the situation of containing course and the existence of request in the queue
         MultipleRequest save = multipleRequestRepository.save(multipleRequest);
         requestProcessorService.processNonForumRequests();
         return save;
