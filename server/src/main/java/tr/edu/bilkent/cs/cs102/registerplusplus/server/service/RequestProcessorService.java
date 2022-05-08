@@ -39,6 +39,10 @@ public class RequestProcessorService {
             SingleRequest singleRequest = singleRequests.get(i1);
             MultipleRequest multipleRequest = multipleRequests.get(i2);
             if (singleRequest.compareTo(multipleRequest) <= 0) {
+                if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(),courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+                    singleRequestRepository.delete(singleRequest);
+                    continue;
+                }
                 boolean b = processSingleRequest(singleRequest);
                 if (b) {
                     i1 = 0;
@@ -47,7 +51,12 @@ public class RequestProcessorService {
                     continue;
                 }
                 i1++;
-            } else {
+            } 
+            else {
+                if (isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+                    multipleRequestRepository.delete(multipleRequest);
+                    continue;
+                }
                 boolean b = processMultipleRequest(multipleRequest);
                 if (b) {
                     i1 = 0;
@@ -59,7 +68,12 @@ public class RequestProcessorService {
             }
         }
         while (i1 < singleRequests.size()) {
-            boolean b = processSingleRequest(singleRequests.get(i1));
+            SingleRequest singleRequest = singleRequests.get(i1);
+            if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(),courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+                singleRequestRepository.delete(singleRequest);
+                continue;
+            }
+            boolean b = processSingleRequest(singleRequest);
             if (b) {
                 i1 = 0;
                 singleRequests = singleRequestRepository.findAll();
@@ -68,7 +82,12 @@ public class RequestProcessorService {
             i1++;
         }
         while (i2 < multipleRequests.size()) {
-            boolean b = processMultipleRequest(multipleRequests.get(i2));
+            MultipleRequest multipleRequest = multipleRequests.get(i2);
+            if (isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+                multipleRequestRepository.delete(multipleRequest);
+                continue;
+            }
+            boolean b = processMultipleRequest(multipleRequest);
             if (b) {
                 i2 = 0;
                 multipleRequests = multipleRequestRepository.findAll();
@@ -82,11 +101,10 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         Course wanted = req.getWantedCourse();
-        if (courseByStudentId.contains(wanted) || doesOverlap(wanted, owner, courseByStudentId)) {
+        /*if (courseByStudentId.contains(wanted)) {
             singleRequestRepository.delete(req);
-            // return error
             return true;
-        }
+        }*/
         if (isFull(wanted)) return false;
 
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
@@ -96,6 +114,10 @@ public class RequestProcessorService {
     }
 
     private boolean processNewCourseRequest(SingleRequest req, List<Course> courseByStudentId) {
+        //TODO if owner loses one of the offering courses in the forum 
+        //or one of the new courses start to overlap with wanted course in the forum
+        //this forum request should be deleted immediately
+
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
         if (doesOverlap(wanted, owner, courseByStudentId)) {
@@ -108,39 +130,24 @@ public class RequestProcessorService {
     }
 
     private boolean processSectionChangeRequest(SingleRequest req, List<Course> courseByStudentId) {
+        //TODO if owner loses one of the offering courses in the forum 
+        //or one of the new courses start to overlap with wanted course in the forum
+        //this forum request should be deleted immediately
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
-        boolean[][] wantedProgram = wanted.getProgram();
         Course course = courseByStudentId.stream().filter(c -> c.getName().equals(wanted.getName())).findAny().get(); //todo isPresent check?
-        boolean[][] tempProgram = cloneProgramOfStudent(owner);
-        removeCourseFromTempProgram(course, tempProgram);
-        for (int i = 0; i < tempProgram.length; i++) {
-            for (int j = 0; j < tempProgram[i].length; j++) {
-                if (wantedProgram[i][j] && tempProgram[i][j]) {
-                    return false;
-                }
-            }
-        }
         courseService.removeStudentFromCourse(owner, course);
         courseService.addStudentToCourse(owner, wanted);
         singleRequestRepository.delete(req);
         return true;
     }
 
-    private boolean processSectionChangeRequest2 (SingleRequest req, List<Course> courseByStudentId) {
-        Student owner = req.getRequestOwner();
-        Course wanted = req.getWantedCourse();
-        Course course = courseByStudentId.stream().filter(c -> c.getName().equals(wanted.getName())).findAny().get(); //todo isPresent check?
-        if (doesOverlap(wanted, owner, courseByStudentId)) {
-            return false;
-        }
-        courseService.removeStudentFromCourse(owner, course);
-        courseService.addStudentToCourse(owner, wanted);
-        singleRequestRepository.delete(req);
-        return true;
-    }
+    /*private boolean processMultipleRequest(MultipleRequest req) {
+        //TODO if owner loses one of the offering courses in the forum 
+        //or one of the new courses start to overlap with wanted course in the forum
+        //this forum request should be deleted immediately
 
-    private boolean processMultipleRequest(MultipleRequest req) {
+        //TODO remove the controls
         List<Course> wantedCourses = req.getWantedCourses();
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
@@ -184,15 +191,16 @@ public class RequestProcessorService {
         }
         multipleRequestRepository.delete(req);
         return true;
-    }
+    }*/
 
-    private boolean processMultipleRequest2 (MultipleRequest req) {
+    private boolean processMultipleRequest (MultipleRequest req) {
         List<Course> wantedCourses = req.getWantedCourses();
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
-        if (doesOverlap (wantedCourses, owner, courseByStudentId)) {
-            multipleRequestRepository.delete(req);
-            return true;
+        for (int p = 0; p < wantedCourses.size(); p++) {
+            if (isFull(wantedCourses.get(p))) {
+                return false;
+            }
         }
         for (int p = 0; p < wantedCourses.size(); p++) {
             Course wanted = wantedCourses.get(p);
@@ -202,7 +210,9 @@ public class RequestProcessorService {
                     removeThat = courseByStudentId.get(j);
                 }
             }
-            courseService.removeStudentFromCourse(owner, removeThat);
+            if (doesStudentTakeCourse(removeThat, courseByStudentId)) {
+                courseService.removeStudentFromCourse(owner, removeThat);
+            }
             courseService.addStudentToCourse(owner, wanted);
         }
         multipleRequestRepository.delete(req);
@@ -223,6 +233,20 @@ public class RequestProcessorService {
         courseService.addStudentToCourse(acceptor, ownerCourse);
         forumRequestRepository.delete(req);
         processNonForumRequests();
+        return true;
+    }
+
+    private boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
+        boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
+        boolean[][] currentCourseProgram = req.getCurrentCourse().getProgram();
+        removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        for (int i = 0; i < currentCourseProgram.length; i++) {
+            for (int j = 0; j < currentCourseProgram[i].length; j++) {
+                if ((acceptorProgram[i][j] && currentCourseProgram[i][j])) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -258,6 +282,20 @@ public class RequestProcessorService {
         if (coursesOfStudent.contains(course)) return true;
         boolean[][] studentProgram = student.getProgram();
         boolean[][] courseProgram = course.getProgram();
+        for (int i = 1; i < studentProgram.length; i++) {
+            for (int j = 1; j < studentProgram[i].length; j++) {
+                if (studentProgram[i][j] && courseProgram[i][j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isStillValid(Course course, Student student, List<Course> coursesOfStudent) {
+        if (coursesOfStudent.contains(course)) return true;
+        boolean[][] studentProgram = student.getProgram();
+        boolean[][] courseProgram = course.getProgram();
         Course[][] studentSchedule = student.getSchedule();
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
@@ -272,7 +310,7 @@ public class RequestProcessorService {
         return false;
     }
 
-    public boolean doesOverlap(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
+    public boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
         List<Course> noIncluded = new ArrayList<>();
 
         //finding the courses which is not in the requesting courses and adding them to noIncluded 
@@ -307,41 +345,5 @@ public class RequestProcessorService {
         }
 
         return false;
-    }
-
-    private boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
-        boolean[][] ownerProgram = cloneProgramOfStudent(req.getRequestOwner());
-        boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
-        boolean[][] ownerCourseProgram = req.getCurrentCourse().getProgram();
-        boolean[][] wantedCourseProgram = req.getWantedCourse().getProgram();
-        removeCourseFromTempProgram(req.getCurrentCourse(), ownerProgram);
-        removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
-        for (int i = 0; i < ownerCourseProgram.length; i++) {
-            for (int j = 0; j < ownerCourseProgram[i].length; j++) {
-                if ((ownerProgram[i][j] && wantedCourseProgram[i][j]) || (acceptorProgram[i][j] && ownerCourseProgram[i][j])) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private boolean isForumRequestPossible2 (ForumRequest req, Student acceptor) {
-        boolean ctr = false;
-        Course wanted = req.getWantedCourse();
-        Course current = req.getCurrentCourse();
-        Student owner = req.getRequestOwner();
-        List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
-        //match kontrolü flow şeysiyle daha kolay yaparsın
-        for (int i = 0; i < courseByStudentId.size(); i++) {
-            if (courseByStudentId.get(i).getName().equals(current.getName())) {
-                ctr = true;
-            }
-        }
-        if (!ctr) {
-            return false;
-        }
-
-        return true;
     }
 }

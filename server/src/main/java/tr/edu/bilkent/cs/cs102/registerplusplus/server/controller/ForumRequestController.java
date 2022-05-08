@@ -46,7 +46,7 @@ public class ForumRequestController {
         String forumRequestId = forumRequestApproval.getForumRequestId();
         String acceptorId = forumRequestApproval.getAcceptorId();
         ForumRequest forumRequest = forumRequestRepository.findById(forumRequestId).get(); //todo isPresent check
-        Student acceptor = studentRepository.findById(acceptorId).get(); //todo isPresent check
+        Student acceptor = studentRepository.findById(acceptorId).get(); //todo isPresent check (check whether acceptor has the wantedCourse)
         requestProcessorService.processForumRequest(forumRequest, acceptor);
         return String.format("Forum request id: %s Acceptor id: %s executed", forumRequestId, acceptorId);
     }
