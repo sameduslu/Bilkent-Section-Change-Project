@@ -1,24 +1,20 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 
-import org.springframework.web.bind.annotation.*;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Person;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class StudentController {
-    private final StudentRepository studentRepository;
+    private final StudentRepository repository;
 
-    private final CourseRepository courseRepository;
-
-    StudentController(StudentRepository repository, CourseRepository courseRepository) {
-        this.studentRepository = repository;
-        this.courseRepository = courseRepository;
+    StudentController(StudentRepository repository) {
+        this.repository = repository;
     }
 
 
@@ -26,35 +22,12 @@ public class StudentController {
     // tag::get-aggregate-root[]
     @GetMapping("/students")
     public List<Student> all() {
-        return studentRepository.findAll();
-    }
-
-    @GetMapping("/student/{id}")
-    public Student getStudentById(@PathVariable String id){
-        Optional<Student> studentById = studentRepository.findById(id);
-        if (studentById.isEmpty()){
-            return null;
-        }
-        Student student = studentById.get();
-        List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(id);
-        Course[][] schedule = student.getSchedule();
-        for(Course c : coursesOfStudent){
-            boolean[][] courseSchedule = c.getProgram();
-            for (int i = 0; i < courseSchedule.length; i++) {
-                for (int j = 0; j < courseSchedule[i].length; j++) {
-                    if (courseSchedule[i][j]){
-                        schedule[i][j] = c;
-                    }
-                }
-            }
-        }
-        student.setSchedule(schedule);
-        return student;
+        return repository.findAll();
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/student")
     public Student newItem(@RequestBody Student student) {
-        return studentRepository.save(student);
+        return repository.save(student);
     }
 }
