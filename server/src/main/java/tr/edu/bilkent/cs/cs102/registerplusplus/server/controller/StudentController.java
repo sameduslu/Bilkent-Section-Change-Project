@@ -8,13 +8,14 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class StudentController {
-    private final StudentRepository repository;
+    private final StudentRepository studentRepository;
 
     StudentController(StudentRepository repository) {
-        this.repository = repository;
+        this.studentRepository = repository;
     }
 
 
@@ -22,12 +23,21 @@ public class StudentController {
     // tag::get-aggregate-root[]
     @GetMapping("/students")
     public List<Student> all() {
-        return repository.findAll();
+        return studentRepository.findAll();
+    }
+
+    @GetMapping("/students")
+    public Student getStudentById(@RequestBody String id){
+        Optional<Student> studentById = studentRepository.findById(id);
+        if (studentById.isEmpty()){
+            return null;
+        }
+        return studentById.get();
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/student")
     public Student newItem(@RequestBody Student student) {
-        return repository.save(student);
+        return studentRepository.save(student);
     }
 }
