@@ -591,7 +591,7 @@ public class SectionChangePage extends javax.swing.JFrame {
         jButtonSectionChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonSectionChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonSectionChange.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonSectionChange.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button1.png")); // NOI18N
         jButtonSectionChange.setText("SINGLE SECTION CHANGE");
         jButtonSectionChange.setToolTipText("");
         jButtonSectionChange.setBorder(null);
@@ -613,7 +613,7 @@ public class SectionChangePage extends javax.swing.JFrame {
         jButtonForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonForum.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonForum.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button1.png")); // NOI18N
         jButtonForum.setText("FORUM");
         jButtonForum.setToolTipText("");
         jButtonForum.setBorder(null);
@@ -649,7 +649,7 @@ public class SectionChangePage extends javax.swing.JFrame {
         jButtonMultiChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonMultiChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonMultiChange.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonMultiChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/button1.png"))); // NOI18N
+        jButtonMultiChange.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button1.png")); // NOI18N
         jButtonMultiChange.setText("MULTIPLE-CHANGE REQUEST ");
         jButtonMultiChange.setToolTipText("");
         jButtonMultiChange.setBorder(null);
@@ -670,7 +670,7 @@ public class SectionChangePage extends javax.swing.JFrame {
 
         HomeButton.setBackground(new java.awt.Color(220, 172, 146));
         HomeButton.setForeground(new java.awt.Color(220, 172, 146));
-        HomeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
+        HomeButton.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\home.png")); // NOI18N
         HomeButton.setBorder(null);
         HomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

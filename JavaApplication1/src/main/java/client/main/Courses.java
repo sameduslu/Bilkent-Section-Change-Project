@@ -36,4 +36,8 @@ public class Courses {
     public Course getCourse (int index) {
         return courses.get(index);
     }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
 }

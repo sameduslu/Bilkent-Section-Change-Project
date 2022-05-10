@@ -19,7 +19,7 @@ public class DatabaseInitializer {
     @Bean
     CommandLineRunner CredentialsInit(CredentialsRepository credentialsRepository, StudentRepository studentRepository) {
         return args -> {
-            Scanner in = new Scanner(new File("D:\\cs102\\Bilkent-Section-Change-Project\\client\\src\\LoginPage\\Names_and_IDs_Passwords.txt"));
+            Scanner in = new Scanner(new File("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Names_and_IDs_Passwords.txt"));
             while (in.hasNextLine()) {
                 String[] s = in.nextLine().split(" ");
                 Credentials c = new Credentials();

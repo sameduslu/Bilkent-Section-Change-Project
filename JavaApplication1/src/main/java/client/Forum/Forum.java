@@ -90,7 +90,7 @@ public class Forum extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(220, 172, 146));
         jButton1.setForeground(new java.awt.Color(220, 172, 146));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SectionChange/home.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\home.png")); // NOI18N
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ public class Forum extends javax.swing.JFrame {
         });
 
         jForumAcceptButton5.setBackground(new java.awt.Color(220, 172, 146));
-        jForumAcceptButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/accept.png"))); // NOI18N
+        jForumAcceptButton5.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton5.setBorder(null);
         jForumAcceptButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +113,7 @@ public class Forum extends javax.swing.JFrame {
         jLabel1.setText("FORUM");
 
         jForumAcceptButton3.setBackground(new java.awt.Color(220, 172, 146));
-        jForumAcceptButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/accept.png"))); // NOI18N
+        jForumAcceptButton3.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton3.setBorder(null);
         jForumAcceptButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,7 @@ public class Forum extends javax.swing.JFrame {
         });
 
         jForumAcceptButton2.setBackground(new java.awt.Color(220, 172, 146));
-        jForumAcceptButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/accept.png"))); // NOI18N
+        jForumAcceptButton2.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton2.setBorder(null);
         jForumAcceptButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class Forum extends javax.swing.JFrame {
         });
 
         jForumAcceptButton4.setBackground(new java.awt.Color(220, 172, 146));
-        jForumAcceptButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/accept.png"))); // NOI18N
+        jForumAcceptButton4.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton4.setBorder(null);
         jForumAcceptButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +170,7 @@ public class Forum extends javax.swing.JFrame {
         });
 
         jForumAcceptButton1.setBackground(new java.awt.Color(220, 172, 146));
-        jForumAcceptButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forum/accept.png"))); // NOI18N
+        jForumAcceptButton1.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton1.setBorder(null);
         jForumAcceptButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

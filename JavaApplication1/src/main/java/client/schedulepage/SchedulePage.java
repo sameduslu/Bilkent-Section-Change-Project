@@ -580,7 +580,7 @@ public class SchedulePage extends javax.swing.JFrame {
         jButtonSectionChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonSectionChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonSectionChange.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/button.png"))); // NOI18N
+        jButtonSectionChange.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button.png")); // NOI18N
         jButtonSectionChange.setText("SECTION CHANGE");
         jButtonSectionChange.setToolTipText("");
         jButtonSectionChange.setBorder(null);
@@ -602,7 +602,7 @@ public class SchedulePage extends javax.swing.JFrame {
         jButtonOpenForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonOpenForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonOpenForum.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonOpenForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/button.png"))); // NOI18N
+        jButtonOpenForum.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button.png")); // NOI18N
         jButtonOpenForum.setText("OPEN FORUM");
         jButtonOpenForum.setToolTipText("");
         jButtonOpenForum.setBorder(null);
@@ -716,7 +716,7 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        SectionChangePage sPage1 = new SectionChangePage(this.student, courses);
+        SectionChangePage sPage1 = new SectionChangePage(this.student, Connection.getCoursesFromServer());
         sPage1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed

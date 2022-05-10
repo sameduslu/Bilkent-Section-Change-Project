@@ -3,6 +3,7 @@ package client.main;
 
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -12,6 +13,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Connection {
@@ -51,5 +54,21 @@ public class Connection {
         }
 
         return json.fromJson(json1, Boolean.class);
+    }
+
+    public static Courses getCoursesFromServer() {
+        HttpResponse response;
+        String json1;
+        ArrayList courses = null;
+        try{
+            response = client.execute(new HttpGet("http://localhost:8080/courses"));
+            json1 = EntityUtils.toString(response.getEntity());
+            courses = json.fromJson(json1, ArrayList.class);
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+        Courses result = new Courses();
+        result.setCourses(courses);
+        return result;
     }
 }
