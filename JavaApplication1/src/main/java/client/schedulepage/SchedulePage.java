@@ -18,12 +18,13 @@ import javax.swing.JFrame;
 public class SchedulePage extends javax.swing.JFrame {
 
     private Student student;
-    private Courses courses;
+    private Courses courses = new Courses();
     public SchedulePage(Student student, Courses courses) {
-        this.courses = courses;
+        //this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
-        this.student = Connection.updateStudent(student.getID());
+        student = Connection.updateStudent(student.getID());
+        this.student = student;
         initComponents();
     }
     /**

@@ -89,7 +89,7 @@ public class DatabaseInitializer {
     }
 
     @Bean
-    CommandLineRunner studentDistributor (CourseRepository courseRepository, StudentRepository studentRepository, CourseService courseService) {
+    CommandLineRunner studentDistributor (CourseRepository courseRepository, StudentRepository studentRepository, CourseService courseService, RequestProcessorService requestProcessorService) {
         return args -> {
             List<Course> courses = courseRepository.findAll();
             List<Student> students = studentRepository.findAll();
@@ -143,7 +143,7 @@ public class DatabaseInitializer {
                     Student s = students.get(i);
                     for (int j = 0; j < allPaths.get(pathNumber).size(); j++) {
                         ctr &= !allPaths.get(pathNumber).get(j).isFull();
-                        ctr &= (RequestProcessorService.isStillValid(allPaths.get(pathNumber).get(j), s, courseRepository.findCourseByStudentsId(s.getId())));
+                        ctr &= (requestProcessorService.isStillValid(allPaths.get(pathNumber).get(j), s, courseRepository.findCourseByStudentsId(s.getId())));
                         //System.out.println(ctr + " " + pathNumber);
                     }
 

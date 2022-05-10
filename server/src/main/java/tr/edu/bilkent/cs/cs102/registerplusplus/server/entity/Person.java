@@ -46,9 +46,4 @@ public abstract class Person {
 //    public void setSchedule(Course[][] sch) {
 //        this.schedule2D = sch;
 //    }
-
-    public Course[][] getSchedule() {
-
-        //return schedule2D;
-    }
 }

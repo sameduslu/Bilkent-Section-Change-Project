@@ -24,13 +24,16 @@ public class RequestProcessorService {
 
     private final CourseRepository courseRepository;
 
+    private final StudentService studentService;
 
-    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository) {
+
+    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository, StudentService studentService) {
         this.courseService = courseService;
         this.singleRequestRepository = singleRequestRepository;
         this.multipleRequestRepository = multipleRequestRepository;
         this.forumRequestRepository = forumRequestRepository;
         this.courseRepository = courseRepository;
+        this.studentService = studentService;
     }
 
     public void processNonForumRequests() {
@@ -300,11 +303,11 @@ public class RequestProcessorService {
         return false;
     }
 
-    public static boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
+    public boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(wantedCourse)) return false;
         boolean[][] studentProgram = student.getProgram();
         boolean[][] courseProgram = wantedCourse.getProgram();
-        Course[][] studentSchedule = student.getSchedule();
+        Course[][] studentSchedule = studentService.getSchedule(student.getId());
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
                 if (studentProgram[i][j] && studentSchedule[i][j].getName().equals(wantedCourse.getName())) {

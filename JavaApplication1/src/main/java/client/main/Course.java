@@ -1,14 +1,20 @@
 package client.main;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
  * Course
  */
 public class Course {
+    @SerializedName("name")
     private final String NAME;
+    @SerializedName("section")
     private final String SECTION;
     private final ArrayList<Student> students;
+    @SerializedName("program")
     private final boolean[][] PROGRAM;
+    @SerializedName("instructor")
     private final Instructor INSTRUCTOR;
     
     static final int quota = 25;

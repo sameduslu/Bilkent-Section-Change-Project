@@ -124,4 +124,8 @@ public abstract class Person {
             System.out.println();
         }
     }
+
+    public void setSchedule2D(Course[][] schedule2D) {
+        this.schedule2D = schedule2D;
+    }
 }
