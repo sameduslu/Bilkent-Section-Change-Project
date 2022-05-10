@@ -22,4 +22,4 @@ To compile the server sources, we have used maven. Run the following commands to
    * Run `java -jar target\registerplusplus-server-0.0.1-SNAPSHOT.jar`
 
 In the development and test environments of the server codes, we used JDK 13. We have not tested against other versions. If you want to use another version, use at your own risk.
-Having said that, JDK 9-17 range should work fine.
+Although, we think that JDK 9-17 range should work fine.
