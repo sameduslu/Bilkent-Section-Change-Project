@@ -2,6 +2,7 @@ package client.main;
 
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -14,7 +15,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Connection {
@@ -59,11 +62,14 @@ public class Connection {
     public static Courses getCoursesFromServer() {
         HttpResponse response;
         String json1;
-        ArrayList courses = null;
+        List<Course> courses = null;
         try{
             response = client.execute(new HttpGet("http://localhost:8080/courses"));
             json1 = EntityUtils.toString(response.getEntity());
-            courses = json.fromJson(json1, ArrayList.class);
+            //courses = json.fromJson(json1, json.fromJson(json1, new TypeToken<ArrayList<Course>>(){}.getType().getClass()));
+            //courses = json.fromJson(json1, com.google.gson.internal.$Gson$Types.newParameterizedTypeWithOwner(null, ArrayList.class, Course.class));
+            //courses = (ArrayList<Course>) Arrays.asList(json.fromJson(json1, Course.class));
+            courses = Arrays.asList(json.fromJson(json1, Course[].class));
         }  catch (IOException e) {
             e.printStackTrace();
         }

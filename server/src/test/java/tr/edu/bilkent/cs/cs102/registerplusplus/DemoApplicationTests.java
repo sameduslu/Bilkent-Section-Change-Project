@@ -84,7 +84,8 @@ class DemoApplicationTests {
     @Test
     public void courseCreateTest() {
         Course course = createCourse1A();
-        List<Course> all = courseController.all();
+        List<Course> all = courseController.all().getBody();
+        assert all != null;
         Optional<Course> result = all.stream().filter(course1 -> course1.getId().equals(COURSE_1A_ID)).findAny();
         assertTrue(result.isPresent());
         Course dbCourse = result.get();
@@ -173,7 +174,7 @@ class DemoApplicationTests {
     }
 
     private void checkStudentEnrolledInCourse(String courseId, String studentId) {
-        Optional<Course> anyCourse = courseController.all().stream().filter(c -> c.getId().equals(courseId)).findAny();
+        Optional<Course> anyCourse = courseController.all().getBody().stream().filter(c -> c.getId().equals(courseId)).findAny();
         assertTrue(anyCourse.isPresent());
         Course course = anyCourse.get();
         List<Student> students = course.getStudents();
@@ -208,7 +209,7 @@ class DemoApplicationTests {
     }
 
     private void checkStudentNotEnrolledInCourse(String courseId, String studentId) {
-        Optional<Course> anyCourse = courseController.all().stream().filter(c -> c.getId().equals(courseId)).findAny();
+        Optional<Course> anyCourse = courseController.all().getBody().stream().filter(c -> c.getId().equals(courseId)).findAny();
         assertTrue(anyCourse.isPresent());
         Course course = anyCourse.get();
         List<Student> students = course.getStudents();

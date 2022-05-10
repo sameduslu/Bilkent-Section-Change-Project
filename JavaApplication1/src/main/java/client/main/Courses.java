@@ -1,16 +1,18 @@
 package client.main;
 
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  * set of Course objects
  * 
  * Last Update: 7.04.22
  */
 public class Courses {
-    ArrayList<Course> courses;
+    List<Course> courses;
     // default constructor
     public Courses(){
-        courses = new ArrayList<Course>(); 
+        courses = new ArrayList<>();
     }
     /*************************************************************************************** */
     /**************************** METHODS ************************************************** */
@@ -25,7 +27,7 @@ public class Courses {
     }
     
     //Get methods
-    public ArrayList<Course> getCourses() {
+    public List<Course> getCourses() {
         return this.courses;
     }
 
@@ -37,7 +39,7 @@ public class Courses {
         return courses.get(index);
     }
 
-    public void setCourses(ArrayList<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 }

@@ -8,17 +8,17 @@ import java.util.*;
 
 public class Register {
 
-    private static Queue <Request> requestQueue = new LinkedList<>();
+    private static Queue<Request> requestQueue = new LinkedList<>();
     private static Courses allCourses;
     private static ArrayList<Student> allStudents;
-    private static ArrayList <Request> forumRequests = new ArrayList<>();
+    private static ArrayList<Request> forumRequests = new ArrayList<>();
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         allStudents = addStudents();
 
         allCourses = addCourses();
 
-        Courses cs102Courses,math102Courses,math132Courses,eng102Courses;
+        Courses cs102Courses, math102Courses, math132Courses, eng102Courses;
         cs102Courses = new Courses();
         math102Courses = new Courses();
         math132Courses = new Courses();
@@ -29,17 +29,18 @@ public class Register {
             allCourses.getCourse(i).printProgram();
         } */
 
+
         for (int i = 0; i < allCourses.getSize(); i++) {
             Course tempCourse = allCourses.getCourse(i);
-            
+
             if (tempCourse.getName().equals("CS102")) {
                 cs102Courses.addCourse(tempCourse);
             }
-            
+
             if (tempCourse.getName().equals("MATH102")) {
                 math102Courses.addCourse(tempCourse);
             }
-            
+
             if (tempCourse.getName().equals("MATH132")) {
                 math132Courses.addCourse(tempCourse);
             }
@@ -49,35 +50,32 @@ public class Register {
             }
         }
 
-        ArrayList < Courses > allPaths = new ArrayList < Courses >();
+        ArrayList<Courses> allPaths = new ArrayList<Courses>();
 
         for (int i = 0; i < cs102Courses.getSize(); i++) {
             Courses possiblePath = new Courses();
             Course csCourse = cs102Courses.getCourse(i);
             possiblePath.addCourse(csCourse);
-            for(int j = 0; j < math102Courses.getSize(); j++) {
-                Course math102Course = math102Courses.getCourse(j); 
+            for (int j = 0; j < math102Courses.getSize(); j++) {
+                Course math102Course = math102Courses.getCourse(j);
                 if (csCourse.doesOverlap(math102Course)) {
                     continue;
-                }
-                else {
+                } else {
                     possiblePath.addCourse(math102Course);
                 }
-                for(int u = 0; u < math132Courses.getSize(); u++) {
-                    Course math132Course = math132Courses.getCourse(u); 
+                for (int u = 0; u < math132Courses.getSize(); u++) {
+                    Course math132Course = math132Courses.getCourse(u);
                     if (csCourse.doesOverlap(math132Course) || math102Course.doesOverlap(math132Course)) {
                         continue;
-                    }
-                    else {
+                    } else {
                         possiblePath.addCourse(math132Course);
                     }
-                    for(int p = 0; p < eng102Courses.getSize(); p++) {
-                        Course engCourse = eng102Courses.getCourse(p); 
-                        if (csCourse.doesOverlap(engCourse) || math102Course.doesOverlap(engCourse) 
-                            || math132Course.doesOverlap(engCourse)) {
+                    for (int p = 0; p < eng102Courses.getSize(); p++) {
+                        Course engCourse = eng102Courses.getCourse(p);
+                        if (csCourse.doesOverlap(engCourse) || math102Course.doesOverlap(engCourse)
+                                || math132Course.doesOverlap(engCourse)) {
                             continue;
-                        }
-                        else {
+                        } else {
                             possiblePath.addCourse(engCourse);
                             Courses addThat = new Courses();
                             for (int pp = 0; pp < possiblePath.getSize(); pp++) {
@@ -85,19 +83,19 @@ public class Register {
                             }
                             allPaths.add(addThat);
                         }
-                        if(possiblePath.getSize() == 4) {
+                        if (possiblePath.getSize() == 4) {
                             possiblePath.removeCourse(engCourse);
                         }
                     }
-                    if(possiblePath.getSize() == 3) {
+                    if (possiblePath.getSize() == 3) {
                         possiblePath.removeCourse(math132Course);
                     }
                 }
-                if(possiblePath.getSize() == 2) {
+                if (possiblePath.getSize() == 2) {
                     possiblePath.removeCourse(math102Course);
                 }
             }
-            if(possiblePath.getSize() == 1) {
+            if (possiblePath.getSize() == 1) {
                 possiblePath.removeCourse(csCourse);
             }
         }
@@ -112,7 +110,7 @@ public class Register {
 
         Random rand = new Random();
 
-        for (int i = 0; i < allStudents.size(); i++) {         
+        for (int i = 0; i < allStudents.size(); i++) {
 
             boolean isHappened = false;
 
@@ -122,7 +120,7 @@ public class Register {
 
                 int pathNumber = rand.nextInt(allPaths.size());
 
-                if(cnt == 1000) {
+                if (cnt == 1000) {
                     break;
                 }
 
@@ -133,28 +131,28 @@ public class Register {
                     ctr &= !(allStudents.get(i).doesOverlap(allPaths.get(pathNumber).getCourse(j)));
                     //System.out.println(ctr + " " + pathNumber);
                 }
-    
+
                 if (ctr) {
                     for (int j = 0; j < allPaths.get(pathNumber).getSize(); j++) {
                         allPaths.get(pathNumber).getCourse(j).addStudent(allStudents.get(i));
                     }
                     isHappened = true;
                 }
-                cnt ++;
+                cnt++;
             }
-            
+
             if (cnt == 1000) {
                 System.out.println("It is impossible to arrange students!" + i);
                 break;
             }
         }
 
-        for (int i = 0; i < allStudents.size(); i++) {         
-            System.out.println("Student" + (i+1) + "'s program: ");
+        for (int i = 0; i < allStudents.size(); i++) {
+            System.out.println("Student" + (i + 1) + "'s program: ");
             allStudents.get(i).printSchedule();
-        } 
+        }
 
-        for(int i = 0; i < allCourses.getSize(); i++) {
+        for (int i = 0; i < allCourses.getSize(); i++) {
             System.out.println(allCourses.getCourse(i).isThereQuota());
         }
         LoginPage loginpage = new LoginPage(allCourses);
@@ -166,19 +164,18 @@ public class Register {
 
     private static ArrayList<Student> addStudents() {
         ArrayList<Student> result = new ArrayList<>();
-        try{
+        try {
             File database = new File("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Names_and_IDs.txt");
             Scanner sc = new Scanner(database);
-            while(sc.hasNextLine()) {
+            while (sc.hasNextLine()) {
                 String name = sc.next();
                 String surname = sc.next();
-                name += (" " + surname); 
+                name += (" " + surname);
                 String id = sc.next();
-                Student st = new Student (name, id);
+                Student st = new Student(name, id);
                 result.add(st);
             }
-        }
-        catch (FileNotFoundException err)  {
+        } catch (FileNotFoundException err) {
             System.out.println("Error occured!");
             err.printStackTrace();
         }
@@ -189,11 +186,11 @@ public class Register {
 
     private static Courses addCourses() {
         Courses result = new Courses();
-        try{
+        try {
             File database = new File("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Course_Database.txt");
             Scanner sc = new Scanner(database);
             int id = 1000;
-            while(sc.hasNextLine()) {
+            while (sc.hasNextLine()) {
                 String name, section, insName, insSurname, insID;
                 Instructor instructor;
                 boolean[][] program = new boolean[Person.rowNum][Person.columnNum];
@@ -203,25 +200,23 @@ public class Register {
                 insSurname = sc.next();
                 insName += (" " + insSurname);
                 insID = "" + id;
-                instructor = new Instructor (insName, insID);
+                instructor = new Instructor(insName, insID);
                 for (int i = 0; i < Person.rowNum; i++) {
-                    for (int j = 0; j< Person.columnNum; j++) {
+                    for (int j = 0; j < Person.columnNum; j++) {
                         int check = sc.nextInt();
-                        if(check == 1) {
-                            program [i][j] = true;
-                        }
-                        else {
-                            program [i][j] = false;
+                        if (check == 1) {
+                            program[i][j] = true;
+                        } else {
+                            program[i][j] = false;
                         }
                     }
                 }
-                Course lesson = new Course (name, section, program, instructor);
+                Course lesson = new Course(name, section, program, instructor);
                 instructor.addCourse(lesson);
                 result.addCourse(lesson);
                 id++;
             }
-        }
-        catch (FileNotFoundException err)  {
+        } catch (FileNotFoundException err) {
             System.out.println("Error occured!");
             err.printStackTrace();
         }
@@ -231,28 +226,28 @@ public class Register {
     /**
      * This method add given request to queue
      */
-    protected static void addRequestToQueue (Request r) {
+    protected static void addRequestToQueue(Request r) {
         requestQueue.add(r);
     }
 
     /**
      * This method add request to the forum
      */
-    protected static void addRequestToForum (Request r) {
+    protected static void addRequestToForum(Request r) {
         forumRequests.add(r);
     }
 
     /**
      * This method removes request from the queue when student want
      */
-    protected static void removeRequestFromQueue (Request r) {
+    protected static void removeRequestFromQueue(Request r) {
         requestQueue.remove(r);
     }
 
     /**
      * This method removes request from the forum when student want
      */
-    protected static void removeRequestFromForum (Request r) {
+    protected static void removeRequestFromForum(Request r) {
         forumRequests.remove(r);
     }
 
@@ -279,7 +274,7 @@ public class Register {
     /**
      * This method process the given request
      */
-    private static void processRequest (Request r) {
+    private static void processRequest(Request r) {
 
         //If it is a single request
         if (r.getClass().getName().equals("SingleRequest")) {
@@ -316,7 +311,7 @@ public class Register {
     /**
      * This method process the request in the forum when the client accept the trade offer
      */
-    protected static void processForumRequest (ForumRequest fr, Student acceptor) {
+    protected static void processForumRequest(ForumRequest fr, Student acceptor) {
         Student owner = fr.getRequestOwner();
         fr.getWantedCourse().removeStudent(acceptor);
         fr.getCurrentCourse().removeStudent(owner);
@@ -344,7 +339,7 @@ public class Register {
      */
     public static void test() {
 
-        System.out.print ("Enter the index of the wanted course for student 1: ");
+        System.out.print("Enter the index of the wanted course for student 1: ");
         Student ss = allStudents.get(0);
         Scanner in = new Scanner(System.in);
         int wantedIndex = in.nextInt();
@@ -353,15 +348,15 @@ public class Register {
         checkTheRequests();
         ss.printSchedule();
         for (int i = 0; i < ss.courses.getSize(); i++) {
-            System.out.println (ss.courses.getCourse(i));
+            System.out.println(ss.courses.getCourse(i));
         }
 
 
-        System.out.print ("Enter the number of the wanted courses for student 1: ");
+        System.out.print("Enter the number of the wanted courses for student 1: ");
         int kk = in.nextInt();
         Courses wanteds = new Courses();
         for (int i = 1; i <= kk; i++) {
-            System.out.print ("Enter the index of the wanted course for student 1: ");
+            System.out.print("Enter the index of the wanted course for student 1: ");
             int wantedIndex1 = in.nextInt();
             wanteds.addCourse(allCourses.getCourse(wantedIndex1));
         }
@@ -369,18 +364,18 @@ public class Register {
         checkTheRequests();
         ss.printSchedule();
         for (int i = 0; i < ss.courses.getSize(); i++) {
-            System.out.println (ss.courses.getCourse(i));
+            System.out.println(ss.courses.getCourse(i));
         }
 
 
-        System.out.print ("Enter the index of the wanted course for student 1: ");
+        System.out.print("Enter the index of the wanted course for student 1: ");
         wantedIndex = in.nextInt();
         cc = allCourses.getCourse(wantedIndex);
         ss.createSingleRequest(cc);
         checkTheRequests();
         ss.printSchedule();
         for (int i = 0; i < ss.courses.getSize(); i++) {
-            System.out.println (ss.courses.getCourse(i));
+            System.out.println(ss.courses.getCourse(i));
         }
     }
 }

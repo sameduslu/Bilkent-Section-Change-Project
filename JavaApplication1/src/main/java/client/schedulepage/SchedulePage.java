@@ -716,7 +716,8 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        SectionChangePage sPage1 = new SectionChangePage(this.student, Connection.getCoursesFromServer());
+        Courses coursesFromServer = Connection.getCoursesFromServer();
+        SectionChangePage sPage1 = new SectionChangePage(this.student, coursesFromServer);
         sPage1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed

@@ -21,7 +21,7 @@ public class Course implements Comparable<Course>{
     @DBRef
     private Instructor instructor;
 
-    public static final int QUOTA = 5;
+    public static final int QUOTA = 25;
 
     public String getName() {
         return name;
@@ -81,6 +81,10 @@ public class Course implements Comparable<Course>{
             }
         }
         return false;
+    }
+
+    public boolean isFull() {
+        return this.students.size() >= QUOTA;
     }
 
     @Override

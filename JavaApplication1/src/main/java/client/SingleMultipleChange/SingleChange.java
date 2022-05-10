@@ -59,7 +59,7 @@ public class SingleChange extends javax.swing.JFrame {
             button.setBackground(new java.awt.Color(220, 172, 146));
             button.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
             button.setForeground(new java.awt.Color(172, 112, 96));
-            button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SingleMultipleChange/button2.png"))); // NOI18N
+            button.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button2.png")); // NOI18N
             button.setText(courses.getCourse(i).getName()+"-"+courses.getCourse(i).getSection().substring(1));
             button.setToolTipText("");
             button.setBorder(null);

@@ -11,9 +11,12 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Credentials;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Instructor;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Person;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.io.File;
-import java.util.Scanner;
+import java.sql.Array;
+import java.util.*;
 import java.io.FileNotFoundException;
 
 @Configuration
@@ -62,12 +65,7 @@ public class DatabaseInitializer {
                     for (int i = 0; i < Person.rowNum; i++) {
                         for (int j = 0; j< Person.columnNum; j++) {
                             int check = sc.nextInt();
-                            if(check == 1) {
-                                program [i][j] = true;
-                            }
-                            else {
-                                program [i][j] = false;
-                            }
+                            program [i][j] = check == 1;
                         }
                     }
                     //Course lesson = new Course (name, section, program, instructor);
@@ -77,6 +75,7 @@ public class DatabaseInitializer {
                     lesson.setId(id2);
                     lesson.setProgram(program);
                     lesson.setInstructor(instructor);
+                    lesson.setSection(section);
                     //instructor.addCourse(lesson); TODO
                     courseRepository.save(lesson);
                     id++;
@@ -87,6 +86,128 @@ public class DatabaseInitializer {
                 err.printStackTrace();
             }
         };
+    }
+
+    @Bean
+    CommandLineRunner studentDistributor (CourseRepository courseRepository, StudentRepository studentRepository, CourseService courseService) {
+        return args -> {
+            List<Course> courses = courseRepository.findAll();
+            List<Student> students = studentRepository.findAll();
+            HashMap<String, ArrayList<Course>> coursesByName = new HashMap<>();
+            for (Course c : courses){
+                String name = c.getName();
+                if (coursesByName.containsKey(name)){
+                    List<Course> l = coursesByName.get(name);
+                    l.add(c);
+                }else {
+                    ArrayList<Course> l = new ArrayList<>();
+                    l.add(c);
+                    coursesByName.put(name, l);
+                }
+            }
+            List<ArrayList<Course>> allPaths = new ArrayList<>();
+            Iterator<String> iter = coursesByName.keySet().iterator();
+            List<String> names = new ArrayList<>();
+            while(iter.hasNext()) {
+                names.add(iter.next());
+            }
+            ArrayList<Course> currentPath = new ArrayList<>();
+            calculateAllPaths (coursesByName, names, allPaths, currentPath);
+            /*for (int i = 0; i < allPaths.size(); i++) {
+                System.out.println("Path: " + (i+ 1));
+                for (int j = 0; j < allPaths.get(i).size(); j++) {
+                    System.out.println(allPaths.get(i).get(j).getId());
+                }
+                System.out.println();
+            }
+            System.out.println("done list");*/
+
+            Random rand = new Random();
+
+            for (int i = 0; i < students.size(); i++) {
+
+                boolean isHappened = false;
+
+                int cnt = 0;
+
+                while (!isHappened) {
+
+                    int pathNumber = rand.nextInt(allPaths.size());
+
+                    if (cnt == 1000) {
+                        break;
+                    }
+
+                    boolean ctr = true;
+
+                    Student s = students.get(i);
+                    for (int j = 0; j < allPaths.get(pathNumber).size(); j++) {
+                        ctr &= !allPaths.get(pathNumber).get(j).isFull();
+                        ctr &= (RequestProcessorService.isStillValid(allPaths.get(pathNumber).get(j), s, courseRepository.findCourseByStudentsId(s.getId())));
+                        //System.out.println(ctr + " " + pathNumber);
+                    }
+
+                    if (ctr) {
+                        for (int j = 0; j < allPaths.get(pathNumber).size(); j++) {
+                            courseService.addStudentToCourse(s, allPaths.get(pathNumber).get(j));
+                        }
+                        isHappened = true;
+                    }
+                    cnt++;
+                }
+
+                if (cnt == 1000) {
+                    System.out.println("It is impossible to arrange students!" + i);
+                    break;
+                }
+            }
+            System.out.println("Students distributed.");
+//            for (int i = 0; i < students.size(); i++) {
+//                System.out.println("Student" + (i + 1) + "'s program: ");
+//                students.set(i, studentRepository.findById(students.get(i).getId()).get());
+//                students.get(i).printSchedule();
+//            }
+        };
+    }
+
+    private void calculateAllPaths (HashMap<String, ArrayList<Course>> map, List<String> names, List<ArrayList<Course>> allPaths, ArrayList<Course> currentPath) {
+        String key = names.get(currentPath.size());
+        List<Course> l = map.get(key);
+        for (int i = 0; i < l.size(); i++) {
+            Course add = l.get(i);
+            boolean canAdded = true;
+            for (int j = 0; j < currentPath.size(); j++) {
+                if (doesOverlap(currentPath.get(j),add)) {
+                    canAdded = false;
+                    break;
+                }
+            }
+            if (!canAdded) {
+                continue;
+            }
+            currentPath.add(l.get(i));
+            if (currentPath.size() == map.keySet().size()) {
+                ArrayList<Course> addThat = new ArrayList<>(currentPath);
+                allPaths.add(addThat);
+            }
+            else {
+                calculateAllPaths(map,names,allPaths,currentPath);
+            }
+            currentPath.remove(add);
+        }
+    }
+
+    private boolean doesOverlap(Course c1, Course c2) {
+        boolean[][] program1 = c1.getProgram();
+        boolean[][] program2 = c2.getProgram();
+        for (int i = 1; i < program1.length; i++) {
+            for (int j = 1; j < program1[i].length; j++) {
+                if (program1[i][j] && program2[i][j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

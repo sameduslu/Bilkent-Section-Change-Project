@@ -108,7 +108,7 @@ public class RequestProcessorService {
             singleRequestRepository.delete(req);
             return true;
         }*/
-        if (isFull(wanted)) return false;
+        if (wanted.isFull()) return false;
 
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
             return processSectionChangeRequest(req, courseByStudentId);
@@ -197,7 +197,7 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         for (int p = 0; p < wantedCourses.size(); p++) {
-            if (isFull(wantedCourses.get(p))) {
+            if (wantedCourses.get(p).isFull()) {
                 return false;
             }
         }
@@ -284,9 +284,7 @@ public class RequestProcessorService {
         return coursesByStudentId.stream().anyMatch(c -> c.getName().equals(wanted.getName()));
     }
 
-    public boolean isFull(Course c) {
-        return c.getStudents().size() >= Course.QUOTA;
-    }
+
 
     public boolean doesOverlap(Course course, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(course)) return true;
@@ -302,7 +300,7 @@ public class RequestProcessorService {
         return false;
     }
 
-    public boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
+    public static boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(wantedCourse)) return false;
         boolean[][] studentProgram = student.getProgram();
         boolean[][] courseProgram = wantedCourse.getProgram();
@@ -320,7 +318,7 @@ public class RequestProcessorService {
         return true;
     }
 
-    public boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
+    public static boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
         List<Course> noIncluded = new ArrayList<>();
 
         //finding the courses which is not in the requesting courses and adding them to noIncluded 
