@@ -2,27 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package loginpage;
+package client.LoginPage;
 
-import SchedulePage.SchedulePage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.JFrame;
-import main.Courses;
-import main.Student;
+import client.main.Connection;
+import client.main.Courses;
+import client.main.Student;
+import client.schedulepage.SchedulePage;
+
+import javax.swing.*;
 
 /**
- *
  * @author Pc
  */
 public class LoginPage extends javax.swing.JFrame {
 
-    private ArrayList<Student> students;
+    private Student student;
     private Courses courses;
-    public LoginPage(ArrayList<Student> students, Courses courses) {
-        this.students = students;
+
+    public LoginPage(Courses courses) {
         this.courses = courses;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,7 +47,9 @@ public class LoginPage extends javax.swing.JFrame {
         jButtonLogin.setBackground(new java.awt.Color(220, 172, 146));
         jButtonLogin.setFont(new java.awt.Font("Bahnschrift", 1, 32)); // NOI18N
         jButtonLogin.setForeground(new java.awt.Color(220, 172, 146));
-        jButtonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
+
+        jButtonLogin.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button.png")); // NOI18N
+
         jButtonLogin.setText("Login");
         jButtonLogin.setToolTipText("");
         jButtonLogin.setBorder(null);
@@ -58,7 +57,11 @@ public class LoginPage extends javax.swing.JFrame {
         jButtonLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+                try {
                 jButtonLoginMouseClicked(evt);
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
             }
         });
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -91,8 +94,8 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        jLabelRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/My_project_8.png"))); // NOI18N
-
+        //jLabelRegister.setIcon(new javax.swing.ImageIcon("Icon.png")); // NOI18N
+        jLabelRegister.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Icon.png"));
         jID.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         jID.setForeground(new java.awt.Color(212, 212, 212));
         jID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -192,11 +195,12 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelMinimizeMouseClicked
 
     private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
-        
-        if (/*studentID.equals(id) && studentPassword.equals(password)*/true) {
-                SchedulePage sPage = new SchedulePage(students.get(0), courses);
-                sPage.setVisible(true);
-                this.dispose();
+        String id = jID.getText();
+        if (Connection.authenticate(id, jPassword.getText())) {
+            this.student = Connection.updateStudent(id);
+            SchedulePage sPage = new SchedulePage(student, courses);
+            sPage.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButtonLoginMouseClicked
 

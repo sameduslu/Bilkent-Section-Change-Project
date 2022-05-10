@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package SchedulePage;
+package client.schedulepage;
 
-import Forum.Forum;
-import SectionChange.SectionChangePage;
+import client.Forum.Forum;
+import client.SectionChange.SectionChangePage;
+import client.main.Connection;
+import client.main.Courses;
+import client.main.Student;
+
 import javax.swing.JFrame;
-import main.Courses;
-import main.Student;
 
 /**
- *
  * @author cagri
  */
 public class SchedulePage extends javax.swing.JFrame {
@@ -22,7 +23,7 @@ public class SchedulePage extends javax.swing.JFrame {
         this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
-        this.student = student;
+        this.student = Connection.updateStudent(student.getID());
         initComponents();
     }
     /**
@@ -579,7 +580,7 @@ public class SchedulePage extends javax.swing.JFrame {
         jButtonSectionChange.setBackground(new java.awt.Color(220, 172, 146));
         jButtonSectionChange.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonSectionChange.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
+        jButtonSectionChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/button.png"))); // NOI18N
         jButtonSectionChange.setText("SECTION CHANGE");
         jButtonSectionChange.setToolTipText("");
         jButtonSectionChange.setBorder(null);
@@ -601,7 +602,7 @@ public class SchedulePage extends javax.swing.JFrame {
         jButtonOpenForum.setBackground(new java.awt.Color(220, 172, 146));
         jButtonOpenForum.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jButtonOpenForum.setForeground(new java.awt.Color(172, 112, 96));
-        jButtonOpenForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/a.png"))); // NOI18N
+        jButtonOpenForum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/button.png"))); // NOI18N
         jButtonOpenForum.setText("OPEN FORUM");
         jButtonOpenForum.setToolTipText("");
         jButtonOpenForum.setBorder(null);

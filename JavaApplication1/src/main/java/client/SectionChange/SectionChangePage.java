@@ -2,26 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package SectionChange;
+package client.SectionChange;
 
-import Forum.Forum;
-import SchedulePage.SchedulePage;
-import SingleMultipleChange.MultipleChange;
-import SingleMultipleChange.SingleChange;
-import java.awt.Color;
-import java.awt.GridLayout;
+import client.Forum.Forum;
+import client.SingleMultipleChange.MultipleChange;
+import client.SingleMultipleChange.SingleChange;
+import client.main.Courses;
+import client.main.Student;
+import client.schedulepage.SchedulePage;
+
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import javax.swing.JButton;
-import schedulepage.*;
 import javax.swing.JFrame;
-import main.Courses;
-import main.Student;
-import java.util.ArrayList;
-import javax.swing.JPanel;
 
 /**
  *

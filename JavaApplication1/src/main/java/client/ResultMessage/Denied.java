@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ResultMessage;
+package client.ResultMessage;
 
 /**
  *
@@ -40,7 +40,7 @@ public class Denied extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(220, 172, 146));
 
         jButton1.setBackground(new java.awt.Color(220, 172, 146));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ResultMessage/Webp.net-resizeimage (3).png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ResultMessage/cross.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.addActionListener(new java.awt.event.ActionListener() {

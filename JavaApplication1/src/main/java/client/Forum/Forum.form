@@ -191,7 +191,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/SectionChange/home.png"/>
+              <Image iconType="3" name="/main.java.client.SectionChange/home.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -207,7 +207,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Forum/A.png"/>
+              <Image iconType="3" name="/main.java.client.Forum/A.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -237,7 +237,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Forum/A.png"/>
+              <Image iconType="3" name="/main.java.client.Forum/A.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -253,7 +253,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Forum/A.png"/>
+              <Image iconType="3" name="/main.java.client.Forum/A.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -302,7 +302,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Forum/A.png"/>
+              <Image iconType="3" name="/main.java.client.Forum/A.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -342,7 +342,7 @@
               <Color blue="92" green="ac" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Forum/A.png"/>
+              <Image iconType="3" name="/main.java.client.Forum/A.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>

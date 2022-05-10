@@ -113,7 +113,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -138,7 +138,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -155,7 +155,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -169,7 +169,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -183,7 +183,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -200,7 +200,7 @@
                   <Color blue="92" green="ac" red="dc" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -220,7 +220,7 @@
                   <Color blue="60" green="70" red="ac" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/SingleMultipleChange/button2.png"/>
+                  <Image iconType="3" name="/main.java.client.SingleMultipleChange/button2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SEND"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

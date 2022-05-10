@@ -905,7 +905,7 @@
               <Color blue="60" green="70" red="ac" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/LoginPage/a.png"/>
+              <Image iconType="3" name="/main.java.client.LoginPage/a.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SECTION CHANGE"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -939,7 +939,7 @@
               <Color blue="60" green="70" red="ac" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/LoginPage/a.png"/>
+              <Image iconType="3" name="/main.java.client.LoginPage/a.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="OPEN FORUM"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
