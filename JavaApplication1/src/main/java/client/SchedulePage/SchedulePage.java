@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package client.schedulepage;
+package client.SchedulePage;
 
 import client.Forum.Forum;
 import client.SectionChange.SectionChangePage;
 import client.main.Connection;
-import client.main.Courses;
 import client.main.Student;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * @author cagri
@@ -18,15 +17,14 @@ import javax.swing.JFrame;
 public class SchedulePage extends javax.swing.JFrame {
 
     private Student student;
-    private Courses courses = new Courses();
-    public SchedulePage(Student student, Courses courses) {
-        //this.courses = courses;
-        this.setSize(1280,720);
+
+    public SchedulePage(Student student) {
+        this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
-        student = Connection.getUpdatedStudent(student.getId());
-        this.student = student;
+        this.student = Connection.getUpdatedStudent(student.getId());
         initComponents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,19 +193,19 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField35.setEditable(false);
         jTextField35.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField35.setText(student.getCourseAt(1,1));
+        jTextField35.setText(student.getCourseAt(1, 1));
         jPanel2.add(jTextField35);
 
         jTextField36.setEditable(false);
         jTextField36.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField36.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField36.setText(student.getCourseAt(1,2));
+        jTextField36.setText(student.getCourseAt(1, 2));
         jPanel2.add(jTextField36);
 
         jTextField56.setEditable(false);
         jTextField56.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField56.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField56.setText(student.getCourseAt(1,3));
+        jTextField56.setText(student.getCourseAt(1, 3));
         jTextField56.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField56ActionPerformed(evt);
@@ -218,12 +216,12 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField37.setEditable(false);
         jTextField37.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField37.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField37.setText(student.getCourseAt(1,4));
+        jTextField37.setText(student.getCourseAt(1, 4));
         jPanel2.add(jTextField37);
 
         jTextField42.setEditable(false);
         jTextField42.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
-        jTextField42.setText(student.getCourseAt(1,5));
+        jTextField42.setText(student.getCourseAt(1, 5));
         jTextField42.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel2.add(jTextField42);
 
@@ -243,31 +241,31 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField43.setEditable(false);
         jTextField43.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField43.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField43.setText(student.getCourseAt(2,1));
+        jTextField43.setText(student.getCourseAt(2, 1));
         jPanel2.add(jTextField43);
 
         jTextField45.setEditable(false);
         jTextField45.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField45.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField45.setText(student.getCourseAt(2,2));
+        jTextField45.setText(student.getCourseAt(2, 2));
         jPanel2.add(jTextField45);
 
         jTextField46.setEditable(false);
         jTextField46.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField46.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField46.setText(student.getCourseAt(2,3));
+        jTextField46.setText(student.getCourseAt(2, 3));
         jPanel2.add(jTextField46);
 
         jTextField47.setEditable(false);
         jTextField47.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField47.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField47.setText(student.getCourseAt(2,4));
+        jTextField47.setText(student.getCourseAt(2, 4));
         jPanel2.add(jTextField47);
 
         jTextField48.setEditable(false);
         jTextField48.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField48.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField48.setText(student.getCourseAt(2,5));
+        jTextField48.setText(student.getCourseAt(2, 5));
         jPanel2.add(jTextField48);
 
         jTextField38.setEditable(false);
@@ -287,31 +285,31 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField49.setEditable(false);
         jTextField49.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField49.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField49.setText(student.getCourseAt(3,1));
+        jTextField49.setText(student.getCourseAt(3, 1));
         jPanel2.add(jTextField49);
 
         jTextField51.setEditable(false);
         jTextField51.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField51.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField51.setText(student.getCourseAt(3,2));
+        jTextField51.setText(student.getCourseAt(3, 2));
         jPanel2.add(jTextField51);
 
         jTextField52.setEditable(false);
         jTextField52.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField52.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField52.setText(student.getCourseAt(3,3));
+        jTextField52.setText(student.getCourseAt(3, 3));
         jPanel2.add(jTextField52);
 
         jTextField53.setEditable(false);
         jTextField53.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField53.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField53.setText(student.getCourseAt(3,4));
+        jTextField53.setText(student.getCourseAt(3, 4));
         jPanel2.add(jTextField53);
 
         jTextField54.setEditable(false);
         jTextField54.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField54.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField54.setText(student.getCourseAt(3,5));
+        jTextField54.setText(student.getCourseAt(3, 5));
         jPanel2.add(jTextField54);
 
         jTextField39.setEditable(false);
@@ -330,31 +328,31 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField55.setEditable(false);
         jTextField55.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField55.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField55.setText(student.getCourseAt(4,1));
+        jTextField55.setText(student.getCourseAt(4, 1));
         jPanel2.add(jTextField55);
 
         jTextField57.setEditable(false);
         jTextField57.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField57.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField57.setText(student.getCourseAt(4,2));
+        jTextField57.setText(student.getCourseAt(4, 2));
         jPanel2.add(jTextField57);
 
         jTextField58.setEditable(false);
         jTextField58.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField58.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField58.setText(student.getCourseAt(4,3));
+        jTextField58.setText(student.getCourseAt(4, 3));
         jPanel2.add(jTextField58);
 
         jTextField59.setEditable(false);
         jTextField59.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField59.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField59.setText(student.getCourseAt(4,4));
+        jTextField59.setText(student.getCourseAt(4, 4));
         jPanel2.add(jTextField59);
 
         jTextField60.setEditable(false);
         jTextField60.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField60.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField60.setText(student.getCourseAt(4,5));
+        jTextField60.setText(student.getCourseAt(4, 5));
         jPanel2.add(jTextField60);
 
         jTextField40.setEditable(false);
@@ -408,31 +406,31 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField66.setEditable(false);
         jTextField66.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField66.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField66.setText(student.getCourseAt(5,1));
+        jTextField66.setText(student.getCourseAt(5, 1));
         jPanel2.add(jTextField66);
 
         jTextField67.setEditable(false);
         jTextField67.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField67.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField67.setText(student.getCourseAt(5,2));
+        jTextField67.setText(student.getCourseAt(5, 2));
         jPanel2.add(jTextField67);
 
         jTextField68.setEditable(false);
         jTextField68.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField68.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField68.setText(student.getCourseAt(5,3));
+        jTextField68.setText(student.getCourseAt(5, 3));
         jPanel2.add(jTextField68);
 
         jTextField69.setEditable(false);
         jTextField69.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField69.setText(student.getCourseAt(5,4));
+        jTextField69.setText(student.getCourseAt(5, 4));
         jPanel2.add(jTextField69);
 
         jTextField70.setEditable(false);
         jTextField70.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField70.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField70.setText(student.getCourseAt(5,5));
+        jTextField70.setText(student.getCourseAt(5, 5));
         jPanel2.add(jTextField70);
 
         jTextField44.setEditable(false);
@@ -452,31 +450,31 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField71.setEditable(false);
         jTextField71.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField71.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField71.setText(student.getCourseAt(6,1));
+        jTextField71.setText(student.getCourseAt(6, 1));
         jPanel2.add(jTextField71);
 
         jTextField72.setEditable(false);
         jTextField72.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField72.setText(student.getCourseAt(6,2));
+        jTextField72.setText(student.getCourseAt(6, 2));
         jPanel2.add(jTextField72);
 
         jTextField73.setEditable(false);
         jTextField73.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField73.setText(student.getCourseAt(6,3));
+        jTextField73.setText(student.getCourseAt(6, 3));
         jPanel2.add(jTextField73);
 
         jTextField74.setEditable(false);
         jTextField74.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField74.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField74.setText(student.getCourseAt(6,4));
+        jTextField74.setText(student.getCourseAt(6, 4));
         jPanel2.add(jTextField74);
 
         jTextField75.setEditable(false);
         jTextField75.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField75.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField75.setText(student.getCourseAt(6,5));
+        jTextField75.setText(student.getCourseAt(6, 5));
         jPanel2.add(jTextField75);
 
         jTextField50.setEditable(false);
@@ -495,25 +493,25 @@ public class SchedulePage extends javax.swing.JFrame {
         jTextField76.setEditable(false);
         jTextField76.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField76.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField76.setText(student.getCourseAt(7,1));
+        jTextField76.setText(student.getCourseAt(7, 1));
         jPanel2.add(jTextField76);
 
         jTextField77.setEditable(false);
         jTextField77.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField77.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField77.setText(student.getCourseAt(7,2));
+        jTextField77.setText(student.getCourseAt(7, 2));
         jPanel2.add(jTextField77);
 
         jTextField78.setEditable(false);
         jTextField78.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField78.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField78.setText(student.getCourseAt(7,3));
+        jTextField78.setText(student.getCourseAt(7, 3));
         jPanel2.add(jTextField78);
 
         jTextField79.setEditable(false);
         jTextField79.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField79.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField79.setText(student.getCourseAt(7,4));
+        jTextField79.setText(student.getCourseAt(7, 4));
         jPanel2.add(jTextField79);
 
         jTextField80.setEditable(false);
@@ -524,7 +522,7 @@ public class SchedulePage extends javax.swing.JFrame {
                 jTextField80ActionPerformed(evt);
             }
         });
-        jTextField80.setText(student.getCourseAt(7,5));
+        jTextField80.setText(student.getCourseAt(7, 5));
         jPanel2.add(jTextField80);
 
         jTextField81.setEditable(false);
@@ -548,31 +546,31 @@ public class SchedulePage extends javax.swing.JFrame {
                 jTextField82ActionPerformed(evt);
             }
         });
-        jTextField82.setText(student.getCourseAt(8,1));
+        jTextField82.setText(student.getCourseAt(8, 1));
         jPanel2.add(jTextField82);
 
         jTextField83.setEditable(false);
         jTextField83.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField83.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField83.setText(student.getCourseAt(8,2));
+        jTextField83.setText(student.getCourseAt(8, 2));
         jPanel2.add(jTextField83);
 
         jTextField84.setEditable(false);
         jTextField84.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField84.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField84.setText(student.getCourseAt(8,3));
+        jTextField84.setText(student.getCourseAt(8, 3));
         jPanel2.add(jTextField84);
 
         jTextField85.setEditable(false);
         jTextField85.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField85.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField85.setText(student.getCourseAt(8,4));
+        jTextField85.setText(student.getCourseAt(8, 4));
         jPanel2.add(jTextField85);
 
         jTextField86.setEditable(false);
         jTextField86.setFont(new java.awt.Font("PT Sans Caption", 1, 20)); // NOI18N
         jTextField86.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField86.setText(student.getCourseAt(8,5));
+        jTextField86.setText(student.getCourseAt(8, 5));
         jPanel2.add(jTextField86);
 
         jPanel1.add(jPanel2);
@@ -653,12 +651,12 @@ public class SchedulePage extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
@@ -717,8 +715,7 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        Courses coursesFromServer = Connection.getAllCoursesFromServer();
-        SectionChangePage sPage1 = new SectionChangePage(this.student, coursesFromServer);
+        SectionChangePage sPage1 = new SectionChangePage(this.student);
         sPage1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
@@ -729,7 +726,7 @@ public class SchedulePage extends javax.swing.JFrame {
 
     private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
         // TODO add your handling code here:
-        Forum forumPage = new Forum(this.student, courses);
+        Forum forumPage = new Forum(this.student);
         forumPage.setVisible(true);
         forumPage.setLocationRelativeTo(null);
         this.dispose();

@@ -9,106 +9,41 @@ import java.util.ArrayList;
  */
 public class Course {
     @SerializedName("name")
-    private final String NAME;
+    private final String name;
     @SerializedName("section")
-    private final String SECTION;
+    private final String section;
     private final ArrayList<Student> students;
     @SerializedName("program")
-    private final boolean[][] PROGRAM;
+    private final boolean[][] program;
     @SerializedName("instructor")
-    private final Instructor INSTRUCTOR;
+    private final Instructor instructor;
 
     private String id;
 
-    static final int quota = 25;
-    /******************************************************************************************* */
-    /**************************** CONSTRUCTOR ************************************************** */
-    /******************************************************************************************* */
-    public Course(String name, String section, boolean[][] matrice, Instructor instructor) {// sonradan queue alacak
-        this.NAME = name;
-        this.SECTION = section;
-        this.PROGRAM = matrice;
-        this.INSTRUCTOR = instructor;
-        students = new ArrayList<Student>();
+    public static final int QUOTA = 25;
+
+    public Course(String name, String section, boolean[][] matrix, Instructor instructor) {
+        this.name = name;
+        this.section = section;
+        this.program = matrix;
+        this.instructor = instructor;
+        students = new ArrayList<>();
         id = name + '-' + section;
     }
-    /****************************************************************************************** */
-    /**************************** METHODS ***************************************************** */
-    /****************************************************************************************** */
-    public void addStudent(Student newStudent) {
-        students.add(newStudent);
-        newStudent.addCourse(this);
-    }
 
-    public void removeStudent(Student removedStudent) {
-        students.remove(removedStudent);
-        removedStudent.removeCourse(this);
-    }
-
-    public boolean isThereQuota() {
-        boolean areThereQuota = true;
-        if (students.size() == quota) {
-            areThereQuota = false;
-        } else if (students.size() >= quota) {
-            areThereQuota = false;
-            System.out.println("ERROR! STUDENT NUMBER HAS ALREADY EXCEEDED THE QUOTA");
-        }
-        return areThereQuota;
-    }
-
-    public int getAvailableQuota() {
-        return quota - students.size();
-    }
-
-    //                            GET METHODS
     public String getName() {
-        return this.NAME;
-    }
-
-    public String getSection() {
-        return this.SECTION;
-    }
-
-    public ArrayList<Student> getStudents() {
-        return this.students;
+        return this.name;
     }
 
     public boolean[][] getProgram() {
-        return this.PROGRAM;
+        return this.program;
     }
 
-    public Instructor getInstructor() {
-        return this.INSTRUCTOR;
-    }
-
-    public boolean doesOverlap(Course otherCourse) {
-        for (int i = 0; i < PROGRAM.length; i++) {
-            for (int j = 0; j < PROGRAM[j].length; j++) {
-                if (PROGRAM[i][j] == true && otherCourse.getProgram()[i][j] == true) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    public void printProgram() {
-        for (int i = 0; i < PROGRAM.length; i++) {
-            for (int j = 0; j < PROGRAM[0].length; j++) {
-                if (PROGRAM[i][j]) {
-                    System.out.print("1 ");
-                } else {
-                    System.out.print("0 ");
-                }
-            }
-            System.out.println();
-        }
-    }
-
+    @Override
     public String toString() {
         String result = "";
-        result += (this.NAME + " ");
-        result += (this.SECTION);
+        result += (this.name + " ");
+        result += (this.section);
         return result;
     }
 

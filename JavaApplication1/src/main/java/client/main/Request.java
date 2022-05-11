@@ -1,21 +1,14 @@
 package client.main;
+
 public abstract class Request {
 
-    private Student requestOwner;
-
-
-    private int id;
-
-    public Request (Student owner) {
-        requestOwner = owner;
-    }
-
-    public abstract boolean isPossible();
-
-    public abstract boolean isStillValid();
+    protected Student requestOwner;
 
     public Student getRequestOwner() {
         return requestOwner;
     }
 
+    public void setRequestOwner(Student requestOwner) {
+        this.requestOwner = requestOwner;
+    }
 }

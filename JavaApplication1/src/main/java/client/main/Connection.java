@@ -39,19 +39,11 @@ public class Connection {
     }
 
     public static void sendSingleRequest(String ownerStudentId, String wantedCourseId) {
-//        Student s = new Student("", ownerStudentId);
-//        Course c = new Course(null, null, null, null);
-//        c.setId(wantedCourseId);
-//        SingleRequest singleRequest = new SingleRequest(s,c);
-//        String jsonString = json.toJson(singleRequest);
         HttpPost post = new HttpPost("http://localhost:8080/singleRequest");
         try {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("ownerStudentId", ownerStudentId),
                     new BasicNameValuePair("wantedCourseId", wantedCourseId))));
-//            post.setEntity(new StringEntity(jsonString));
-//            System.out.println(jsonString);
-//            System.out.println(client.execute(post).getStatusLine().getStatusCode());
             HttpResponse response = client.execute(post);
             System.out.println(response.getStatusLine().getStatusCode());
         } catch (IOException e) {
@@ -59,29 +51,27 @@ public class Connection {
         }
     }
 
-    public static Courses getAllCoursesFromServer() {
+    public static List<Course> getAllCoursesFromServer() {
         HttpResponse response;
         String jsonString;
         List<Course> courses = null;
-        try{
+        try {
             response = client.execute(new HttpGet("http://localhost:8080/courses"));
             jsonString = EntityUtils.toString(response.getEntity());
             Course[] a = json.fromJson(jsonString, Course[].class);
             courses = Arrays.asList(a);
 
-        }  catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        Courses result = new Courses();
-        result.setCourses(courses);
-        return result;
+        return courses;
     }
 
     public static Course[][] getStudentCourseSchedule(String id) {
         HttpResponse response;
         String jsonString;
         Course[][] result;
-        try{
+        try {
             response = client.execute(new HttpGet("http://localhost:8080/studentSchedule/" + id));
             jsonString = EntityUtils.toString(response.getEntity());
             result = json.fromJson(jsonString, Course[][].class);
@@ -89,8 +79,8 @@ public class Connection {
             throw new RuntimeException(e);
         }
         return result;
-        //return new Course[Person.rowNum][Person.columnNum];
     }
+
     public static Student getUpdatedStudent(String id) {
         HttpResponse response;
         String json1 = null;
@@ -101,7 +91,7 @@ public class Connection {
             e.printStackTrace();
         }
         Student s = json.fromJson(json1, Student.class);
-        s.setSchedule2D(Connection.getStudentCourseSchedule(s.getId()));
+        s.setCourseSchedule(Connection.getStudentCourseSchedule(s.getId()));
         return s;
     }
 

@@ -1,7 +1,8 @@
 package client.main;
-public class Instructor extends Person{
 
-    public Instructor(String name, String ID){
+public class Instructor extends Person {
+
+    public Instructor(String name, String ID) {
         super(name, ID);
     }
 
@@ -16,9 +17,9 @@ public class Instructor extends Person{
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public void setID(String iD) {
         id = iD;
     }
-    
+
 }
