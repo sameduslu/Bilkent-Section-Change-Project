@@ -37,8 +37,8 @@ public class LoginPage extends javax.swing.JFrame {
         jLabelClose = new javax.swing.JLabel();
         jLabelMinimize = new javax.swing.JLabel();
         jLabelRegister = new javax.swing.JLabel();
-        jID = new javax.swing.JTextField();
         jPassword = new javax.swing.JPasswordField();
+        jID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -93,6 +93,22 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabelRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LoginPage/My_project_8.png"))); // NOI18N
 
+        jPassword.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jPassword.setForeground(new java.awt.Color(212, 212, 212));
+        jPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPassword.setText("AAAAAAAAAAAAA");
+        jPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
+        jPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordMouseClicked(evt);
+            }
+        });
+        jPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordActionPerformed(evt);
+            }
+        });
+
         jID.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         jID.setForeground(new java.awt.Color(212, 212, 212));
         jID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -107,22 +123,6 @@ public class LoginPage extends javax.swing.JFrame {
         jID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jIDActionPerformed(evt);
-            }
-        });
-
-        jPassword.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        jPassword.setForeground(new java.awt.Color(212, 212, 212));
-        jPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPassword.setText("AAAAAAAAAAAAA");
-        jPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
-        jPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPasswordMouseClicked(evt);
-            }
-        });
-        jPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordActionPerformed(evt);
             }
         });
 
