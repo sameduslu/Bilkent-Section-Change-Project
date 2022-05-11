@@ -13,6 +13,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,18 +97,21 @@ public class Connection {
     }
 
     public static void sendMultipleRequest(String id, List<String> courseIds) {
-//        Student s = new Student("", id);
-//        Courses wanted = new Courses();
-//        for(int i = 0; i < courseIds.size(); i++) {
-//            Course c = new Course(null, null, null, null);
-//            c.setId(courseIds.get(i));
-//            wanted.addCourse(c);
-//        }
-//        MultipleRequest multipleRequest = new MultipleRequest(s,wanted);
-        courseIds.add(id);
-        String jsonString = json.toJson(courseIds);
-        System.out.println(jsonString);
+        Student s = new Student("", id);
+        List<Course> wanted = new ArrayList<>();
+        for(int i = 0; i < courseIds.size(); i++) {
+            Course c = new Course(null, null, null, null);
+            c.setId(courseIds.get(i));
+            wanted.add(c);
+        }
+        MultipleRequest multipleRequest = new MultipleRequest(s,wanted);
+        String jsonString = json.toJson(multipleRequest);
+//        courseIds.add(id);
+//        String jsonString = json.toJson(courseIds);
+//        System.out.println(jsonString);
         HttpPost post = new HttpPost("http://localhost:8080/multipleRequest");
+        post.setHeader("Accept", "application/json");
+        post.setHeader("Content-type", "application/json");
         try {
             post.setEntity(new StringEntity(jsonString));
             System.out.println(client.execute(post).getStatusLine().getStatusCode());

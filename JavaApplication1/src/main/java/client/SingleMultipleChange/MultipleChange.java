@@ -106,7 +106,7 @@ public class MultipleChange extends javax.swing.JFrame {
                     multipleChange.dispose();
                     return;
                 }
-                System.out.println("xx");
+                //System.out.println("xx");
                 Connection.sendMultipleRequest(student.getId(), courseIds);
                 multipleChange.dispose();
             }

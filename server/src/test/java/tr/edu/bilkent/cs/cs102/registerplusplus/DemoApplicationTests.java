@@ -283,6 +283,6 @@ class DemoApplicationTests {
         Student student = new Student(studentName, studentId);
         req.setRequestOwner(student);
 
-        multipleRequestController.newItem(new Gson().toJson(req));
+        multipleRequestController.newItem(req);
     }
 }
