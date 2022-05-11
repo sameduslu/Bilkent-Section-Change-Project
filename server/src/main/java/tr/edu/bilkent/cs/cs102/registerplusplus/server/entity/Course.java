@@ -83,8 +83,8 @@ public class Course implements Comparable<Course>{
         return false;
     }
 
-    public boolean isFull() {
-        return this.students.size() >= QUOTA;
+    public static boolean isFull(Course c) {
+        return c.students.size() >= QUOTA;
     }
 
     @Override

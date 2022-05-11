@@ -140,7 +140,7 @@ public class DatabaseInitializer {
 
                     Student s = students.get(i);
                     for (int j = 0; j < allPaths.get(pathNumber).size(); j++) {
-                        ctr &= !allPaths.get(pathNumber).get(j).isFull();
+                        ctr &= !Course.isFull(courseRepository.findCourseById(allPaths.get(pathNumber).get(j).getId()));
                         ctr &= (requestProcessorService.isStillValid(allPaths.get(pathNumber).get(j), s, courseRepository.findCourseByStudentsId(s.getId())));
                         //System.out.println(ctr + " " + pathNumber);
                     }
@@ -164,7 +164,7 @@ public class DatabaseInitializer {
             for (int i = 0; i < courses.size(); i++) {
                 String result = "";
                 result += courses.get(i).getId();
-                if (courses.get(i).isFull()) {
+                if (Course.isFull(courseRepository.findCourseById(courses.get(i).getId()))) {
                     result += " is full";
                 } else {
                     result += " is not full";

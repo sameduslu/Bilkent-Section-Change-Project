@@ -2,10 +2,7 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
 
 import org.springframework.stereotype.Service;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,14 +23,17 @@ public class RequestProcessorService {
 
     private final StudentService studentService;
 
+    private final StudentRepository studentRepository;
 
-    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository, StudentService studentService) {
+
+    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository, StudentService studentService, StudentRepository studentRepository) {
         this.courseService = courseService;
         this.singleRequestRepository = singleRequestRepository;
         this.multipleRequestRepository = multipleRequestRepository;
         this.forumRequestRepository = forumRequestRepository;
         this.courseRepository = courseRepository;
         this.studentService = studentService;
+        this.studentRepository = studentRepository;
     }
 
     public void processNonForumRequests() {
@@ -44,7 +44,15 @@ public class RequestProcessorService {
         int i1 = 0, i2 = 0;
         while (i1 < singleRequests.size() && i2 < multipleRequests.size()) {
             SingleRequest singleRequest = singleRequests.get(i1);
+            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
             MultipleRequest multipleRequest = multipleRequests.get(i2);
+            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+            List<Course> courses = new ArrayList<>();
+            for (Course c : multipleRequest.getWantedCourses()) {
+                courses.add(courseRepository.findCourseById(c.getId()));
+
+            }
             if (singleRequest.compareTo(multipleRequest) <= 0) {
                 if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
@@ -75,6 +83,8 @@ public class RequestProcessorService {
         }
         while (i1 < singleRequests.size()) {
             SingleRequest singleRequest = singleRequests.get(i1);
+            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
             if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                 singleRequestRepository.delete(singleRequest);
                 continue;
@@ -89,6 +99,12 @@ public class RequestProcessorService {
         }
         while (i2 < multipleRequests.size()) {
             MultipleRequest multipleRequest = multipleRequests.get(i2);
+            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+            List<Course> courses = new ArrayList<>();
+            for (Course c : multipleRequest.getWantedCourses()) {
+                courses.add(courseRepository.findCourseById(c.getId()));
+
+            }
             if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                 multipleRequestRepository.delete(multipleRequest);
                 continue;
@@ -111,7 +127,7 @@ public class RequestProcessorService {
             singleRequestRepository.delete(req);
             return true;
         }*/
-        if (wanted.isFull()) return false;
+        if (Course.isFull(wanted)) return false;
 
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
             return processSectionChangeRequest(req, courseByStudentId);
@@ -200,7 +216,7 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         for (int p = 0; p < wantedCourses.size(); p++) {
-            if (wantedCourses.get(p).isFull()) {
+            if (Course.isFull(wantedCourses.get(p))) {
                 return false;
             }
         }
@@ -236,15 +252,17 @@ public class RequestProcessorService {
         if (!isForumRequestPossible(req, acceptor)) {
             return false;
         }
-        Student owner = req.getRequestOwner();
-        //Student acceptor = req.getAcceptor();
-        Course ownerCourse = req.getCurrentCourse();
-        Course wantedCourse = req.getWantedCourse();
+        Student owner = studentRepository.findById(req.getRequestOwner().getId()).get();
+        acceptor = studentRepository.findById(acceptor.getId()).get();
+        Course ownerCourse = courseRepository.findCourseById(req.getCurrentCourse().getId());
+        Course wantedCourse = courseRepository.findCourseById(req.getWantedCourse().getId());
         courseService.removeStudentFromCourse(owner, ownerCourse);
         courseService.removeStudentFromCourse(acceptor, wantedCourse);
         courseService.addStudentToCourse(owner, wantedCourse);
         courseService.addStudentToCourse(acceptor, ownerCourse);
         forumRequestRepository.delete(req);
+        updateForumRequests(owner);
+        updateForumRequests(acceptor);
         processNonForumRequests();
         return true;
     }
@@ -286,7 +304,6 @@ public class RequestProcessorService {
     private boolean doesStudentTakeCourse(Course wanted, List<Course> coursesByStudentId) {
         return coursesByStudentId.stream().anyMatch(c -> c.getName().equals(wanted.getName()));
     }
-
 
 
     public boolean doesOverlap(Course course, Student student, List<Course> coursesOfStudent) {
