@@ -23,10 +23,8 @@ import java.util.List;
 public class SectionChangePage extends javax.swing.JFrame {
 
     private final Student student;
-    private final List<Course> courses;
 
     public SectionChangePage(Student student) {
-        courses = Connection.getAllCoursesFromServer();
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         this.student = Connection.getUpdatedStudent(student.getId());
@@ -878,8 +876,8 @@ public class SectionChangePage extends javax.swing.JFrame {
 
     private void HomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeButtonActionPerformed
         SchedulePage sPage = new SchedulePage(this.student);
-        sPage.setVisible(true);
         this.dispose();
+        sPage.setVisible(true);
     }//GEN-LAST:event_HomeButtonActionPerformed
 
     private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked

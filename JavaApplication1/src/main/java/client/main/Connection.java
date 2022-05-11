@@ -1,13 +1,13 @@
 package client.main;
 
-
+import client.Forum.ForumRequestApproval;
 import com.google.gson.Gson;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -19,19 +19,19 @@ import java.util.List;
 
 public class Connection {
     private static final Gson json = new Gson();
-    private static final HttpClient client = HttpClientBuilder.create().build();
+    private static final CloseableHttpClient client = HttpClientBuilder.create().build();
 
     public static boolean authenticate(String id, String password) {
         HttpPost req = new HttpPost("http://localhost:8080/auth");
-        HttpResponse response;
         String jsonString = null;
         try {
             req.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("id", id),
                     new BasicNameValuePair("password", password)
             )));
-            response = client.execute(req);
+            CloseableHttpResponse response = client.execute(req);
             jsonString = EntityUtils.toString(response.getEntity());
+            response.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,20 +45,31 @@ public class Connection {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("ownerStudentId", ownerStudentId),
                     new BasicNameValuePair("wantedCourseId", wantedCourseId))));
-            HttpResponse response = client.execute(post);
-            System.out.println(response.getStatusLine().getStatusCode());
+            client.execute(post).close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public static void sendForumRequest(ForumRequest forumRequest) {
+        HttpPost post = new HttpPost("http://localhost:8080/forumRequest");
+        try {
+            post.setEntity(new UrlEncodedFormEntity(List.of(
+                    new BasicNameValuePair("studentId", forumRequest.getRequestOwner().getId()),
+                    new BasicNameValuePair("wantedCourseId", forumRequest.getWantedCourse().getId()),
+                    new BasicNameValuePair("currentCourseId", forumRequest.getCurrentCourse().getId()))));
+            client.execute(post).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static List<Course> getAllCoursesFromServer() {
-        HttpResponse response;
         String jsonString;
         List<Course> courses = null;
         try {
-            response = client.execute(new HttpGet("http://localhost:8080/courses"));
-            jsonString = EntityUtils.toString(response.getEntity());
+            jsonString = getRequest(new HttpGet("http://localhost:8080/courses"));
             Course[] a = json.fromJson(jsonString, Course[].class);
             courses = Arrays.asList(a);
 
@@ -69,25 +80,67 @@ public class Connection {
     }
 
     public static Course[][] getStudentCourseSchedule(String id) {
-        HttpResponse response;
         String jsonString;
         Course[][] result;
         try {
-            response = client.execute(new HttpGet("http://localhost:8080/studentSchedule/" + id));
-            jsonString = EntityUtils.toString(response.getEntity());
-            result = json.fromJson(jsonString, Course[][].class);
+            jsonString = getRequest(new HttpGet("http://localhost:8080/studentSchedule/" + id));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        result = json.fromJson(jsonString, Course[][].class);
         return result;
     }
 
+    public static void sendMultipleRequest(String id, List<String> courseIds) {
+        Student s = new Student("", id);
+        List<Course> wanted = new ArrayList<>();
+        for (int i = 0; i < courseIds.size(); i++) {
+            Course c = new Course(null, null, null, null);
+            c.setId(courseIds.get(i));
+            wanted.add(c);
+        }
+        MultipleRequest multipleRequest = new MultipleRequest(s, wanted);
+        String jsonString = json.toJson(multipleRequest);
+//        courseIds.add(id);
+//        String jsonString = json.toJson(courseIds);
+//        System.out.println(jsonString);
+        HttpPost post = new HttpPost("http://localhost:8080/multipleRequest");
+        postJson(jsonString, post);
+    }
+
+    public static void sendForumRequestApproval(ForumRequestApproval forumRequestApproval) {
+        String jsonString = json.toJson(forumRequestApproval);
+        HttpPost post = new HttpPost("http://localhost:8080/forumRequest-approval");
+        postJson(jsonString, post);
+    }
+
+    private static void postJson(String jsonString, HttpPost post) {
+        post.setHeader("Accept", "application/json");
+        post.setHeader("Content-type", "application/json");
+        try {
+            post.setEntity(new StringEntity(jsonString));
+            CloseableHttpResponse resp = client.execute(post);
+            resp.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<ForumRequest> getForumRequestsStudentCanAccept(String studentId) {
+        String jsonString = null;
+        try {
+            jsonString = getRequest(new HttpGet("http://localhost:8080/forumRequests/" + studentId));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList(json.fromJson(jsonString, ForumRequest[].class));
+    }
+
     public static Student getUpdatedStudent(String id) {
-        HttpResponse response;
         String json1 = null;
         try {
-            response = client.execute(new HttpGet("http://localhost:8080/student/" + id));
-            json1 = EntityUtils.toString(response.getEntity());
+            HttpGet request = new HttpGet("http://localhost:8080/student/" + id);
+            json1 = getRequest(request);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,27 +149,11 @@ public class Connection {
         return s;
     }
 
-    public static void sendMultipleRequest(String id, List<String> courseIds) {
-        Student s = new Student("", id);
-        List<Course> wanted = new ArrayList<>();
-        for(int i = 0; i < courseIds.size(); i++) {
-            Course c = new Course(null, null, null, null);
-            c.setId(courseIds.get(i));
-            wanted.add(c);
+    private static String getRequest(HttpGet request) throws IOException {
+        String json1;
+        try (CloseableHttpResponse response = client.execute(request)) {
+            json1 = EntityUtils.toString(response.getEntity());
         }
-        MultipleRequest multipleRequest = new MultipleRequest(s,wanted);
-        String jsonString = json.toJson(multipleRequest);
-//        courseIds.add(id);
-//        String jsonString = json.toJson(courseIds);
-//        System.out.println(jsonString);
-        HttpPost post = new HttpPost("http://localhost:8080/multipleRequest");
-        post.setHeader("Accept", "application/json");
-        post.setHeader("Content-type", "application/json");
-        try {
-            post.setEntity(new StringEntity(jsonString));
-            System.out.println(client.execute(post).getStatusLine().getStatusCode());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return json1;
     }
 }

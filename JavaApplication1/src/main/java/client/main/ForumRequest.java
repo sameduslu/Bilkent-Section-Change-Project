@@ -12,4 +12,16 @@ public class ForumRequest extends Request {
         wantedCourse = wanted;
         currentCourse = current;
     }
+
+    public Course getWantedCourse() {
+        return wantedCourse;
+    }
+
+    public Course getCurrentCourse() {
+        return currentCourse;
+    }
+
+    public Student getAcceptor() {
+        return acceptor;
+    }
 }

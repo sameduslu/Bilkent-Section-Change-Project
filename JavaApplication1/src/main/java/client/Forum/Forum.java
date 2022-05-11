@@ -22,8 +22,6 @@ public class Forum extends javax.swing.JFrame {
 
     private final Student student;
 
-    private final List<Course> courses;
-
     /**
      * Creates new form main.java.client.Forum
      */
@@ -31,7 +29,6 @@ public class Forum extends javax.swing.JFrame {
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         this.student = Connection.getUpdatedStudent(student.getId());
-        courses = Connection.getAllCoursesFromServer();
         initComponents();
     }
 

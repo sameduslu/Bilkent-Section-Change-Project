@@ -2,7 +2,7 @@ package client.main;
 
 import client.LoginPage.LoginPage;
 
-public class Register {
+public class RegisterPlusPlusClient {
 
     public static void main(String[] args) {
 

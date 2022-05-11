@@ -62,6 +62,7 @@ public class SingleRequestController {
         }
         singleRequestRepository.save(singleRequest);
         requestProcessorService.processNonForumRequests();
+        System.out.println("saved");
         return "Saved";
     }
 }
