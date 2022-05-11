@@ -21,8 +21,10 @@ public class Connection {
     private static final Gson json = new Gson();
     private static final CloseableHttpClient client = HttpClientBuilder.create().build();
 
+    private static final String ipAddress = "http://localhost:8080";
+
     public static boolean authenticate(String id, String password) {
-        HttpPost req = new HttpPost("http://localhost:8080/auth");
+        HttpPost req = new HttpPost(ipAddress + "/auth");
         String jsonString = null;
         try {
             req.setEntity(new UrlEncodedFormEntity(List.of(
@@ -40,7 +42,7 @@ public class Connection {
     }
 
     public static void sendSingleRequest(String ownerStudentId, String wantedCourseId) {
-        HttpPost post = new HttpPost("http://localhost:8080/singleRequest");
+        HttpPost post = new HttpPost(ipAddress + "/singleRequest");
         try {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("ownerStudentId", ownerStudentId),
@@ -52,7 +54,7 @@ public class Connection {
     }
 
     public static void sendForumRequest(ForumRequest forumRequest) {
-        HttpPost post = new HttpPost("http://localhost:8080/forumRequest");
+        HttpPost post = new HttpPost(ipAddress + "/forumRequest");
         try {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("studentId", forumRequest.getRequestOwner().getId()),
@@ -69,7 +71,7 @@ public class Connection {
         String jsonString;
         List<Course> courses = null;
         try {
-            jsonString = getRequest(new HttpGet("http://localhost:8080/courses"));
+            jsonString = getRequest(new HttpGet(ipAddress + "/courses"));
             Course[] a = json.fromJson(jsonString, Course[].class);
             courses = Arrays.asList(a);
 
@@ -83,7 +85,7 @@ public class Connection {
         String jsonString;
         Course[][] result;
         try {
-            jsonString = getRequest(new HttpGet("http://localhost:8080/studentSchedule/" + id));
+            jsonString = getRequest(new HttpGet(ipAddress + "/studentSchedule/" + id));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -104,13 +106,13 @@ public class Connection {
 //        courseIds.add(id);
 //        String jsonString = json.toJson(courseIds);
 //        System.out.println(jsonString);
-        HttpPost post = new HttpPost("http://localhost:8080/multipleRequest");
+        HttpPost post = new HttpPost(ipAddress + "/multipleRequest");
         postJson(jsonString, post);
     }
 
     public static void sendForumRequestApproval(ForumRequestApproval forumRequestApproval) {
         String jsonString = json.toJson(forumRequestApproval);
-        HttpPost post = new HttpPost("http://localhost:8080/forumRequest-approval");
+        HttpPost post = new HttpPost(ipAddress + "/forumRequest-approval");
         postJson(jsonString, post);
     }
 
@@ -129,7 +131,7 @@ public class Connection {
     public static List<ForumRequest> getForumRequestsStudentCanAccept(String studentId) {
         String jsonString = null;
         try {
-            jsonString = getRequest(new HttpGet("http://localhost:8080/forumRequests/" + studentId));
+            jsonString = getRequest(new HttpGet(ipAddress + "/forumRequests/" + studentId));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -139,7 +141,7 @@ public class Connection {
     public static Student getUpdatedStudent(String id) {
         String json1 = null;
         try {
-            HttpGet request = new HttpGet("http://localhost:8080/student/" + id);
+            HttpGet request = new HttpGet(ipAddress + "/student/" + id);
             json1 = getRequest(request);
         } catch (IOException e) {
             e.printStackTrace();
