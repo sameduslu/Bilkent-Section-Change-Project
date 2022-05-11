@@ -167,7 +167,7 @@ class DemoApplicationTests {
     public void studentSingleRequestTest() {
         createCourse1A();
         createStudent1();
-        createSingleRequest(COURSE_1A_ID, "1");
+        createSingleRequest("1", COURSE_1A_ID);
         List<SingleRequest> all = singleRequestController.all();
         Optional<SingleRequest> result = all.stream().filter(s -> s.getRequestOwner().getId().equals("1")).findAny();
         assertTrue(result.isEmpty());
@@ -185,7 +185,7 @@ class DemoApplicationTests {
         assertThat(any.get().getId(), is(studentId));
     }
 
-    private void createSingleRequest(String courseId, String studentId) {
+    private void createSingleRequest(String studentId, String courseId) {
         Optional<Student> anyS = studentController.all().stream().filter(s -> s.getId().equals(studentId)).findAny();
         assertTrue(anyS.isPresent());
         String studentName = anyS.get().getName();
@@ -195,7 +195,7 @@ class DemoApplicationTests {
         req.setWantedCourse(wantedCourse);
         Student student = new Student(studentName, studentId);
         req.setRequestOwner(student);
-        singleRequestController.newItem(new Gson().toJson(req));
+        singleRequestController.newItem(studentId, courseId);
     }
 
     @Test
@@ -203,9 +203,9 @@ class DemoApplicationTests {
         createStudent1();
         createCourse1A();
         createCourse2();
-        createSingleRequest(COURSE_1A_ID, "1");
+        createSingleRequest("1", COURSE_1A_ID);
         checkStudentEnrolledInCourse(COURSE_1A_ID, "1");
-        createSingleRequest("MATH102-1", "1");
+        createSingleRequest("1", "MATH102-1");
         checkStudentNotEnrolledInCourse("MATH102-1", "1");
     }
 
@@ -224,8 +224,8 @@ class DemoApplicationTests {
         createStudent1();
         createCourse1A();
         createCourse1B();
-        createSingleRequest(COURSE_1A_ID, "1");
-        createSingleRequest(COURSE_1B_ID, "1");
+        createSingleRequest("1", COURSE_1A_ID);
+        createSingleRequest("1", COURSE_1B_ID);
         checkStudentEnrolledInCourse(COURSE_1B_ID, "1");
         checkStudentNotEnrolledInCourse(COURSE_1A_ID, "1");
     }
@@ -234,8 +234,8 @@ class DemoApplicationTests {
     public void studentIsAlreadyInTheSectionTest() {
         createStudent1();
         createCourse1A();
-        createSingleRequest(COURSE_1A_ID, "1");
-        createSingleRequest(COURSE_1A_ID, "1");
+        createSingleRequest("1", COURSE_1A_ID);
+        createSingleRequest("1", COURSE_1A_ID);
         Course dbCourse = courseRepository.findCourseById(COURSE_1A_ID);
         List<Student> students = dbCourse.getStudents();
         assertEquals(1, students.size());
@@ -249,12 +249,12 @@ class DemoApplicationTests {
         createStudent4();
         createStudent5();
         createCourse1A();
-        createSingleRequest(COURSE_1A_ID, "1");
-        createSingleRequest(COURSE_1A_ID, "2");
-        createSingleRequest(COURSE_1A_ID, "3");
-        createSingleRequest(COURSE_1A_ID, "4");
-        createSingleRequest(COURSE_1A_ID, "5");
-        createSingleRequest(COURSE_1A_ID, "1");
+        createSingleRequest("1", COURSE_1A_ID);
+        createSingleRequest("2", COURSE_1A_ID);
+        createSingleRequest("3", COURSE_1A_ID);
+        createSingleRequest("4", COURSE_1A_ID);
+        createSingleRequest("5", COURSE_1A_ID);
+        createSingleRequest("1", COURSE_1A_ID);
         assertTrue(singleRequestController.all().isEmpty());
         checkStudentEnrolledInCourse("CS102-1", "1");
     }

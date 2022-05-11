@@ -23,7 +23,7 @@ public class SchedulePage extends javax.swing.JFrame {
         //this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
-        student = Connection.updateStudent(student.getId());
+        student = Connection.getUpdatedStudent(student.getId());
         this.student = student;
         initComponents();
     }
@@ -717,7 +717,7 @@ public class SchedulePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSectionChangeMouseClicked
 
     private void jButtonSectionChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSectionChangeActionPerformed
-        Courses coursesFromServer = Connection.getCoursesFromServer();
+        Courses coursesFromServer = Connection.getAllCoursesFromServer();
         SectionChangePage sPage1 = new SectionChangePage(this.student, coursesFromServer);
         sPage1.setVisible(true);
         this.dispose();

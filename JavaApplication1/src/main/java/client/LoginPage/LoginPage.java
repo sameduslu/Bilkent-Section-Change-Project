@@ -195,7 +195,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
         String id = jID.getText();
         if (Connection.authenticate(id, jPassword.getText())) {
-            this.student = Connection.updateStudent(id);
+            this.student = Connection.getUpdatedStudent(id);
             student.setSchedule2D(new Course[9][6]);
             //student.setSchedule2D(Connection.getStudentCourseSchedule(student.getID()));
             SchedulePage sPage = new SchedulePage(student, courses);
