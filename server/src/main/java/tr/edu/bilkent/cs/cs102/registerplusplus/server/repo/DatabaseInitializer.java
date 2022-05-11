@@ -17,7 +17,7 @@ import java.util.*;
 public class DatabaseInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseInitializer.class);
-    private boolean ctr = true;
+    private boolean ctr = false;
 
     @Bean
     CommandLineRunner CredentialsInit(CredentialsRepository credentialsRepository, StudentRepository studentRepository) {

@@ -1,19 +1,29 @@
 package client.Forum;
 
+import client.main.ForumRequest;
+
 public class ForumRequestApproval {
-    private String forumRequestId;
+    private ForumRequest forumRequest;
     private String acceptorId;
 
-    public ForumRequestApproval(String forumRequestId, String acceptorId) {
-        this.forumRequestId = forumRequestId;
+    public ForumRequestApproval(ForumRequest forumRequest, String acceptorId) {
+        this.forumRequest = forumRequest;
         this.acceptorId = acceptorId;
     }
 
-    public String getForumRequestId() {
-        return forumRequestId;
+    public ForumRequest getForumRequest() {
+        return forumRequest;
+    }
+
+    public void setForumRequest(ForumRequest forumRequest) {
+        this.forumRequest = forumRequest;
     }
 
     public String getAcceptorId() {
         return acceptorId;
+    }
+
+    public void setAcceptorId(String acceptorId) {
+        this.acceptorId = acceptorId;
     }
 }

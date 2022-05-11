@@ -71,7 +71,7 @@ public class ForumRequestController {
 
     @PostMapping("/forumRequest-approval")
     public boolean approve(@RequestBody ForumRequestApproval forumRequestApproval) {
-        String forumRequestId = forumRequestApproval.getForumRequestId();
+        String forumRequestId = forumRequestApproval.getForumRequest().getId();
         String acceptorId = forumRequestApproval.getAcceptorId();
         Optional<Student> acceptorById = studentRepository.findById(acceptorId);
         Optional<ForumRequest> forumRequestById = forumRequestRepository.findById(forumRequestId);

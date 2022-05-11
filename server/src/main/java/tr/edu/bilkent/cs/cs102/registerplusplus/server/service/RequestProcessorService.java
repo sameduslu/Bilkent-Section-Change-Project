@@ -53,6 +53,7 @@ public class RequestProcessorService {
                 courses.add(courseRepository.findCourseById(c.getId()));
 
             }
+            multipleRequest.setWantedCourses(courses);
             if (singleRequest.compareTo(multipleRequest) <= 0) {
                 if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
@@ -105,6 +106,7 @@ public class RequestProcessorService {
                 courses.add(courseRepository.findCourseById(c.getId()));
 
             }
+            multipleRequest.setWantedCourses(courses);
             if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                 multipleRequestRepository.delete(multipleRequest);
                 continue;

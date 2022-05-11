@@ -10,9 +10,11 @@ import client.ResultMessage.Denied;
 import client.SchedulePage.SchedulePage;
 import client.main.Connection;
 import client.main.Course;
+import client.main.ForumRequest;
 import client.main.Student;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 /**
@@ -22,6 +24,8 @@ public class Forum extends javax.swing.JFrame {
 
     private final Student student;
 
+    private List<ForumRequest> forumRequests;
+
     /**
      * Creates new form main.java.client.Forum
      */
@@ -29,6 +33,7 @@ public class Forum extends javax.swing.JFrame {
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         this.student = Connection.getUpdatedStudent(student.getId());
+        forumRequests = Connection.getForumRequestsStudentCanAccept(this.student.getId());
         initComponents();
     }
 
@@ -44,7 +49,7 @@ public class Forum extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelMinimize = new javax.swing.JLabel();
         jLabelClose = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jHomeButton = new javax.swing.JButton();
         jForumAcceptButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jForumAcceptButton3 = new javax.swing.JButton();
@@ -90,22 +95,22 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(220, 172, 146));
-        jButton1.setForeground(new java.awt.Color(220, 172, 146));
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\home.png")); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jHomeButton.setBackground(new java.awt.Color(220, 172, 146));
+        jHomeButton.setForeground(new java.awt.Color(220, 172, 146));
+        jHomeButton.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\home.png")); // NOI18N
+        jHomeButton.setBorder(null);
+        jHomeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jHomeButtonActionPerformed(evt);
             }
         });
 
         jForumAcceptButton5.setBackground(new java.awt.Color(220, 172, 146));
         jForumAcceptButton5.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton5.setBorder(null);
-        jForumAcceptButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jForumAcceptButton5ActionPerformed(evt);
+        jForumAcceptButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jForumAcceptButton5MouseClicked(evt);
             }
         });
 
@@ -117,18 +122,18 @@ public class Forum extends javax.swing.JFrame {
         jForumAcceptButton3.setBackground(new java.awt.Color(220, 172, 146));
         jForumAcceptButton3.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton3.setBorder(null);
-        jForumAcceptButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jForumAcceptButton3ActionPerformed(evt);
+        jForumAcceptButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jForumAcceptButton3MouseClicked(evt);
             }
         });
 
         jForumAcceptButton2.setBackground(new java.awt.Color(220, 172, 146));
         jForumAcceptButton2.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton2.setBorder(null);
-        jForumAcceptButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jForumAcceptButton2ActionPerformed(evt);
+        jForumAcceptButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jForumAcceptButton2MouseClicked(evt);
             }
         });
 
@@ -151,9 +156,9 @@ public class Forum extends javax.swing.JFrame {
         jForumAcceptButton4.setBackground(new java.awt.Color(220, 172, 146));
         jForumAcceptButton4.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton4.setBorder(null);
-        jForumAcceptButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jForumAcceptButton4ActionPerformed(evt);
+        jForumAcceptButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jForumAcceptButton4MouseClicked(evt);
             }
         });
 
@@ -174,9 +179,9 @@ public class Forum extends javax.swing.JFrame {
         jForumAcceptButton1.setBackground(new java.awt.Color(220, 172, 146));
         jForumAcceptButton1.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\accept.png")); // NOI18N
         jForumAcceptButton1.setBorder(null);
-        jForumAcceptButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jForumAcceptButton1ActionPerformed(evt);
+        jForumAcceptButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jForumAcceptButton1MouseClicked(evt);
             }
         });
 
@@ -218,7 +223,7 @@ public class Forum extends javax.swing.JFrame {
                                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                                 .addComponent(jLabelMinimize)
                                         .addGap(18, 18, 18)
@@ -259,7 +264,7 @@ public class Forum extends javax.swing.JFrame {
                                 .addComponent(jLabelMinimize))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jHomeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -305,6 +310,25 @@ public class Forum extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jForumAcceptButton1MouseClicked(MouseEvent evt) {
+        Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(0), student.getId()));
+    }
+
+    private void jForumAcceptButton2MouseClicked(MouseEvent evt) {
+        Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(1), student.getId()));
+    }
+
+    private void jForumAcceptButton3MouseClicked(MouseEvent evt) {
+        Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(2), student.getId()));
+    }
+    private void jForumAcceptButton4MouseClicked(MouseEvent evt) {
+        Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(3), student.getId()));
+    }
+
+    private void jForumAcceptButton5MouseClicked(MouseEvent evt) {
+        Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(4), student.getId()));
+    }
+
     private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
         // TODO add your handling code here:
         this.setState(JFrame.ICONIFIED);
@@ -315,7 +339,7 @@ public class Forum extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabelCloseMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jHomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         SchedulePage sPage = new SchedulePage(this.student);
         sPage.setVisible(true);
         this.dispose();
@@ -381,7 +405,7 @@ public class Forum extends javax.swing.JFrame {
     private javax.swing.JTextField forum3;
     private javax.swing.JTextField forum4;
     private javax.swing.JTextField forum5;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jHomeButton;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jForumAcceptButton1;
