@@ -2,7 +2,7 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.SingleRequest;
@@ -36,31 +36,33 @@ public class SingleRequestController {
         this.studentRepository = studentRepository;
     }
 
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/singleRequests")
     public List<SingleRequest> all() {
         return singleRequestRepository.findAll();
     }
-    // end::get-aggregate-root[]
+
 
     @PostMapping("/singleRequest")
-    public String newItem(@RequestBody SingleRequest singleRequest) {
-        Optional<Student> reqOwnerById = studentRepository.findById(singleRequest.getRequestOwner().getId());
+    public String newItem(@RequestParam String ownerStudentId, @RequestParam String wantedCourseId){
+        Optional<Student> reqOwnerById = studentRepository.findById(ownerStudentId);
         if (reqOwnerById.isEmpty()){
             return "Bad Request";
         }
         Student requestOwner = reqOwnerById.get();
-        Course wantedCourse = courseRepository.findCourseById(singleRequest.getWantedCourse().getId());
-        List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if(!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)){
+        Course wantedCourse = courseRepository.findCourseById(wantedCourseId);
+        List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(ownerStudentId);
+        if (!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)) {
             return "Not compatible";
         }
-        if (singleRequestRepository.findSingleRequestByRequestOwner_Id(requestOwner.getId()).contains(singleRequest)){
+        SingleRequest singleRequest = new SingleRequest();
+        singleRequest.setWantedCourse(wantedCourse);
+        singleRequest.setRequestOwner(requestOwner);
+        if (singleRequestRepository.findSingleRequestByRequestOwner_Id(requestOwner.getId()).contains(singleRequest)) {
             return "Request already exists";
         }
-        SingleRequest save = singleRequestRepository.save(singleRequest);
+        singleRequestRepository.save(singleRequest);
         requestProcessorService.processNonForumRequests();
+        System.out.println("saved");
         return "Saved";
     }
 }

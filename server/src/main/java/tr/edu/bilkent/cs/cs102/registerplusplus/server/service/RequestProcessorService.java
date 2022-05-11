@@ -2,10 +2,7 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
 
 import org.springframework.stereotype.Service;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,13 +21,19 @@ public class RequestProcessorService {
 
     private final CourseRepository courseRepository;
 
+    private final StudentService studentService;
 
-    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository) {
+    private final StudentRepository studentRepository;
+
+
+    public RequestProcessorService(CourseService courseService, SingleRequestRepository singleRequestRepository, MultipleRequestRepository multipleRequestRepository, ForumRequestRepository forumRequestRepository, CourseRepository courseRepository, StudentService studentService, StudentRepository studentRepository) {
         this.courseService = courseService;
         this.singleRequestRepository = singleRequestRepository;
         this.multipleRequestRepository = multipleRequestRepository;
         this.forumRequestRepository = forumRequestRepository;
         this.courseRepository = courseRepository;
+        this.studentService = studentService;
+        this.studentRepository = studentRepository;
     }
 
     public void processNonForumRequests() {
@@ -41,7 +44,16 @@ public class RequestProcessorService {
         int i1 = 0, i2 = 0;
         while (i1 < singleRequests.size() && i2 < multipleRequests.size()) {
             SingleRequest singleRequest = singleRequests.get(i1);
+            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
             MultipleRequest multipleRequest = multipleRequests.get(i2);
+            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+            List<Course> courses = new ArrayList<>();
+            for (Course c : multipleRequest.getWantedCourses()) {
+                courses.add(courseRepository.findCourseById(c.getId()));
+
+            }
+            multipleRequest.setWantedCourses(courses);
             if (singleRequest.compareTo(multipleRequest) <= 0) {
                 if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
@@ -72,6 +84,8 @@ public class RequestProcessorService {
         }
         while (i1 < singleRequests.size()) {
             SingleRequest singleRequest = singleRequests.get(i1);
+            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
             if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                 singleRequestRepository.delete(singleRequest);
                 continue;
@@ -86,6 +100,13 @@ public class RequestProcessorService {
         }
         while (i2 < multipleRequests.size()) {
             MultipleRequest multipleRequest = multipleRequests.get(i2);
+            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+            List<Course> courses = new ArrayList<>();
+            for (Course c : multipleRequest.getWantedCourses()) {
+                courses.add(courseRepository.findCourseById(c.getId()));
+
+            }
+            multipleRequest.setWantedCourses(courses);
             if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                 multipleRequestRepository.delete(multipleRequest);
                 continue;
@@ -108,7 +129,7 @@ public class RequestProcessorService {
             singleRequestRepository.delete(req);
             return true;
         }*/
-        if (isFull(wanted)) return false;
+        if (Course.isFull(wanted)) return false;
 
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
             return processSectionChangeRequest(req, courseByStudentId);
@@ -197,7 +218,7 @@ public class RequestProcessorService {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         for (int p = 0; p < wantedCourses.size(); p++) {
-            if (isFull(wantedCourses.get(p))) {
+            if (Course.isFull(wantedCourses.get(p))) {
                 return false;
             }
         }
@@ -224,40 +245,68 @@ public class RequestProcessorService {
         List<Course> courses = courseRepository.findCourseByStudentsId(requestOwner.getId());
         for (ForumRequest req : requests) {
             if (!courses.contains(req.getCurrentCourse()) || !isStillValid(req.getWantedCourse(), requestOwner, courses)) {
-                forumRequestRepository.delete(req);
+                forumRequestRepository.delete(req);//
             }
         }
     }
 
+//    public boolean processForumRequest(ForumRequest req, Student acceptor) {
+//        if (!isForumRequestPossible(req, acceptor)) {
+//            return false;
+//        }
+//        Student owner = studentRepository.findById(req.getRequestOwner().getId()).get();
+//        acceptor = studentRepository.findById(acceptor.getId()).get();
+//        Course ownerCourse = courseRepository.findCourseById(req.getCurrentCourse().getId());
+//        Course wantedCourse = courseRepository.findCourseById(req.getWantedCourse().getId());
+//        courseService.removeStudentFromCourse(owner, ownerCourse);
+//        courseService.removeStudentFromCourse(acceptor, wantedCourse);
+//        courseService.addStudentToCourse(owner, wantedCourse);
+//        courseService.addStudentToCourse(acceptor, ownerCourse);
+//        forumRequestRepository.delete(req);
+//        updateForumRequests(owner);
+//        updateForumRequests(acceptor);
+//        processNonForumRequests();
+//        return true;
+//    }
+
     public boolean processForumRequest(ForumRequest req, Student acceptor) {
+        acceptor = studentRepository.findById(acceptor.getId()).get();
+        req.setRequestOwner(studentRepository.findById(req.getRequestOwner().getId()).get());
+        req.setWantedCourse(courseRepository.findCourseById(req.getWantedCourse().getId()));
+        req.setCurrentCourse(courseRepository.findCourseById(req.getCurrentCourse().getId()));
         if (!isForumRequestPossible(req, acceptor)) {
             return false;
         }
-        Student owner = req.getRequestOwner();
-        //Student acceptor = req.getAcceptor();
-        Course ownerCourse = req.getCurrentCourse();
-        Course wantedCourse = req.getWantedCourse();
-        courseService.removeStudentFromCourse(owner, ownerCourse);
-        courseService.removeStudentFromCourse(acceptor, wantedCourse);
-        courseService.addStudentToCourse(owner, wantedCourse);
-        courseService.addStudentToCourse(acceptor, ownerCourse);
+        courseService.removeStudentFromCourse(req.getRequestOwner(), req.getCurrentCourse());
+        courseService.removeStudentFromCourse(acceptor, req.getWantedCourse());
+        courseService.addStudentToCourse(req.getRequestOwner(), req.getWantedCourse());
+        courseService.addStudentToCourse(acceptor, req.getCurrentCourse());
         forumRequestRepository.delete(req);
+        acceptor = studentRepository.findById(acceptor.getId()).get();
+        req.setRequestOwner(studentRepository.findById(req.getRequestOwner().getId()).get());
+        updateForumRequests(req.getRequestOwner());
+        updateForumRequests(acceptor);
         processNonForumRequests();
         return true;
     }
 
-    private boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
+    public boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
+        boolean b = courseRepository.findCourseByStudentsId(acceptor.getId()).contains(req.getWantedCourse());
         boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
         boolean[][] currentCourseProgram = req.getCurrentCourse().getProgram();
-        removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        //removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        Course[][] schedule = studentService.getSchedule(acceptor.getId());
         for (int i = 0; i < currentCourseProgram.length; i++) {
             for (int j = 0; j < currentCourseProgram[i].length; j++) {
+                if (schedule[i][j] != null && schedule[i][j].getName().equals(req.getWantedCourse().getName())){
+                    continue;
+                }
                 if ((acceptorProgram[i][j] && currentCourseProgram[i][j])) {
                     return false;
                 }
             }
         }
-        return true;
+        return b;
     }
 
     private boolean[][] cloneProgramOfStudent(Student student) {
@@ -284,9 +333,6 @@ public class RequestProcessorService {
         return coursesByStudentId.stream().anyMatch(c -> c.getName().equals(wanted.getName()));
     }
 
-    public boolean isFull(Course c) {
-        return c.getStudents().size() >= Course.QUOTA;
-    }
 
     public boolean doesOverlap(Course course, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(course)) return true;
@@ -306,7 +352,7 @@ public class RequestProcessorService {
         if (coursesOfStudent.contains(wantedCourse)) return false;
         boolean[][] studentProgram = student.getProgram();
         boolean[][] courseProgram = wantedCourse.getProgram();
-        Course[][] studentSchedule = student.getSchedule();
+        Course[][] studentSchedule = studentService.getSchedule(student.getId());
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
                 if (studentProgram[i][j] && studentSchedule[i][j].getName().equals(wantedCourse.getName())) {
@@ -320,7 +366,7 @@ public class RequestProcessorService {
         return true;
     }
 
-    public boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
+    public static boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
         List<Course> noIncluded = new ArrayList<>();
 
         //finding the courses which is not in the requesting courses and adding them to noIncluded 

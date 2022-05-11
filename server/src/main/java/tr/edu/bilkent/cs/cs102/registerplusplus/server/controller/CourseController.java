@@ -1,5 +1,6 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +22,8 @@ public class CourseController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/courses")
-    public List<Course> all() {
-        return repository.findAll();
+    public ResponseEntity<List<Course>> all() {
+        return ResponseEntity.ok(repository.findAll());
     }
     // end::get-aggregate-root[]
 

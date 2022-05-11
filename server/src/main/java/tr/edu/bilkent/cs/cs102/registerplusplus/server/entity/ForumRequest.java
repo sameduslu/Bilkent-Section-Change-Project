@@ -1,11 +1,11 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("forumRequest")
 public class ForumRequest extends Request {
-
     @DBRef
     private Course wantedCourse;
 
