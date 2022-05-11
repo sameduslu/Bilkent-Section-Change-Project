@@ -1,4 +1,5 @@
 package client.main;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -16,49 +17,49 @@ public class Course {
     private final boolean[][] PROGRAM;
     @SerializedName("instructor")
     private final Instructor INSTRUCTOR;
-    
+
+    private String id;
+
     static final int quota = 25;
     /******************************************************************************************* */
     /**************************** CONSTRUCTOR ************************************************** */
     /******************************************************************************************* */
-    public Course(String name, String section, boolean[][] matrice, Instructor instructor){// sonradan queue alacak
+    public Course(String name, String section, boolean[][] matrice, Instructor instructor) {// sonradan queue alacak
         this.NAME = name;
         this.SECTION = section;
         this.PROGRAM = matrice;
         this.INSTRUCTOR = instructor;
         students = new ArrayList<Student>();
+        id = name + '-' + section;
     }
     /****************************************************************************************** */
     /**************************** METHODS ***************************************************** */
     /****************************************************************************************** */
-    public void addStudent(Student newStudent)
-    {
+    public void addStudent(Student newStudent) {
         students.add(newStudent);
-        newStudent.addCourse(this);     
+        newStudent.addCourse(this);
     }
 
-    public void removeStudent (Student removedStudent) {
+    public void removeStudent(Student removedStudent) {
         students.remove(removedStudent);
         removedStudent.removeCourse(this);
     }
 
     public boolean isThereQuota() {
         boolean areThereQuota = true;
-        if(students.size()==quota)
-        {
-            areThereQuota= false;
-        } 
-        else if(students.size()>=quota)
-        {
-            areThereQuota= false;
+        if (students.size() == quota) {
+            areThereQuota = false;
+        } else if (students.size() >= quota) {
+            areThereQuota = false;
             System.out.println("ERROR! STUDENT NUMBER HAS ALREADY EXCEEDED THE QUOTA");
         }
         return areThereQuota;
     }
 
     public int getAvailableQuota() {
-        return quota-students.size();
+        return quota - students.size();
     }
+
     //                            GET METHODS
     public String getName() {
         return this.NAME;
@@ -80,10 +81,10 @@ public class Course {
         return this.INSTRUCTOR;
     }
 
-    public boolean doesOverlap (Course otherCourse) {
+    public boolean doesOverlap(Course otherCourse) {
         for (int i = 0; i < PROGRAM.length; i++) {
             for (int j = 0; j < PROGRAM[j].length; j++) {
-                if(PROGRAM[i][j] == true && otherCourse.getProgram()[i][j] == true) {
+                if (PROGRAM[i][j] == true && otherCourse.getProgram()[i][j] == true) {
                     return true;
                 }
             }
@@ -94,10 +95,9 @@ public class Course {
     public void printProgram() {
         for (int i = 0; i < PROGRAM.length; i++) {
             for (int j = 0; j < PROGRAM[0].length; j++) {
-                if(PROGRAM[i][j]) {
+                if (PROGRAM[i][j]) {
                     System.out.print("1 ");
-                }
-                else {
+                } else {
                     System.out.print("0 ");
                 }
             }
@@ -105,10 +105,18 @@ public class Course {
         }
     }
 
-    public String toString () {
+    public String toString() {
         String result = "";
-        result += (this.NAME + " ") ;
+        result += (this.NAME + " ");
         result += (this.SECTION);
         return result;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

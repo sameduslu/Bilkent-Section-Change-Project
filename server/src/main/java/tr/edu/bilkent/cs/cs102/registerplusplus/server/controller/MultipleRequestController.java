@@ -1,5 +1,6 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 
+import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +14,8 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 @RestController
 public class MultipleRequestController {
@@ -44,14 +43,23 @@ public class MultipleRequestController {
     }
 
     @PostMapping("/multipleRequest")
-    public String newItem(@RequestBody MultipleRequest multipleRequest) {
-        Optional<Student> reqOwnerById = studentRepository.findById(multipleRequest.getRequestOwner().getId());
+    public String newItem(@RequestBody String body) {
+        List<String> l = Arrays.asList(new Gson().fromJson(body, String[].class));
+        String studentId = l.get(l.size()-1);
+        MultipleRequest multipleRequest = new MultipleRequest();
+        List<Course> courses = new ArrayList<>();
+        for (int i = 0; i < l.size()-1; i++){
+            courses.add(courseRepository.findCourseById(l.get(i)));
+        }
+        multipleRequest.setWantedCourses(courses);
+        Optional<Student> reqOwnerById = studentRepository.findById(studentId);
         if (reqOwnerById.isEmpty()){
             return "Bad Request";
         }
         Student requestOwner = reqOwnerById.get();
+        multipleRequest.setRequestOwner(requestOwner);
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if(!requestProcessorService.isStillValid(multipleRequest.getWantedCourses(), requestOwner, coursesOfStudent)){
+        if(!RequestProcessorService.isStillValid(multipleRequest.getWantedCourses(), requestOwner, coursesOfStudent)){
             return "Not compatible";
         }
         if (multipleRequestRepository.findMultipleRequestsByRequestOwner_Id(requestOwner.getId()).contains(multipleRequest)){

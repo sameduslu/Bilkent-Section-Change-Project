@@ -1,17 +1,25 @@
 package client.main;
+
+import java.util.List;
+
 public class MultipleRequest extends Request{
 
-    private Courses wantedCourses;
+    private List<Course> wantedCourses;
     
-    public MultipleRequest (Student owner, Courses wanteds) {
+    public MultipleRequest (Student owner, List<Course> wantedCourses) {
         super (owner);
-        wantedCourses = wanteds;
+        this.wantedCourses = wantedCourses;
+    }
+
+    public MultipleRequest(Student owner, Courses wanteds){
+        super(owner);
+        this.wantedCourses = wanteds.getCourses();
     }
     
     @Override
     public boolean isPossible() {
-        for (int i = 0; i < wantedCourses.getSize(); i++) {
-            if(!wantedCourses.getCourse(i).isThereQuota()) {
+        for (int i = 0; i < wantedCourses.size(); i++) {
+            if(!wantedCourses.get(i).isThereQuota()) {
                 return false;
             }
         }
@@ -20,13 +28,15 @@ public class MultipleRequest extends Request{
 
     @Override
     public boolean isStillValid() {
-        if (this.getRequestOwner().doesOverlap(wantedCourses)) {
+        if (this.getRequestOwner().doesOverlap(getWantedCourses())) {
             return false;
         }
         return true;
     }
 
     public Courses getWantedCourses() {
-        return wantedCourses;
+        Courses result = new Courses();
+        result.setCourses(wantedCourses);
+        return result;
     }
 }

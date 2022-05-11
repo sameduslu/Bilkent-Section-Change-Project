@@ -4,6 +4,7 @@
  */
 package client.SingleMultipleChange;
 
+import client.main.Connection;
 import client.main.Courses;
 import client.main.Student;
 
@@ -55,12 +56,13 @@ public class SingleChange extends javax.swing.JFrame {
             }
         });
         for (int i = 0; i < courses.getSize(); i++) {
-            JButton button = new javax.swing.JButton(courses.getCourse(i).getName());
+            System.out.println(courses.getCourse(i).getId());
+            JButton button = new javax.swing.JButton(courses.getCourse(i).getId());
             button.setBackground(new java.awt.Color(220, 172, 146));
             button.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
             button.setForeground(new java.awt.Color(172, 112, 96));
             button.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button2.png")); // NOI18N
-            button.setText(courses.getCourse(i).getName()+"-"+courses.getCourse(i).getSection().substring(1));
+            button.setText(courses.getCourse(i).getId());
             button.setToolTipText("");
             button.setBorder(null);
             button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -70,7 +72,10 @@ public class SingleChange extends javax.swing.JFrame {
             button.setPreferredSize(new java.awt.Dimension(340, 117));
             button.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    singlechange.close();
+                    Connection.sendSingleRequest(student.getId(), button.getText());
+                    //singlechange.close();
+
+                    singlechange.dispose();
                 }
             });
             jPanel1.add(button);

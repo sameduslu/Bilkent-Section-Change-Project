@@ -9,8 +9,8 @@ public class Instructor extends Person{
         return name;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
     public void setName(String name) {
@@ -18,7 +18,7 @@ public class Instructor extends Person{
     }
     
     public void setID(String iD) {
-        ID = iD;
+        id = iD;
     }
     
 }

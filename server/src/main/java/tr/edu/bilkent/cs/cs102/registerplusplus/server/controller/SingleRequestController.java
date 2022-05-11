@@ -1,5 +1,6 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 
+import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,7 +46,8 @@ public class SingleRequestController {
     // end::get-aggregate-root[]
 
     @PostMapping("/singleRequest")
-    public String newItem(@RequestBody SingleRequest singleRequest) {
+    public String newItem(@RequestBody String singleRequestString) {
+        SingleRequest singleRequest = new Gson().fromJson(singleRequestString, SingleRequest.class);
         Optional<Student> reqOwnerById = studentRepository.findById(singleRequest.getRequestOwner().getId());
         if (reqOwnerById.isEmpty()){
             return "Bad Request";

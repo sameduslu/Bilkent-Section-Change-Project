@@ -15,7 +15,6 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.io.File;
-import java.sql.Array;
 import java.util.*;
 import java.io.FileNotFoundException;
 
@@ -23,10 +22,11 @@ import java.io.FileNotFoundException;
 public class DatabaseInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseInitializer.class);
+    private boolean ctr = true;
 
     @Bean
     CommandLineRunner CredentialsInit(CredentialsRepository credentialsRepository, StudentRepository studentRepository) {
-        return args -> {
+        if (ctr) return args -> {
             Scanner in = new Scanner(new File("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Names_and_IDs_Passwords.txt"));
             while (in.hasNextLine()) {
                 String[] s = in.nextLine().split(" ");
@@ -42,11 +42,12 @@ public class DatabaseInitializer {
                 studentRepository.save(new Student(name, s[s.length - 2]));
             }
         };
+        return args -> {};
     }
 
     @Bean
     CommandLineRunner addCourses(CourseRepository courseRepository) {
-        return args -> {    
+        if (ctr) return args -> {
             try{
                 File database = new File("Course_Database.txt");
                 Scanner sc = new Scanner(database);
@@ -86,11 +87,12 @@ public class DatabaseInitializer {
                 err.printStackTrace();
             }
         };
+        return args -> {};
     }
 
     @Bean
     CommandLineRunner studentDistributor (CourseRepository courseRepository, StudentRepository studentRepository, CourseService courseService, RequestProcessorService requestProcessorService) {
-        return args -> {
+        if (ctr) return args -> {
             List<Course> courses = courseRepository.findAll();
             List<Student> students = studentRepository.findAll();
             HashMap<String, ArrayList<Course>> coursesByName = new HashMap<>();
@@ -168,6 +170,7 @@ public class DatabaseInitializer {
 //                students.get(i).printSchedule();
 //            }
         };
+        return args -> {};
     }
 
     private void calculateAllPaths (HashMap<String, ArrayList<Course>> map, List<String> names, List<ArrayList<Course>> allPaths, ArrayList<Course> currentPath) {

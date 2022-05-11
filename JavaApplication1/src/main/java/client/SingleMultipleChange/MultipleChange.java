@@ -4,12 +4,13 @@
  */
 package client.SingleMultipleChange;
 
-import client.main.Courses;
-import client.main.Student;
+import client.main.*;
 
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
@@ -35,7 +36,7 @@ public class MultipleChange extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
-    private void initComponents2(MultipleChange singlechange) {
+    private void initComponents2(MultipleChange multipleChange) {
         jPanel1 = new javax.swing.JPanel();
         jPanel1.setBackground(new java.awt.Color(220, 172, 146));
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 350));
@@ -60,7 +61,7 @@ public class MultipleChange extends javax.swing.JFrame {
         SendButton.setBackground(new java.awt.Color(220, 172, 146));
         SendButton.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         SendButton.setForeground(new java.awt.Color(172, 112, 96));
-        SendButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SingleMultipleChange/button2.png"))); // NOI18N
+        SendButton.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button2.png")); // NOI18N
         SendButton.setText("Send");
         SendButton.setToolTipText("");
         SendButton.setBorder(null);
@@ -69,13 +70,14 @@ public class MultipleChange extends javax.swing.JFrame {
         SendButton.setMaximumSize(new java.awt.Dimension(340, 117));
         SendButton.setMinimumSize(new java.awt.Dimension(340, 117));
         SendButton.setPreferredSize(new java.awt.Dimension(340, 117));
+        List<String> courseIds = new ArrayList<>();
         for (int i = 0; i < courses.getSize(); i++) {
             JToggleButton button = new javax.swing.JToggleButton(courses.getCourse(i).getName());
             button.setBackground(new java.awt.Color(220, 172, 146));
             button.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
             button.setForeground(new java.awt.Color(172, 112, 96));
-            button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SingleMultipleChange/button2.png"))); // NOI18N
-            button.setText(courses.getCourse(i).getName()+"-"+courses.getCourse(i).getSection().substring(1));
+            button.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button2.png")); // NOI18N
+            button.setText(courses.getCourse(i).getId());
             button.setToolTipText("");
             button.setBorder(null);
             button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -88,9 +90,11 @@ public class MultipleChange extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if(button.getForeground()==Color.GREEN){
                     button.setForeground(new java.awt.Color(172, 112, 96));
+                    courseIds.remove(button.getText());
                 }
                 else{
                     button.setForeground(Color.GREEN);
+                    courseIds.add(button.getText());
                 }
             }
         });
@@ -99,7 +103,13 @@ public class MultipleChange extends javax.swing.JFrame {
         
         SendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                singlechange.dispose();
+                if (courseIds.isEmpty()){
+                    multipleChange.dispose();
+                    return;
+                }
+                System.out.println("xx");
+                Connection.sendMultipleRequest(student.getId(), courseIds);
+                multipleChange.dispose();
             }
         });
         jPanel1.add(SendButton);

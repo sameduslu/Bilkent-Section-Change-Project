@@ -839,6 +839,7 @@ public class SectionChangePage extends javax.swing.JFrame {
          SingleChange singleChange = new SingleChange(this.student, courses);
          singleChange.setLocationRelativeTo(null);
          singleChange.setVisible(true);
+
     }//GEN-LAST:event_jButtonSectionChangeActionPerformed
 
     private void jButtonForumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonForumMouseClicked

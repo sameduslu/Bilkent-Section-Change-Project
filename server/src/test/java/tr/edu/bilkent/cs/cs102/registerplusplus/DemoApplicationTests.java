@@ -1,5 +1,6 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,7 +195,7 @@ class DemoApplicationTests {
         req.setWantedCourse(wantedCourse);
         Student student = new Student(studentName, studentId);
         req.setRequestOwner(student);
-        singleRequestController.newItem(req);
+        singleRequestController.newItem(new Gson().toJson(req));
     }
 
     @Test
@@ -282,6 +283,6 @@ class DemoApplicationTests {
         Student student = new Student(studentName, studentId);
         req.setRequestOwner(student);
 
-        multipleRequestController.newItem(req);
+        multipleRequestController.newItem(new Gson().toJson(req));
     }
 }

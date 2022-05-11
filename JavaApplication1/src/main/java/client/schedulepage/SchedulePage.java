@@ -23,7 +23,7 @@ public class SchedulePage extends javax.swing.JFrame {
         //this.courses = courses;
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
-        student = Connection.updateStudent(student.getID());
+        student = Connection.updateStudent(student.getId());
         this.student = student;
         initComponents();
     }

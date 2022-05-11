@@ -5,8 +5,9 @@ import java.util.Arrays;
 public abstract class Person {
 
     protected String name;
+
     @SerializedName("id")
-    protected String ID;
+    protected String id;
 
     @SerializedName("schedule")
     protected Course[][] schedule2D = new Course[rowNum][columnNum];
@@ -16,7 +17,7 @@ public abstract class Person {
 
     public Person(String name, String ID){
         this.name = name;
-        this.ID = ID;
+        this.id = ID;
         for(int i = 0; i < rowNum; i++){
             Arrays.fill(schedule2D[i], null);
             Arrays.fill(program[i],false);
@@ -36,8 +37,8 @@ public abstract class Person {
         return name;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
     public Courses getCourses () {
