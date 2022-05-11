@@ -245,42 +245,68 @@ public class RequestProcessorService {
         List<Course> courses = courseRepository.findCourseByStudentsId(requestOwner.getId());
         for (ForumRequest req : requests) {
             if (!courses.contains(req.getCurrentCourse()) || !isStillValid(req.getWantedCourse(), requestOwner, courses)) {
-                forumRequestRepository.delete(req);
+                forumRequestRepository.delete(req);//
             }
         }
     }
 
+//    public boolean processForumRequest(ForumRequest req, Student acceptor) {
+//        if (!isForumRequestPossible(req, acceptor)) {
+//            return false;
+//        }
+//        Student owner = studentRepository.findById(req.getRequestOwner().getId()).get();
+//        acceptor = studentRepository.findById(acceptor.getId()).get();
+//        Course ownerCourse = courseRepository.findCourseById(req.getCurrentCourse().getId());
+//        Course wantedCourse = courseRepository.findCourseById(req.getWantedCourse().getId());
+//        courseService.removeStudentFromCourse(owner, ownerCourse);
+//        courseService.removeStudentFromCourse(acceptor, wantedCourse);
+//        courseService.addStudentToCourse(owner, wantedCourse);
+//        courseService.addStudentToCourse(acceptor, ownerCourse);
+//        forumRequestRepository.delete(req);
+//        updateForumRequests(owner);
+//        updateForumRequests(acceptor);
+//        processNonForumRequests();
+//        return true;
+//    }
+
     public boolean processForumRequest(ForumRequest req, Student acceptor) {
+        acceptor = studentRepository.findById(acceptor.getId()).get();
+        req.setRequestOwner(studentRepository.findById(req.getRequestOwner().getId()).get());
+        req.setWantedCourse(courseRepository.findCourseById(req.getWantedCourse().getId()));
+        req.setCurrentCourse(courseRepository.findCourseById(req.getCurrentCourse().getId()));
         if (!isForumRequestPossible(req, acceptor)) {
             return false;
         }
-        Student owner = studentRepository.findById(req.getRequestOwner().getId()).get();
-        acceptor = studentRepository.findById(acceptor.getId()).get();
-        Course ownerCourse = courseRepository.findCourseById(req.getCurrentCourse().getId());
-        Course wantedCourse = courseRepository.findCourseById(req.getWantedCourse().getId());
-        courseService.removeStudentFromCourse(owner, ownerCourse);
-        courseService.removeStudentFromCourse(acceptor, wantedCourse);
-        courseService.addStudentToCourse(owner, wantedCourse);
-        courseService.addStudentToCourse(acceptor, ownerCourse);
+        courseService.removeStudentFromCourse(req.getRequestOwner(), req.getCurrentCourse());
+        courseService.removeStudentFromCourse(acceptor, req.getWantedCourse());
+        courseService.addStudentToCourse(req.getRequestOwner(), req.getWantedCourse());
+        courseService.addStudentToCourse(acceptor, req.getCurrentCourse());
         forumRequestRepository.delete(req);
-        updateForumRequests(owner);
+        acceptor = studentRepository.findById(acceptor.getId()).get();
+        req.setRequestOwner(studentRepository.findById(req.getRequestOwner().getId()).get());
+        updateForumRequests(req.getRequestOwner());
         updateForumRequests(acceptor);
         processNonForumRequests();
         return true;
     }
 
-    private boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
+    public boolean isForumRequestPossible(ForumRequest req, Student acceptor) {
+        boolean b = courseRepository.findCourseByStudentsId(acceptor.getId()).contains(req.getWantedCourse());
         boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
         boolean[][] currentCourseProgram = req.getCurrentCourse().getProgram();
-        removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        //removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
+        Course[][] schedule = studentService.getSchedule(acceptor.getId());
         for (int i = 0; i < currentCourseProgram.length; i++) {
             for (int j = 0; j < currentCourseProgram[i].length; j++) {
+                if (schedule[i][j] != null && schedule[i][j].getName().equals(req.getWantedCourse().getName())){
+                    continue;
+                }
                 if ((acceptorProgram[i][j] && currentCourseProgram[i][j])) {
                     return false;
                 }
             }
         }
-        return true;
+        return b;
     }
 
     private boolean[][] cloneProgramOfStudent(Student student) {

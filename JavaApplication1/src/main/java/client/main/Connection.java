@@ -58,8 +58,8 @@ public class Connection {
         try {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("studentId", forumRequest.getRequestOwner().getId()),
-                    new BasicNameValuePair("wantedCourseId", forumRequest.getWantedCourse().getId()),
-                    new BasicNameValuePair("currentCourseId", forumRequest.getCurrentCourse().getId()))));
+                    new BasicNameValuePair("wantedCourseId", forumRequest.getWantedCourse().getId()))));
+                    //new BasicNameValuePair("currentCourseId", forumRequest.getCurrentCourse().getId()))));
             client.execute(post).close();
         } catch (IOException e) {
             e.printStackTrace();

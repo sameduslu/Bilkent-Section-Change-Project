@@ -11,6 +11,7 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,18 +43,21 @@ public class ForumRequestController {
 
     @GetMapping("/forumRequests/{id}")
     public List<ForumRequest> forStudent(@PathVariable String id){
-        return all().stream().filter(forumRequest -> checkForumRequest(forumRequest, studentRepository.findById(id).get())).collect(Collectors.toUnmodifiableList());
-    }
-
-    private boolean checkForumRequest(ForumRequest forumRequest, Student student) {
-        return courseRepository.findCourseByStudentsId(student.getId()).contains(forumRequest.getWantedCourse());
+        List<ForumRequest> all = all();
+        List<ForumRequest> res = new ArrayList<>();
+        for(ForumRequest req : all){
+            if (requestProcessorService.isForumRequestPossible(req, studentRepository.findById(id).get())){
+                res.add(req);
+            }
+        }
+        return res;
     }
 
     @PostMapping("/forumRequest")
-    public String newItem(@RequestParam String studentId, @RequestParam String wantedCourseId, @RequestParam String currentCourseId) {
+    public String newItem(@RequestParam String studentId, @RequestParam String wantedCourseId) {
         Student requestOwner = studentRepository.findById(studentId).get();
         Course wantedCourse = courseRepository.findCourseById(wantedCourseId);
-        Course currentCourse = courseRepository.findCourseById(currentCourseId);
+        Course currentCourse = courseRepository.findCourseByStudentsId(requestOwner.getId()).stream().filter(c -> c.getName().equals(wantedCourse.getName())).findAny().get();
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
         if (!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)){
             return "Not compatible";
@@ -82,7 +86,7 @@ public class ForumRequestController {
 
         ForumRequest forumRequest = forumRequestById.get();
         Student acceptor = acceptorById.get();
-        if (!checkForumRequest(forumRequest,acceptor)){
+        if (!requestProcessorService.isForumRequestPossible(forumRequest,acceptor)){
             return false;
         }
         requestProcessorService.processForumRequest(forumRequest, acceptor);
