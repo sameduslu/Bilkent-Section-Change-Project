@@ -726,7 +726,7 @@ public class SchedulePage extends javax.swing.JFrame {
 
     private void jButtonOpenForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenForumActionPerformed
         // TODO add your handling code here:
-        Forum forumPage = new Forum(this.student);
+        Forum forumPage = new Forum(this.student, 0);
         forumPage.setVisible(true);
         forumPage.setLocationRelativeTo(null);
         this.dispose();

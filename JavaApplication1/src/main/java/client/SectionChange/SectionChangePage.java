@@ -848,7 +848,7 @@ public class SectionChangePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonForumMouseClicked
 
     private void jButtonForumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForumActionPerformed
-        Forum forumPage = new Forum(this.student);
+        Forum forumPage = new Forum(this.student, 0);
         forumPage.setVisible(true);
         forumPage.setLocationRelativeTo(null);
         this.dispose();

@@ -10,7 +10,6 @@ import client.ResultMessage.Denied;
 import client.SchedulePage.SchedulePage;
 import client.SingleMultipleChange.ForumRequestChange;
 import client.main.Connection;
-import client.main.Course;
 import client.main.ForumRequest;
 import client.main.Student;
 
@@ -27,14 +26,23 @@ public class Forum extends javax.swing.JFrame {
 
     private List<ForumRequest> forumRequests;
 
+    private int index;
+
     /**
      * Creates new form main.java.client.Forum
      */
-    public Forum(Student student) {
+    public Forum(Student student, int index) {
         this.setSize(1280, 720);
         this.setLocationRelativeTo(null);
         this.student = Connection.getUpdatedStudent(student.getId());
         forumRequests = Connection.getForumRequestsStudentCanAccept(this.student.getId());
+        if (index<0){
+            this.index = 0;
+        }else if(index > forumRequests.size()){
+            this.index = index - 5;
+        }else {
+            this.index = index;
+        }
         initComponents();
     }
 
@@ -139,6 +147,14 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
+        forum2.setEditable(false);
+        forum2.setFont(new java.awt.Font("Bahnschrift", 1, 30)); // NOI18N
+        forum2.setForeground(new java.awt.Color(220, 172, 146));
+        if (forumRequests.size()>index+2) {
+            forum2.setText(forumRequests.get(index+2).getCurrentCourse().getId() + "--->" + forumRequests.get(index+2).getWantedCourse().getId());
+        }else{
+            forum2.setText("");
+        }
         forum2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         forum2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,8 +162,24 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
+        forum3.setEditable(false);
+        forum3.setFont(new java.awt.Font("Bahnschrift", 1, 30)); // NOI18N
+        forum3.setForeground(new java.awt.Color(220, 172, 146));
+        if (forumRequests.size()>index+4) {
+            forum3.setText(forumRequests.get(index+4).getCurrentCourse().getId() + "--->" + forumRequests.get(index+4).getWantedCourse().getId());
+        }else{
+            forum3.setText("");
+        }
         forum3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        forum1.setEditable(false);
+        forum1.setFont(new java.awt.Font("Bahnschrift", 1, 30)); // NOI18N
+        forum1.setForeground(new java.awt.Color(220, 172, 146));
+        if (forumRequests.size()>index+1) {
+            forum1.setText(forumRequests.get(index+1).getCurrentCourse().getId() + "--->" + forumRequests.get(index+1).getWantedCourse().getId());
+        }else{
+            forum1.setText("");
+        }
         forum1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         forum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,13 +196,28 @@ public class Forum extends javax.swing.JFrame {
             }
         });
 
+        forum4.setEditable(false);
+        forum4.setFont(new java.awt.Font("Bahnschrift", 1, 30)); // NOI18N
+        forum4.setForeground(new java.awt.Color(220, 172, 146));
+        if (forumRequests.size()>index+3) {
+            forum4.setText(forumRequests.get(index+3).getCurrentCourse().getId() + "--->" + forumRequests.get(index+3).getWantedCourse().getId());
+        }else{
+            forum4.setText("");
+        }
         forum4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         forum4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forum4ActionPerformed(evt);
             }
         });
-
+        forum5.setEditable(false);
+        forum5.setFont(new java.awt.Font("Bahnschrift", 1, 30)); // NOI18N
+        forum5.setForeground(new java.awt.Color(220, 172, 146));
+        if (forumRequests.size()>index) {
+            forum5.setText(forumRequests.get(index).getCurrentCourse().getId() + "--->" + forumRequests.get(index).getWantedCourse().getId());
+        }else{
+            forum5.setText("");
+        }
         forum5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         forum5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,9 +238,9 @@ public class Forum extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\arrow_reverse.png")); // NOI18N
         jButton2.setBorder(null);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
@@ -201,9 +248,9 @@ public class Forum extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\arrow.png")); // NOI18N
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
             }
         });
 
@@ -330,6 +377,20 @@ public class Forum extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3MouseClicked(MouseEvent evt) {
+        Forum forum = new Forum(student, index + 5);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
+    private void jButton2MouseClicked(MouseEvent evt) {
+        Forum forum = new Forum(student, index - 5);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
     private void jButtonSectionChangeMouseClicked(MouseEvent evt) {
         ForumRequestChange forumRequestChange = new ForumRequestChange(student);
         forumRequestChange.setLocationRelativeTo(null);
@@ -339,21 +400,42 @@ public class Forum extends javax.swing.JFrame {
 
     private void jForumAcceptButton1MouseClicked(MouseEvent evt) {
         Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(0), student.getId()));
+        Forum forum = new Forum(student, index);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
     }
 
     private void jForumAcceptButton2MouseClicked(MouseEvent evt) {
         Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(1), student.getId()));
+        Forum forum = new Forum(student, index);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
     }
 
     private void jForumAcceptButton3MouseClicked(MouseEvent evt) {
         Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(2), student.getId()));
+        Forum forum = new Forum(student, index);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
     }
+
     private void jForumAcceptButton4MouseClicked(MouseEvent evt) {
         Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(3), student.getId()));
+        Forum forum = new Forum(student, index);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
     }
 
     private void jForumAcceptButton5MouseClicked(MouseEvent evt) {
         Connection.sendForumRequestApproval(new ForumRequestApproval(forumRequests.get(4), student.getId()));
+        Forum forum = new Forum(student, index);
+        forum.setVisible(true);
+        forum.setLocationRelativeTo(null);
+        this.dispose();
     }
 
     private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
@@ -426,6 +508,7 @@ public class Forum extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField forum1;
     private javax.swing.JTextField forum2;
