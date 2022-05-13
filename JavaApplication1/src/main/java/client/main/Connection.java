@@ -1,6 +1,5 @@
 package client.main;
 
-import client.Forum.ForumRequestApproval;
 import com.google.gson.Gson;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -59,7 +58,6 @@ public class Connection {
             post.setEntity(new UrlEncodedFormEntity(List.of(
                     new BasicNameValuePair("studentId", forumRequest.getRequestOwner().getId()),
                     new BasicNameValuePair("wantedCourseId", forumRequest.getWantedCourse().getId()))));
-                    //new BasicNameValuePair("currentCourseId", forumRequest.getCurrentCourse().getId()))));
             client.execute(post).close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -96,16 +94,13 @@ public class Connection {
     public static void sendMultipleRequest(String id, List<String> courseIds) {
         Student s = new Student("", id);
         List<Course> wanted = new ArrayList<>();
-        for (int i = 0; i < courseIds.size(); i++) {
+        for (String courseId : courseIds) {
             Course c = new Course(null, null, null, null);
-            c.setId(courseIds.get(i));
+            c.setId(courseId);
             wanted.add(c);
         }
         MultipleRequest multipleRequest = new MultipleRequest(s, wanted);
         String jsonString = json.toJson(multipleRequest);
-//        courseIds.add(id);
-//        String jsonString = json.toJson(courseIds);
-//        System.out.println(jsonString);
         HttpPost post = new HttpPost(ipAddress + "/multipleRequest");
         postJson(jsonString, post);
     }

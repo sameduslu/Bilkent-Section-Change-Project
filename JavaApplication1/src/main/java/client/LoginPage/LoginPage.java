@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package client.LoginPage;
 
 import client.SchedulePage.SchedulePage;
@@ -10,27 +6,22 @@ import client.main.Student;
 
 import javax.swing.*;
 
-/**
- * @author Pc
- */
 public class LoginPage extends javax.swing.JFrame {
-
-    private Student student;
+    private javax.swing.JTextField jID;
+    private javax.swing.JPasswordField jPassword;
 
     public LoginPage() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButtonLogin = new javax.swing.JButton();
-        jLabelClose = new javax.swing.JLabel();
-        jLabelMinimize = new javax.swing.JLabel();
-        jLabelRegister = new javax.swing.JLabel();
+        JPanel jPanel1 = new JPanel();
+        JButton jButtonLogin = new JButton();
+        JLabel jLabelClose = new JLabel();
+        JLabel jLabelMinimize = new JLabel();
+        JLabel jLabelRegister = new JLabel();
         jID = new javax.swing.JTextField();
         jPassword = new javax.swing.JPasswordField();
 
@@ -42,10 +33,10 @@ public class LoginPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(220, 172, 146));
 
         jButtonLogin.setBackground(new java.awt.Color(220, 172, 146));
-        jButtonLogin.setFont(new java.awt.Font("Bahnschrift", 1, 32)); // NOI18N
+        jButtonLogin.setFont(new java.awt.Font("Bahnschrift", 1, 32));
         jButtonLogin.setForeground(new java.awt.Color(220, 172, 146));
 
-        jButtonLogin.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button.png")); // NOI18N
+        jButtonLogin.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\button.png"));
 
         jButtonLogin.setText("Login");
         jButtonLogin.setToolTipText("");
@@ -55,19 +46,14 @@ public class LoginPage extends javax.swing.JFrame {
         jButtonLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
-                    jButtonLoginMouseClicked(evt);
+                    jButtonLoginMouseClicked();
                 } catch (RuntimeException e) {
                     e.printStackTrace();
                 }
             }
         });
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
-            }
-        });
 
-        jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+        jLabelClose.setFont(new java.awt.Font("Lucida Handwriting", 1, 48));
         jLabelClose.setForeground(new java.awt.Color(255, 255, 255));
         jLabelClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelClose.setText("X");
@@ -75,11 +61,11 @@ public class LoginPage extends javax.swing.JFrame {
         jLabelClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelCloseMouseClicked(evt);
+                jLabelCloseMouseClicked();
             }
         });
 
-        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+        jLabelMinimize.setFont(new java.awt.Font("Lucida Handwriting", 1, 48));
         jLabelMinimize.setForeground(new java.awt.Color(255, 255, 255));
         jLabelMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMinimize.setText("-");
@@ -87,13 +73,11 @@ public class LoginPage extends javax.swing.JFrame {
         jLabelMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabelMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMinimizeMouseClicked(evt);
+                jLabelMinimizeMouseClicked();
             }
         });
-
-        //jLabelRegister.setIcon(new javax.swing.ImageIcon("Icon.png")); // NOI18N
         jLabelRegister.setIcon(new javax.swing.ImageIcon("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Icon.png"));
-        jID.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jID.setFont(new java.awt.Font("Helvetica Neue", 3, 18));
         jID.setForeground(new java.awt.Color(212, 212, 212));
         jID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jID.setText("USER ID");
@@ -101,28 +85,18 @@ public class LoginPage extends javax.swing.JFrame {
         jID.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
         jID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jIDMouseClicked(evt);
-            }
-        });
-        jID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jIDActionPerformed(evt);
+                jIDMouseClicked();
             }
         });
 
-        jPassword.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jPassword.setFont(new java.awt.Font("Helvetica Neue", 3, 18));
         jPassword.setForeground(new java.awt.Color(212, 212, 212));
         jPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPassword.setText("AAAAAAAAAAAAA");
+        jPassword.setText("password");
         jPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(9, 9, 9, 9, new java.awt.Color(172, 112, 96)));
         jPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPasswordMouseClicked(evt);
-            }
-        });
-        jPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordActionPerformed(evt);
+                jPasswordMouseClicked();
             }
         });
 
@@ -179,61 +153,32 @@ public class LoginPage extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void jLabelCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCloseMouseClicked
-        // TODO add your handling code here:
+    private void jLabelCloseMouseClicked() {
         System.exit(0);
-    }//GEN-LAST:event_jLabelCloseMouseClicked
+    }
 
-    private void jLabelMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinimizeMouseClicked
-        // TODO add your handling code here:
+    private void jLabelMinimizeMouseClicked() {
         this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_jLabelMinimizeMouseClicked
+    }
 
-    private void jButtonLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLoginMouseClicked
+    private void jButtonLoginMouseClicked() {
         String id = jID.getText();
         if (Connection.authenticate(id, jPassword.getText())) {
-            this.student = Connection.getUpdatedStudent(id);
+            Student student = Connection.getUpdatedStudent(id);
             student.setCourseSchedule(Connection.getStudentCourseSchedule(id));
-            //student.setSchedule2D(Connection.getStudentCourseSchedule(student.getID()));
             SchedulePage sPage = new SchedulePage(student);
             sPage.setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_jButtonLoginMouseClicked
+    }
 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButtonLoginActionPerformed
-
-    private void jIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jIDActionPerformed
-
-    private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordActionPerformed
-
-    private void jIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIDMouseClicked
-        // TODO add your handling code here:
+    private void jIDMouseClicked() {
         jID.setText("");
-    }//GEN-LAST:event_jIDMouseClicked
+    }
 
-    private void jPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordMouseClicked
-        // TODO add your handling code here:
+    private void jPasswordMouseClicked() {
         jPassword.setText("");
-    }//GEN-LAST:event_jPasswordMouseClicked
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonLogin;
-    private javax.swing.JTextField jID;
-    private javax.swing.JLabel jLabelClose;
-    private javax.swing.JLabel jLabelMinimize;
-    private javax.swing.JLabel jLabelRegister;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPassword;
-    // End of variables declaration//GEN-END:variables
+    }
 }

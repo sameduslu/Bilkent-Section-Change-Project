@@ -17,14 +17,10 @@ public class InstructorController {
         this.repository = repository;
     }
 
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/instructors")
     List<Instructor> all() {
         return repository.findAll();
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/instructor")
     Instructor newItem(@RequestBody Instructor instructor) {

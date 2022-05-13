@@ -12,7 +12,6 @@ public class Course {
     private final String name;
     @SerializedName("section")
     private final String section;
-    private final ArrayList<Student> students;
     @SerializedName("program")
     private final boolean[][] program;
     @SerializedName("instructor")
@@ -20,14 +19,11 @@ public class Course {
 
     private String id;
 
-    public static final int QUOTA = 25;
-
     public Course(String name, String section, boolean[][] matrix, Instructor instructor) {
         this.name = name;
         this.section = section;
         this.program = matrix;
         this.instructor = instructor;
-        students = new ArrayList<>();
         id = name + '-' + section;
     }
 

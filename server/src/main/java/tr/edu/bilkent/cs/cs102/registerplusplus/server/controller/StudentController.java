@@ -24,27 +24,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/students")
     public List<Student> all() {
         return studentRepository.findAll();
     }
 
     @GetMapping("/student/{id}")
-    public Student getStudentById(@PathVariable String id){
+    public Student getStudentById(@PathVariable String id) {
         Optional<Student> studentById = studentRepository.findById(id);
-        if (studentById.isEmpty()){
+        if (studentById.isEmpty()) {
             return null;
         }
         return studentById.get();
     }
 
     @GetMapping("/studentSchedule/{id}")
-    public Course[][] getStudentCourseSchedule(@PathVariable String id){
+    public Course[][] getStudentCourseSchedule(@PathVariable String id) {
         Optional<Student> studentById = studentRepository.findById(id);
-        if (studentById.isEmpty()){
+        if (studentById.isEmpty()) {
             return null;
         }
         return studentService.getSchedule(studentById.get().getId());

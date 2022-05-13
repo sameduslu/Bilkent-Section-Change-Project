@@ -1,6 +1,5 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -29,8 +28,8 @@ public class ForumRequest extends Request {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof ForumRequest)){
+    public boolean equals(Object o) {
+        if (!(o instanceof ForumRequest)) {
             return false;
         }
         return this.getRequestOwner().equals(((ForumRequest) o).getRequestOwner()) && this.wantedCourse.equals(((ForumRequest) o).wantedCourse);

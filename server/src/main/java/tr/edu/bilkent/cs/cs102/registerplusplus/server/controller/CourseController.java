@@ -18,14 +18,10 @@ public class CourseController {
         this.repository = repository;
     }
 
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/courses")
     public ResponseEntity<List<Course>> all() {
         return ResponseEntity.ok(repository.findAll());
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/course")
     public Course newItem(@RequestBody Course course) {

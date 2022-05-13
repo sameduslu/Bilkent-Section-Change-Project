@@ -1,6 +1,4 @@
-package client.Forum;
-
-import client.main.ForumRequest;
+package client.main;
 
 public class ForumRequestApproval {
     private ForumRequest forumRequest;

@@ -14,7 +14,6 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorS
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 public class ForumRequestController {
@@ -42,11 +41,11 @@ public class ForumRequestController {
     }
 
     @GetMapping("/forumRequests/{id}")
-    public List<ForumRequest> forStudent(@PathVariable String id){
+    public List<ForumRequest> forStudent(@PathVariable String id) {
         List<ForumRequest> all = all();
         List<ForumRequest> res = new ArrayList<>();
-        for(ForumRequest req : all){
-            if (requestProcessorService.isForumRequestPossible(req, studentRepository.findById(id).get())){
+        for (ForumRequest req : all) {
+            if (requestProcessorService.isForumRequestPossible(req, studentRepository.findById(id).get())) {
                 res.add(req);
             }
         }
@@ -59,14 +58,14 @@ public class ForumRequestController {
         Course wantedCourse = courseRepository.findCourseById(wantedCourseId);
         Course currentCourse = courseRepository.findCourseByStudentsId(requestOwner.getId()).stream().filter(c -> c.getName().equals(wantedCourse.getName())).findAny().get();
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if (!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)){
+        if (!requestProcessorService.isStillValid(wantedCourse, requestOwner, coursesOfStudent)) {
             return "Not compatible";
         }
         ForumRequest check = new ForumRequest();
         check.setRequestOwner(requestOwner);
         check.setWantedCourse(wantedCourse);
         check.setCurrentCourse(currentCourse);
-        if (forumRequestRepository.findForumRequestByRequestOwner_Id(requestOwner.getId()).contains(check)){
+        if (forumRequestRepository.findForumRequestByRequestOwner_Id(requestOwner.getId()).contains(check)) {
             return "Request already exists";
         }
         forumRequestRepository.save(check);
@@ -79,18 +78,17 @@ public class ForumRequestController {
         String acceptorId = forumRequestApproval.getAcceptorId();
         Optional<Student> acceptorById = studentRepository.findById(acceptorId);
         Optional<ForumRequest> forumRequestById = forumRequestRepository.findById(forumRequestId);
-        if (forumRequestById.isEmpty() || acceptorById.isEmpty()){
+        if (forumRequestById.isEmpty() || acceptorById.isEmpty()) {
             return false;
             //return "Bad Request";
         }
 
         ForumRequest forumRequest = forumRequestById.get();
         Student acceptor = acceptorById.get();
-        if (!requestProcessorService.isForumRequestPossible(forumRequest,acceptor)){
+        if (!requestProcessorService.isForumRequestPossible(forumRequest, acceptor)) {
             return false;
         }
         requestProcessorService.processForumRequest(forumRequest, acceptor);
         return true;
-        //return String.format("Forum request id: %s Acceptor id: %s executed", forumRequestId, acceptorId);
     }
 }

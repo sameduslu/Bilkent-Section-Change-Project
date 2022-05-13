@@ -43,9 +43,9 @@ public class SingleRequestController {
 
 
     @PostMapping("/singleRequest")
-    public String newItem(@RequestParam String ownerStudentId, @RequestParam String wantedCourseId){
+    public String newItem(@RequestParam String ownerStudentId, @RequestParam String wantedCourseId) {
         Optional<Student> reqOwnerById = studentRepository.findById(ownerStudentId);
-        if (reqOwnerById.isEmpty()){
+        if (reqOwnerById.isEmpty()) {
             return "Bad Request";
         }
         Student requestOwner = reqOwnerById.get();

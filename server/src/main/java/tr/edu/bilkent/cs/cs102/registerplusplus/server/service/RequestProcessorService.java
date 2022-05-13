@@ -37,12 +37,138 @@ public class RequestProcessorService {
     }
 
     public void processNonForumRequests() {
+//        List<SingleRequest> singleRequests = singleRequestRepository.findAll();
+//        List<MultipleRequest> multipleRequests = multipleRequestRepository.findAll();
+//        Collections.sort(singleRequests);
+//        Collections.sort(multipleRequests);
+//
+//        int i1 = 0, i2 = 0;
+//        while (i1 < singleRequests.size() && i2 < multipleRequests.size()) {
+//            SingleRequest singleRequest = singleRequests.get(i1);
+//            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+//            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
+//            MultipleRequest multipleRequest = multipleRequests.get(i2); //todo deal with duplicates
+//            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+//            List<Course> courses = new ArrayList<>();
+//            for (Course c : multipleRequest.getWantedCourses()) {
+//                courses.add(courseRepository.findCourseById(c.getId()));
+//            }
+//            multipleRequest.setWantedCourses(courses);
+//            if (singleRequest.compareTo(multipleRequest) <= 0) {
+//                if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+//                    singleRequestRepository.delete(singleRequest);
+//                    continue;
+//                }
+//                boolean b = processSingleRequest(singleRequest);
+//                if (b) {
+//                    i1 = 0;
+//                    i2 = 0;
+//                    singleRequests = singleRequestRepository.findAll();
+//                    continue;
+//                }
+//                i1++;
+//            } else {
+//                if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+//                    multipleRequestRepository.delete(multipleRequest);
+//                    continue;
+//                }
+//                boolean b = processMultipleRequest(multipleRequest);
+//                if (b) {
+//                    i1 = 0;
+//                    i2 = 0;
+//                    multipleRequests = multipleRequestRepository.findAll();
+//                    continue;
+//                }
+//                i2++;
+//            }
+//        }
+//        while (i1 < singleRequests.size()) {
+//            SingleRequest singleRequest = singleRequests.get(i1);
+//            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+//            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
+//            if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+//                singleRequestRepository.delete(singleRequest);
+//                continue;
+//            }
+//            boolean b = processSingleRequest(singleRequest);
+//            if (b) {
+//                i1 = 0;
+//                i2 = 0;
+//                singleRequests = singleRequestRepository.findAll();
+//                continue;
+//            }
+//            i1++;
+//        }
+//        while (i2 < multipleRequests.size()) {
+//            MultipleRequest multipleRequest = multipleRequests.get(i2);
+//            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+//            List<Course> courses = new ArrayList<>();
+//            for (Course c : multipleRequest.getWantedCourses()) {
+//                courses.add(courseRepository.findCourseById(c.getId()));
+//
+//            }
+//            multipleRequest.setWantedCourses(courses);
+//            if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+//                multipleRequestRepository.delete(multipleRequest);
+//                continue;
+//            }
+//            boolean b = processMultipleRequest(multipleRequest);
+//            if (b) {
+//                i2 = 0;
+//                multipleRequests = multipleRequestRepository.findAll();
+//                continue;
+//            }
+//            i2++;
+//        }
         List<SingleRequest> singleRequests = singleRequestRepository.findAll();
         List<MultipleRequest> multipleRequests = multipleRequestRepository.findAll();
         Collections.sort(singleRequests);
         Collections.sort(multipleRequests);
         int i1 = 0, i2 = 0;
-        while (i1 < singleRequests.size() && i2 < multipleRequests.size()) {
+        while (i1 < singleRequests.size() || i2 < multipleRequests.size()) {
+            if (i2 >= multipleRequests.size()) {
+                SingleRequest singleRequest = singleRequests.get(i1);
+                singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
+                singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
+                if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
+                    singleRequestRepository.delete(singleRequest);
+                    singleRequests.remove(singleRequest);
+                    continue;
+                }
+                boolean b = processSingleRequest(singleRequest);
+                if (b) {
+                    i1 = 0;
+                    i2 = 0;
+                    singleRequests = singleRequestRepository.findAll();
+                    continue;
+                }
+                i1++;
+                continue;
+            }
+            else if (i1 >= singleRequests.size()) {
+                MultipleRequest multipleRequest = multipleRequests.get(i2);
+                multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
+                List<Course> courses = new ArrayList<>();
+                for (Course c : multipleRequest.getWantedCourses()) {
+                    courses.add(courseRepository.findCourseById(c.getId()));
+
+                }
+                multipleRequest.setWantedCourses(courses);
+                if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
+                    multipleRequestRepository.delete(multipleRequest);
+                    multipleRequests.remove(multipleRequest);
+                    continue;
+                }
+                boolean b = processMultipleRequest(multipleRequest);
+                if (b) {
+                    i1 = 0;
+                    i2 = 0;
+                    multipleRequests = multipleRequestRepository.findAll();
+                    continue;
+                }
+                i2++;
+                continue;
+            }
             SingleRequest singleRequest = singleRequests.get(i1);
             singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
             singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
@@ -57,6 +183,7 @@ public class RequestProcessorService {
             if (singleRequest.compareTo(multipleRequest) <= 0) {
                 if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
+                    singleRequests.remove(singleRequest);
                     continue;
                 }
                 boolean b = processSingleRequest(singleRequest);
@@ -70,6 +197,7 @@ public class RequestProcessorService {
             } else {
                 if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
                     multipleRequestRepository.delete(multipleRequest);
+                    multipleRequests.remove(multipleRequest);
                     continue;
                 }
                 boolean b = processMultipleRequest(multipleRequest);
@@ -81,43 +209,6 @@ public class RequestProcessorService {
                 }
                 i2++;
             }
-        }
-        while (i1 < singleRequests.size()) {
-            SingleRequest singleRequest = singleRequests.get(i1);
-            singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get()); //todo isEmpty check
-            singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
-            if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
-                singleRequestRepository.delete(singleRequest);
-                continue;
-            }
-            boolean b = processSingleRequest(singleRequest);
-            if (b) {
-                i1 = 0;
-                singleRequests = singleRequestRepository.findAll();
-                continue;
-            }
-            i1++;
-        }
-        while (i2 < multipleRequests.size()) {
-            MultipleRequest multipleRequest = multipleRequests.get(i2);
-            multipleRequest.setRequestOwner(studentRepository.findById(multipleRequest.getRequestOwner().getId()).get()); //TODO same
-            List<Course> courses = new ArrayList<>();
-            for (Course c : multipleRequest.getWantedCourses()) {
-                courses.add(courseRepository.findCourseById(c.getId()));
-
-            }
-            multipleRequest.setWantedCourses(courses);
-            if (!isStillValid(multipleRequest.getWantedCourses(), multipleRequest.getRequestOwner(), courseService.getCourseByStudentId(multipleRequest.getRequestOwner()))) {
-                multipleRequestRepository.delete(multipleRequest);
-                continue;
-            }
-            boolean b = processMultipleRequest(multipleRequest);
-            if (b) {
-                i2 = 0;
-                multipleRequests = multipleRequestRepository.findAll();
-                continue;
-            }
-            i2++;
         }
     }
 
@@ -298,7 +389,7 @@ public class RequestProcessorService {
         Course[][] schedule = studentService.getSchedule(acceptor.getId());
         for (int i = 0; i < currentCourseProgram.length; i++) {
             for (int j = 0; j < currentCourseProgram[i].length; j++) {
-                if (schedule[i][j] != null && schedule[i][j].getName().equals(req.getWantedCourse().getName())){
+                if (schedule[i][j] != null && schedule[i][j].getName().equals(req.getWantedCourse().getName())) {
                     continue;
                 }
                 if ((acceptorProgram[i][j] && currentCourseProgram[i][j])) {
@@ -336,8 +427,10 @@ public class RequestProcessorService {
 
     public boolean doesOverlap(Course course, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(course)) return true;
-        boolean[][] studentProgram = student.getProgram();
-        boolean[][] courseProgram = course.getProgram();
+        return checkProgramOverlap(course.getProgram(), student.getProgram());
+    }
+
+    public static boolean checkProgramOverlap(boolean[][] courseProgram, boolean[][] studentProgram) {
         for (int i = 1; i < studentProgram.length; i++) {
             for (int j = 1; j < studentProgram[i].length; j++) {
                 if (studentProgram[i][j] && courseProgram[i][j]) {

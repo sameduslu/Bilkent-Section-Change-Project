@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MultipleRequestRepository extends MongoRepository<MultipleRequest, String> {
 
-    List<MultipleRequest> findMultipleRequestsByRequestOwner_Id(String id); //todo resolve
+    List<MultipleRequest> findMultipleRequestsByRequestOwner_Id(String id);
 }

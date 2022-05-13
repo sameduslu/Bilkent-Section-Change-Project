@@ -16,9 +16,6 @@ public abstract class Person {
 
     @SerializedName("schedule")
     protected Course[][] courseSchedule = new Course[ROW_NUM][COLUMN_NUM];
-    protected boolean[][] program = new boolean[ROW_NUM][COLUMN_NUM];
-
-    protected List<Course> courses = new ArrayList<>();
 
     public Person(String name, String ID) {
         this.name = name;

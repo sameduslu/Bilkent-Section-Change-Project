@@ -17,11 +17,11 @@ import java.util.*;
 public class DatabaseInitializer {
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseInitializer.class);
-    private boolean ctr = false;
+    private final boolean willDo = true;
 
     @Bean
     CommandLineRunner CredentialsInit(CredentialsRepository credentialsRepository, StudentRepository studentRepository) {
-        if (ctr) return args -> {
+        if (willDo) return args -> {
             Scanner in = new Scanner(new File("D:\\cs102\\Bilkent-Section-Change-Project\\JavaApplication1\\src\\main\\resources\\Names_and_IDs_Passwords.txt"));
             while (in.hasNextLine()) {
                 String[] s = in.nextLine().split(" ");
@@ -43,7 +43,7 @@ public class DatabaseInitializer {
 
     @Bean
     CommandLineRunner addCourses(CourseRepository courseRepository) {
-        if (ctr) return args -> {
+        if (willDo) return args -> {
             try {
                 File database = new File("Course_Database.txt");
                 Scanner sc = new Scanner(database);
@@ -88,7 +88,7 @@ public class DatabaseInitializer {
 
     @Bean
     CommandLineRunner studentDistributor(CourseRepository courseRepository, StudentRepository studentRepository, CourseService courseService, RequestProcessorService requestProcessorService) {
-        if (ctr) return args -> {
+        if (willDo) return args -> {
             List<Course> courses = courseRepository.findAll();
             List<Student> students = studentRepository.findAll();
             HashMap<String, ArrayList<Course>> coursesByName = new HashMap<>();
@@ -155,7 +155,7 @@ public class DatabaseInitializer {
                 }
 
                 if (cnt == 1000) {
-                    System.out.println("It is impossible to arrange students!" + i);
+                    System.err.println("Could not arrange students!" + i);
                     break;
                 }
             }
@@ -188,7 +188,7 @@ public class DatabaseInitializer {
             Course add = l.get(i);
             boolean canAdded = true;
             for (int j = 0; j < currentPath.size(); j++) {
-                if (doesOverlap(currentPath.get(j), add)) {
+                if (RequestProcessorService.checkProgramOverlap(currentPath.get(j).getProgram(), add.getProgram())) {
                     canAdded = false;
                     break;
                 }
@@ -206,18 +206,4 @@ public class DatabaseInitializer {
             currentPath.remove(add);
         }
     }
-
-    private boolean doesOverlap(Course c1, Course c2) {
-        boolean[][] program1 = c1.getProgram();
-        boolean[][] program2 = c2.getProgram();
-        for (int i = 1; i < program1.length; i++) {
-            for (int j = 1; j < program1[i].length; j++) {
-                if (program1[i][j] && program2[i][j]) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 }

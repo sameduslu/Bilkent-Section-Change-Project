@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package client.Forum;
 
-
-import client.ResultMessage.Accepted;
-import client.ResultMessage.Denied;
 import client.SchedulePage.SchedulePage;
 import client.SingleMultipleChange.ForumRequestChange;
 import client.main.Connection;
 import client.main.ForumRequest;
+import client.main.ForumRequestApproval;
 import client.main.Student;
 
 import javax.swing.*;
@@ -488,17 +482,7 @@ public class Forum extends javax.swing.JFrame {
 
     private void jForumAcceptButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jForumAcceptButton1ActionPerformed
         // TODO add your handling code here:
-        boolean passed = true;
-        if (passed) {
-            Accepted accept = new Accepted("abc");
-            accept.setLocationRelativeTo(null);
-            accept.setVisible(true);
-        } else {
-            Denied denied = new Denied("bcd");
-            denied.setLocationRelativeTo(null);
-            denied.setVisible(true);
 
-        }
     }//GEN-LAST:event_jForumAcceptButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

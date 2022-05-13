@@ -29,20 +29,18 @@ public class StudentService {
         //Course[][] studentSchedule = dbStudent.getSchedule();
         for (int i = 0; i < studentProgram.length; i++) {
             for (int j = 0; j < studentProgram[i].length; j++) {
-                if (courseProgram[i][j]){
+                if (courseProgram[i][j]) {
                     studentProgram[i][j] = true;
-                    //studentSchedule[i][j] = course;
                 }
             }
         }
-        //dbStudent.setSchedule(studentSchedule);
         dbStudent.setProgram(studentProgram);
         studentRepository.save(dbStudent);
     }
 
     private Student getDBStudentById(Student student) {
         Optional<Student> studentById = studentRepository.findById(student.getId());
-        if (studentById.isEmpty()){
+        if (studentById.isEmpty()) {
             throw new IllegalArgumentException();
         }
         return studentById.get();
@@ -61,7 +59,7 @@ public class StudentService {
         studentRepository.save(dbStudent);
     }
 
-    public Course[][] getSchedule(String id){
+    public Course[][] getSchedule(String id) {
         List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(id);
         Course[][] result = new Course[Person.rowNum][Person.columnNum];
         generateCourseSchedule(coursesOfStudent, result);
@@ -69,11 +67,11 @@ public class StudentService {
     }
 
     private void generateCourseSchedule(List<Course> coursesOfStudent, Course[][] result) {
-        for (Course c : coursesOfStudent){
+        for (Course c : coursesOfStudent) {
             boolean[][] program = c.getProgram();
             for (int i = 0; i < program.length; i++) {
                 for (int j = 0; j < program[i].length; j++) {
-                    if (program[i][j]){
+                    if (program[i][j]) {
                         result[i][j] = c;
                     }
                 }

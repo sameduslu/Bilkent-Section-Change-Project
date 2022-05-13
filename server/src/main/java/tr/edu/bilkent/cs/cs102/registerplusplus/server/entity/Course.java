@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document("course")
-public class Course implements Comparable<Course>{
+public class Course implements Comparable<Course> {
 
     @Id
     private String id;
@@ -71,7 +71,7 @@ public class Course implements Comparable<Course>{
         this.id = id;
     }
 
-    public boolean doesOverlap (Course otherCourse) {
+    public boolean doesOverlap(Course otherCourse) {
         boolean[][] otherProgram = otherCourse.getProgram();
         for (int i = 0; i < program.length; i++) {
             for (int j = 0; j < program[i].length; j++) {

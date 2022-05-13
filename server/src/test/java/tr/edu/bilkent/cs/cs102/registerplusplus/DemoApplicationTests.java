@@ -1,6 +1,5 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus;
 
-import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

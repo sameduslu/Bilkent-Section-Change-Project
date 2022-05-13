@@ -21,8 +21,8 @@ public class MultipleRequest extends Request {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof MultipleRequest)){
+    public boolean equals(Object o) {
+        if (!(o instanceof MultipleRequest)) {
             return false;
         }
         List<Course> otherWantedCourses = ((MultipleRequest) o).wantedCourses;
