@@ -8,7 +8,6 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.ArrayList;
@@ -21,16 +20,13 @@ public class ForumRequestController {
 
     private final StudentRepository studentRepository;
 
-    private final CourseService courseService; // todo why not remove
-
     private final CourseRepository courseRepository;
 
     private final RequestProcessorService requestProcessorService;
 
-    public ForumRequestController(ForumRequestRepository forumRequestRepository, StudentRepository studentRepository, CourseService courseService, CourseRepository courseRepository, RequestProcessorService requestProcessorService) {
+    public ForumRequestController(ForumRequestRepository forumRequestRepository, StudentRepository studentRepository, CourseRepository courseRepository, RequestProcessorService requestProcessorService) {
         this.forumRequestRepository = forumRequestRepository;
         this.studentRepository = studentRepository;
-        this.courseService = courseService;
         this.courseRepository = courseRepository;
         this.requestProcessorService = requestProcessorService;
     }
@@ -80,7 +76,6 @@ public class ForumRequestController {
         Optional<ForumRequest> forumRequestById = forumRequestRepository.findById(forumRequestId);
         if (forumRequestById.isEmpty() || acceptorById.isEmpty()) {
             return false;
-            //return "Bad Request";
         }
 
         ForumRequest forumRequest = forumRequestById.get();

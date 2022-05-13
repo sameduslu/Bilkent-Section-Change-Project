@@ -20,7 +20,6 @@ import java.util.Optional;
 public class SingleRequestController {
 
     private final SingleRequestRepository singleRequestRepository;
-    private final CourseService courseService; //todo why not remove
 
     private final RequestProcessorService requestProcessorService;
 
@@ -28,9 +27,8 @@ public class SingleRequestController {
 
     private final StudentRepository studentRepository;
 
-    SingleRequestController(SingleRequestRepository singleRequestRepository, CourseService courseService, RequestProcessorService requestProcessorService, CourseRepository courseRepository, StudentRepository studentRepository) {
+    SingleRequestController(SingleRequestRepository singleRequestRepository, RequestProcessorService requestProcessorService, CourseRepository courseRepository, StudentRepository studentRepository) {
         this.singleRequestRepository = singleRequestRepository;
-        this.courseService = courseService;
         this.requestProcessorService = requestProcessorService;
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;

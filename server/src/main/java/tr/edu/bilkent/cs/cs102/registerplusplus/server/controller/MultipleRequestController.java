@@ -10,7 +10,6 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
 
 import java.util.*;
@@ -19,17 +18,14 @@ import java.util.*;
 public class MultipleRequestController {
     private final MultipleRequestRepository multipleRequestRepository;
 
-    private final CourseService courseService; //todo why not remove
-
     private final CourseRepository courseRepository;
 
     private final RequestProcessorService requestProcessorService;
 
     private final StudentRepository studentRepository;
 
-    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseService courseService, CourseRepository courseRepository, RequestProcessorService requestProcessorService, StudentRepository studentRepository) {
+    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseRepository courseRepository, RequestProcessorService requestProcessorService, StudentRepository studentRepository) {
         this.multipleRequestRepository = multipleRequestRepository;
-        this.courseService = courseService;
         this.courseRepository = courseRepository;
         this.requestProcessorService = requestProcessorService;
         this.studentRepository = studentRepository;

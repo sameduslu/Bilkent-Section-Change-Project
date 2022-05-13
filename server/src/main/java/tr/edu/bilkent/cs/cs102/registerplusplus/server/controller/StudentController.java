@@ -3,7 +3,6 @@ package tr.edu.bilkent.cs.cs102.registerplusplus.server.controller;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.StudentService;
 
@@ -14,13 +13,10 @@ import java.util.Optional;
 public class StudentController {
     private final StudentRepository studentRepository;
 
-    private final CourseRepository courseRepository;
-
     private final StudentService studentService;
 
-    StudentController(StudentRepository repository, CourseRepository courseRepository, StudentService studentService) {
+    StudentController(StudentRepository repository, StudentService studentService) {
         this.studentRepository = repository;
-        this.courseRepository = courseRepository;
         this.studentService = studentService;
     }
 
@@ -46,7 +42,6 @@ public class StudentController {
         }
         return studentService.getSchedule(studentById.get().getId());
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/student")
     public Student newItem(@RequestBody Student student) {

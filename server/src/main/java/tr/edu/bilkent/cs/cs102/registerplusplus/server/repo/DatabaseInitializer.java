@@ -73,7 +73,6 @@ public class DatabaseInitializer {
                     lesson.setProgram(program);
                     lesson.setInstructor(instructor);
                     lesson.setSection(section);
-                    //instructor.addCourse(lesson); TODO
                     courseRepository.save(lesson);
                     id++;
                 }

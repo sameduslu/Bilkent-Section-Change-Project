@@ -13,7 +13,7 @@ public interface CourseRepository extends MongoRepository<Course, String> {
     Course findCourseById(String id);
 
     @Query(value = "{category:'?0'}", fields = "{'name' : 1, 'quantity' : 1}")
-    List<Course> findAll(String category); // todo never used
+    List<Course> findAll(String category);
 
     List<Course> findCourseByStudentsId(String id);
 }
