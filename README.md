@@ -10,7 +10,7 @@ Server requires mongodb as the database. To run mongodb on your local, follow th
 
    * Install docker
    * On a terminal, run `docker volume create mongodbdata`
-   * Chenge directory to `server/docker`
+   * Change directory to `server/docker`
    * run `docker compose up -d mongo`
 
 Those commands should run mongodb on the default port of mongo database.
