@@ -10,7 +10,7 @@ Server requires mongodb as the database. To run mongodb on your local, follow th
 
    * Install docker
    * On a terminal, run `docker volume create mongodbdata`
-   * Chenge directory to `server/docker`
+   * Change directory to `server/docker`
    * run `docker compose up -d mongo`
 
 Those commands should run mongodb on the default port of mongo database.
@@ -23,3 +23,6 @@ To compile the server sources, we have used maven. Run the following commands to
 
 In the development and test environments of the server codes, we used JDK 13. We have not tested against other versions. If you want to use another version, use at your own risk.
 Although, we think that JDK 9-17 range should work fine.
+
+### Client
+WARNING: YOU MUST CHANGE THE PATHS OF THE IMAGES IN THE SOURCE TO COMPILE THE CODES IN THE CLIENT APP
