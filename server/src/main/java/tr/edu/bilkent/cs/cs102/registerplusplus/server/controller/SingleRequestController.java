@@ -10,8 +10,7 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.SingleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.RequestProcessorService;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +38,12 @@ public class SingleRequestController {
         return singleRequestRepository.findAll();
     }
 
-
+    /**
+     * Adds request to the single request database if it is valid and sends an order to execute the requests in the database.
+     * @param ownerStudentId the owner id
+     * @param wantedCourseId the wanted course of the request
+     * @return the http response
+     */
     @PostMapping("/singleRequest")
     public String newItem(@RequestParam String ownerStudentId, @RequestParam String wantedCourseId) {
         Optional<Student> reqOwnerById = studentRepository.findById(ownerStudentId);

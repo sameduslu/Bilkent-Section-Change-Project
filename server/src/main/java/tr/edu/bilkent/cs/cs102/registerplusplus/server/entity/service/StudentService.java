@@ -1,4 +1,4 @@
-package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
+package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service;
 
 import org.springframework.stereotype.Service;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;

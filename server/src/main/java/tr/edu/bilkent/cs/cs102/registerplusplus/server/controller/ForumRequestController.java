@@ -8,7 +8,7 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.ForumRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.RequestProcessorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +36,11 @@ public class ForumRequestController {
         return forumRequestRepository.findAll();
     }
 
+    /**
+     * Finds the forum requests which the incoming id's owner can accept and returns it as a response.
+     * @param id the incoming acceptor's id
+     * @return the list of found forum requests
+     */
     @GetMapping("/forumRequests/{id}")
     public List<ForumRequest> forStudent(@PathVariable String id) {
         List<ForumRequest> all = all();
@@ -48,6 +53,12 @@ public class ForumRequestController {
         return res;
     }
 
+    /**
+     * Adds the course to the forum database if it is valid
+     * @param studentId the owner's id
+     * @param wantedCourseId the wanted course's id
+     * @return the response to the http request
+     */
     @PostMapping("/forumRequest")
     public String newItem(@RequestParam String studentId, @RequestParam String wantedCourseId) {
         Student requestOwner = studentRepository.findById(studentId).get();
@@ -68,6 +79,11 @@ public class ForumRequestController {
         return "Saved";
     }
 
+    /**
+     * If the incoming acceptor is valid for the forum request, sends an order to execute the forum request
+     * @param forumRequestApproval the object that contains information about the approval of the request
+     * @return the validity
+     */
     @PostMapping("/forumRequest-approval")
     public boolean approve(@RequestBody ForumRequestApproval forumRequestApproval) {
         String forumRequestId = forumRequestApproval.getForumRequest().getId();

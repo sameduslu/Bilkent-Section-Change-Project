@@ -6,8 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.CourseService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.RequestProcessorService;
 
 import java.io.File;
 import java.io.FileNotFoundException;

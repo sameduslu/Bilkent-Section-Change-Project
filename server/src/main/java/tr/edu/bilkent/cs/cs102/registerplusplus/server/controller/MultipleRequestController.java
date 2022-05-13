@@ -10,7 +10,7 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.RequestProcessorService;
 
 import java.util.*;
 
@@ -36,6 +36,11 @@ public class MultipleRequestController {
         return multipleRequestRepository.findAll();
     }
 
+    /**
+     * Adds request to the multiple request database if it is valid and sends an order to execute the requests in the database.
+     * @param multipleRequest the incoming request
+     * @return the http response.
+     */
     @PostMapping("/multipleRequest")
     public String newItem(@RequestBody MultipleRequest multipleRequest) {
         Optional<Student> reqOwnerById = studentRepository.findById(multipleRequest.getRequestOwner().getId());

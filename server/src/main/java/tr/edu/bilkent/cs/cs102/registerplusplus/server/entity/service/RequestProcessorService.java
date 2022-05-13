@@ -1,4 +1,4 @@
-package tr.edu.bilkent.cs.cs102.registerplusplus.server.service;
+package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service;
 
 import org.springframework.stereotype.Service;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.*;
@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The class that has the methods to process every operation about the execution of the requests.
+ */
 @Service
 public class RequestProcessorService {
 
@@ -36,22 +39,33 @@ public class RequestProcessorService {
         this.studentRepository = studentRepository;
     }
 
+    /**
+     * This method first loads the non-forum requests from the database with the repository, and traverses through the
+     * ordered lists of multiple and single requests. Lists are ordered with respect to the creation times of the
+     * requests.
+     */
     public void processNonForumRequests() {
-        List<SingleRequest> singleRequests = singleRequestRepository.findAll();
-        List<MultipleRequest> multipleRequests = multipleRequestRepository.findAll();
-        Collections.sort(singleRequests);
-        Collections.sort(multipleRequests);
+        List<SingleRequest> singleRequests = singleRequestRepository.findAll(); //pull from db
+        List<MultipleRequest> multipleRequests = multipleRequestRepository.findAll(); //pull from db
+        Collections.sort(singleRequests); //sort
+        Collections.sort(multipleRequests); //sort
+
+        // A mergesort's-merge-like loop to traverse on the lists at the same time
+        // Processes every possible requests till it is impossible to find any processable request at the beginnings.
         int i1 = 0, i2 = 0;
         while (i1 < singleRequests.size() || i2 < multipleRequests.size()) {
             if (i2 >= multipleRequests.size()) {
                 SingleRequest singleRequest = singleRequests.get(i1);
                 singleRequest.setRequestOwner(studentRepository.findById(singleRequest.getRequestOwner().getId()).get());
                 singleRequest.setWantedCourse(courseRepository.findCourseById(singleRequest.getWantedCourse().getId()));
+                // If request is no longer valid, delete it from the list and the db.
                 if (!isStillValid(singleRequest.getWantedCourse(), singleRequest.getRequestOwner(), courseService.getCourseByStudentId(singleRequest.getRequestOwner()))) {
                     singleRequestRepository.delete(singleRequest);
                     singleRequests.remove(singleRequest);
                     continue;
                 }
+                // Process the request if possible and turn to the beginning, as there is now a chance to
+                // execute the previous ones.
                 boolean b = processSingleRequest(singleRequest);
                 if (b) {
                     i1 = 0;
@@ -129,14 +143,15 @@ public class RequestProcessorService {
         }
     }
 
+    /**
+     * Places the student in the course and deletes the request.
+     * @param req The single request to be executed
+     * @return whether it is executed
+     */
     private boolean processSingleRequest(SingleRequest req) {
         Student owner = req.getRequestOwner();
         List<Course> courseByStudentId = courseService.getCourseByStudentId(owner);
         Course wanted = req.getWantedCourse();
-        /*if (courseByStudentId.contains(wanted)) {
-            singleRequestRepository.delete(req);
-            return true;
-        }*/
         if (Course.isFull(wanted)) return false;
 
         if (doesStudentTakeCourse(wanted, courseByStudentId)) {
@@ -145,6 +160,12 @@ public class RequestProcessorService {
         return processNewCourseRequest(req, courseByStudentId);
     }
 
+    /**
+     * Adds the student in the new course and deletes the request.
+     * @param req The single request to be executed
+     * @param courseByStudentId All courses of the request owner
+     * @return whether the request is executed
+     */
     private boolean processNewCourseRequest(SingleRequest req, List<Course> courseByStudentId) {
 
         Student owner = req.getRequestOwner();
@@ -159,6 +180,12 @@ public class RequestProcessorService {
         return true;
     }
 
+    /**
+     * Changes the section of the student and deletes the request.
+     * @param req The single request to be executed
+     * @param courseByStudentId All courses of the request owner
+     * @return whether the request is executed
+     */
     private boolean processSectionChangeRequest(SingleRequest req, List<Course> courseByStudentId) {
         Student owner = req.getRequestOwner();
         Course wanted = req.getWantedCourse();
@@ -169,6 +196,12 @@ public class RequestProcessorService {
         updateForumRequests(req.getRequestOwner());
         return true;
     }
+
+    /**
+     * Places the student in the wanted courses and deletes the request.
+     * @param req The single request to be executed
+     * @return whether it is executed
+     */
     private boolean processMultipleRequest(MultipleRequest req) {
         List<Course> wantedCourses = req.getWantedCourses();
         Student owner = req.getRequestOwner();
@@ -196,6 +229,11 @@ public class RequestProcessorService {
         return true;
     }
 
+    /**
+     * When there is a change in the requests, this method is called to re-check the forum requests' validity
+     * of the request owner. Deletes the invalid forum requests.
+     * @param requestOwner the student
+     */
     private void updateForumRequests(Student requestOwner) {
         List<ForumRequest> requests = forumRequestRepository.findForumRequestByRequestOwner_Id(requestOwner.getId());
         List<Course> courses = courseRepository.findCourseByStudentsId(requestOwner.getId());
@@ -206,25 +244,13 @@ public class RequestProcessorService {
         }
     }
 
-//    public boolean processForumRequest(ForumRequest req, Student acceptor) {
-//        if (!isForumRequestPossible(req, acceptor)) {
-//            return false;
-//        }
-//        Student owner = studentRepository.findById(req.getRequestOwner().getId()).get();
-//        acceptor = studentRepository.findById(acceptor.getId()).get();
-//        Course ownerCourse = courseRepository.findCourseById(req.getCurrentCourse().getId());
-//        Course wantedCourse = courseRepository.findCourseById(req.getWantedCourse().getId());
-//        courseService.removeStudentFromCourse(owner, ownerCourse);
-//        courseService.removeStudentFromCourse(acceptor, wantedCourse);
-//        courseService.addStudentToCourse(owner, wantedCourse);
-//        courseService.addStudentToCourse(acceptor, ownerCourse);
-//        forumRequestRepository.delete(req);
-//        updateForumRequests(owner);
-//        updateForumRequests(acceptor);
-//        processNonForumRequests();
-//        return true;
-//    }
 
+    /**
+     * Executes the forum requests and swaps the sections of owner and acceptor.
+     * @param req The request to be executed
+     * @param acceptor the acceptor of the request
+     * @return whether the request is executed
+     */
     public boolean processForumRequest(ForumRequest req, Student acceptor) {
         acceptor = studentRepository.findById(acceptor.getId()).get();
         req.setRequestOwner(studentRepository.findById(req.getRequestOwner().getId()).get());
@@ -250,7 +276,6 @@ public class RequestProcessorService {
         boolean b = courseRepository.findCourseByStudentsId(acceptor.getId()).contains(req.getWantedCourse());
         boolean[][] acceptorProgram = cloneProgramOfStudent(acceptor);
         boolean[][] currentCourseProgram = req.getCurrentCourse().getProgram();
-        //removeCourseFromTempProgram(req.getWantedCourse(), acceptorProgram);
         Course[][] schedule = studentService.getSchedule(acceptor.getId());
         for (int i = 0; i < currentCourseProgram.length; i++) {
             for (int j = 0; j < currentCourseProgram[i].length; j++) {
@@ -274,17 +299,6 @@ public class RequestProcessorService {
         return tempProgram;
     }
 
-    private void removeCourseFromTempProgram(Course course, boolean[][] tempProgram) {
-        boolean[][] courseProgram = course.getProgram();
-        for (int i = 0; i < courseProgram.length; i++) {
-            for (int j = 0; j < courseProgram[i].length; j++) {
-                if (courseProgram[i][j]) {
-                    tempProgram[i][j] = false;
-                }
-            }
-        }
-    }
-
     private boolean doesStudentTakeCourse(Course wanted, List<Course> coursesByStudentId) {
         return coursesByStudentId.stream().anyMatch(c -> c.getName().equals(wanted.getName()));
     }
@@ -306,6 +320,13 @@ public class RequestProcessorService {
         return false;
     }
 
+    /**
+     * Checks the validity of the single section request
+     * @param wantedCourse the wanted course of the request
+     * @param student the request owner
+     * @param coursesOfStudent the courses of the request owner
+     * @return the validity
+     */
     public boolean isStillValid(Course wantedCourse, Student student, List<Course> coursesOfStudent) {
         if (coursesOfStudent.contains(wantedCourse)) return false;
         boolean[][] studentProgram = student.getProgram();
@@ -324,6 +345,13 @@ public class RequestProcessorService {
         return true;
     }
 
+    /**
+     * Checks the validity of the multiple section request
+     * @param wantedCourses the wanted courses of the request
+     * @param student the request owner
+     * @param coursesOfStudent the courses of the request owner
+     * @return the validity
+     */
     public static boolean isStillValid(List<Course> wantedCourses, Student student, List<Course> coursesOfStudent) {
         List<Course> noIncluded = new ArrayList<>();
 

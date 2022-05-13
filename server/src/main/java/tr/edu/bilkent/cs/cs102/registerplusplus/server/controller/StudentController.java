@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Course;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.StudentService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.StudentService;
 
 import java.util.List;
 import java.util.Optional;
