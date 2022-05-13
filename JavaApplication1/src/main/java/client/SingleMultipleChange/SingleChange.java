@@ -42,7 +42,6 @@ public class SingleChange extends javax.swing.JFrame {
             }
         });
         for (Course c : courses) {
-            System.out.println(c.getId());
             JButton button = new JButton(c.getId());
             button.setBackground(new Color(220, 172, 146));
             button.setFont(new Font("Bahnschrift", 1, 24));

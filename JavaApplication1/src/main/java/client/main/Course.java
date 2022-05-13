@@ -2,11 +2,6 @@ package client.main;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
-/**
- * Course
- */
 public class Course {
     @SerializedName("name")
     private final String name;

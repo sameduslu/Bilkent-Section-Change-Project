@@ -47,8 +47,7 @@ public class LoginPage extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
                     jButtonLoginMouseClicked();
-                } catch (RuntimeException e) {
-                    e.printStackTrace();
+                } catch (RuntimeException ignored) {
                 }
             }
         });

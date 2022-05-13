@@ -33,8 +33,7 @@ public class Connection {
             CloseableHttpResponse response = client.execute(req);
             jsonString = EntityUtils.toString(response.getEntity());
             response.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
 
         return json.fromJson(jsonString, Boolean.class);
@@ -47,8 +46,7 @@ public class Connection {
                     new BasicNameValuePair("ownerStudentId", ownerStudentId),
                     new BasicNameValuePair("wantedCourseId", wantedCourseId))));
             client.execute(post).close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 
@@ -59,8 +57,7 @@ public class Connection {
                     new BasicNameValuePair("studentId", forumRequest.getRequestOwner().getId()),
                     new BasicNameValuePair("wantedCourseId", forumRequest.getWantedCourse().getId()))));
             client.execute(post).close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 
@@ -73,8 +70,7 @@ public class Connection {
             Course[] a = json.fromJson(jsonString, Course[].class);
             courses = Arrays.asList(a);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         return courses;
     }
@@ -118,8 +114,7 @@ public class Connection {
             post.setEntity(new StringEntity(jsonString));
             CloseableHttpResponse resp = client.execute(post);
             resp.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 
@@ -127,8 +122,7 @@ public class Connection {
         String jsonString = null;
         try {
             jsonString = getRequest(new HttpGet(ipAddress + "/forumRequests/" + studentId));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         return Arrays.asList(json.fromJson(jsonString, ForumRequest[].class));
     }
@@ -138,8 +132,7 @@ public class Connection {
         try {
             HttpGet request = new HttpGet(ipAddress + "/student/" + id);
             json1 = getRequest(request);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         Student s = json.fromJson(json1, Student.class);
         s.setCourseSchedule(Connection.getStudentCourseSchedule(s.getId()));
