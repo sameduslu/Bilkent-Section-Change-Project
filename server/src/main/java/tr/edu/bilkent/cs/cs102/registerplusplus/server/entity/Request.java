@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public abstract class Request implements Comparable<Request> {
     @Id
-    private String id;
+    protected String id;
 
     @DBRef
     private Student requestOwner;

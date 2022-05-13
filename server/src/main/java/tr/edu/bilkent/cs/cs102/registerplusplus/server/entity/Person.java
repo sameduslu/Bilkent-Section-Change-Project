@@ -12,8 +12,6 @@ public abstract class Person {
 
     protected boolean[][] program = new boolean[rowNum][columnNum];
 
-    private Course[][] schedule2D = new Course[rowNum][columnNum];
-
     public Person(String name, String id) {
         this.name = name;
         this.id = id;
@@ -41,13 +39,5 @@ public abstract class Person {
 
     public void setProgram(boolean[][] program) {
         this.program = program;
-    }
-
-    public void setSchedule(Course[][] sch) {
-        this.schedule2D = sch;
-    }
-
-    public Course[][] getSchedule() {
-        return schedule2D;
     }
 }

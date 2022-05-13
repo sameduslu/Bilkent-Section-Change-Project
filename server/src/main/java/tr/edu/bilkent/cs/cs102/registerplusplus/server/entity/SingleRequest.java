@@ -17,8 +17,8 @@ public class SingleRequest extends Request {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof SingleRequest)){
+    public boolean equals(Object o) {
+        if (!(o instanceof SingleRequest)) {
             return false;
         }
         return this.getRequestOwner().equals(((SingleRequest) o).getRequestOwner()) && this.wantedCourse.equals(((SingleRequest) o).wantedCourse);

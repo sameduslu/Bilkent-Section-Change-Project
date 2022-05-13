@@ -1,6 +1,8 @@
-public class Instructor extends Person{
+package client.main;
 
-    public Instructor(String name, String ID){
+public class Instructor extends Person {
+
+    public Instructor(String name, String ID) {
         super(name, ID);
     }
 
@@ -8,16 +10,16 @@ public class Instructor extends Person{
         return name;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public void setID(String iD) {
-        ID = iD;
+        id = iD;
     }
-    
+
 }

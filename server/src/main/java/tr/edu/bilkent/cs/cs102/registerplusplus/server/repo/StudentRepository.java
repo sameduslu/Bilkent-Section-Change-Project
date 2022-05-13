@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends MongoRepository<Student, String> {
-
     @Query("{id:'?0'}")
     Optional<Student> findById(String id);
 }

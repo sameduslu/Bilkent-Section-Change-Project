@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface ForumRequestRepository extends MongoRepository<ForumRequest, String> {
     Optional<ForumRequest> findById(String id);
 
-    List<ForumRequest> findForumRequestByRequestOwner_Id(String id); //todo resolve
+    List<ForumRequest> findForumRequestByRequestOwner_Id(String id);
 }

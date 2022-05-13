@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("forumRequest")
 public class ForumRequest extends Request {
-
     @DBRef
     private Course wantedCourse;
 
@@ -29,8 +28,8 @@ public class ForumRequest extends Request {
     }
 
     @Override
-    public boolean equals(Object o){
-        if (!(o instanceof ForumRequest)){
+    public boolean equals(Object o) {
+        if (!(o instanceof ForumRequest)) {
             return false;
         }
         return this.getRequestOwner().equals(((ForumRequest) o).getRequestOwner()) && this.wantedCourse.equals(((ForumRequest) o).wantedCourse);
