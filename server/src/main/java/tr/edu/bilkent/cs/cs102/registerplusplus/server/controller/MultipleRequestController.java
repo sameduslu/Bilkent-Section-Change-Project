@@ -10,19 +10,13 @@ import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.Student;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.CourseRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.MultipleRequestRepository;
 import tr.edu.bilkent.cs.cs102.registerplusplus.server.repo.StudentRepository;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.CourseService;
-import tr.edu.bilkent.cs.cs102.registerplusplus.server.service.RequestProcessorService;
+import tr.edu.bilkent.cs.cs102.registerplusplus.server.entity.service.RequestProcessorService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class MultipleRequestController {
     private final MultipleRequestRepository multipleRequestRepository;
-
-    private final CourseService courseService; //todo why not remove
 
     private final CourseRepository courseRepository;
 
@@ -30,9 +24,8 @@ public class MultipleRequestController {
 
     private final StudentRepository studentRepository;
 
-    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseService courseService, CourseRepository courseRepository, RequestProcessorService requestProcessorService, StudentRepository studentRepository) {
+    public MultipleRequestController(MultipleRequestRepository multipleRequestRepository, CourseRepository courseRepository, RequestProcessorService requestProcessorService, StudentRepository studentRepository) {
         this.multipleRequestRepository = multipleRequestRepository;
-        this.courseService = courseService;
         this.courseRepository = courseRepository;
         this.requestProcessorService = requestProcessorService;
         this.studentRepository = studentRepository;
@@ -43,29 +36,43 @@ public class MultipleRequestController {
         return multipleRequestRepository.findAll();
     }
 
+    /**
+     * Adds request to the multiple request database if it is valid and sends an order to execute the requests in the database.
+     * @param multipleRequest the incoming request
+     * @return the http response.
+     */
     @PostMapping("/multipleRequest")
     public String newItem(@RequestBody MultipleRequest multipleRequest) {
         Optional<Student> reqOwnerById = studentRepository.findById(multipleRequest.getRequestOwner().getId());
-        if (reqOwnerById.isEmpty()){
+        if (reqOwnerById.isEmpty()) {
             return "Bad Request";
         }
-        Student requestOwner = reqOwnerById.get();
-        List<Course> coursesOfStudent = courseRepository.findCourseByStudentsId(requestOwner.getId());
-        if(!requestProcessorService.isStillValid(multipleRequest.getWantedCourses(), requestOwner, coursesOfStudent)){
+        Student dbOwner = reqOwnerById.get();
+        List<Course> courses = multipleRequest.getWantedCourses();
+        List<Course> dbCourses = new ArrayList<>();
+        for (Course c : courses) {
+            dbCourses.add(courseRepository.findCourseById(c.getId()));
+        }
+        if (!RequestProcessorService.isStillValid(dbCourses, dbOwner, courseRepository.findCourseByStudentsId(dbOwner.getId()))) {
             return "Not compatible";
         }
-        if (multipleRequestRepository.findMultipleRequestsByRequestOwner_Id(requestOwner.getId()).contains(multipleRequest)){
+        if (multipleRequestRepository.findMultipleRequestsByRequestOwner_Id(dbOwner.getId()).contains(multipleRequest)) {
             return "Request already exists";
         }
+
         Set<String> saved = new HashSet<>();
-        for (Course course : multipleRequest.getWantedCourses()){
+        for (Course course : dbCourses) {
             String name = course.getName();
-            if (saved.contains(name)){
+            if (saved.contains(name)) {
                 return "Invalid request";
             }
             saved.add(name);
         }
-        MultipleRequest save = multipleRequestRepository.save(multipleRequest);
+
+        MultipleRequest dbReq = new MultipleRequest();
+        dbReq.setRequestOwner(dbOwner);
+        dbReq.setWantedCourses(dbCourses);
+        multipleRequestRepository.save(dbReq);
         requestProcessorService.processNonForumRequests();
         return "Saved.";
     }

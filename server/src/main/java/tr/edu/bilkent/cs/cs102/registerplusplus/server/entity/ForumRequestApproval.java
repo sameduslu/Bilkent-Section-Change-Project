@@ -1,15 +1,20 @@
 package tr.edu.bilkent.cs.cs102.registerplusplus.server.entity;
 
 public class ForumRequestApproval {
-    private String forumRequestId;
+    private ForumRequest forumRequest;
     private String acceptorId;
 
-    public String getForumRequestId() {
-        return forumRequestId;
+    public ForumRequestApproval(ForumRequest forumRequest, String acceptorId) {
+        this.forumRequest = forumRequest;
+        this.acceptorId = acceptorId;
     }
 
-    public void setForumRequestId(String forumRequestId) {
-        this.forumRequestId = forumRequestId;
+    public ForumRequest getForumRequest() {
+        return forumRequest;
+    }
+
+    public void setForumRequest(ForumRequest forumRequest) {
+        this.forumRequest = forumRequest;
     }
 
     public String getAcceptorId() {

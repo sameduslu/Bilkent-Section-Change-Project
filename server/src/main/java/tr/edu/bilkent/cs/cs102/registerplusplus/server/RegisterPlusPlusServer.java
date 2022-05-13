@@ -9,5 +9,4 @@ public class RegisterPlusPlusServer {
     public static void main(String[] args) {
         SpringApplication.run(RegisterPlusPlusServer.class, args);
     }
-
 }

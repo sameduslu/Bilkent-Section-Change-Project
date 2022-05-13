@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document("course")
-public class Course implements Comparable<Course>{
+public class Course implements Comparable<Course> {
 
     @Id
     private String id;
@@ -21,7 +21,7 @@ public class Course implements Comparable<Course>{
     @DBRef
     private Instructor instructor;
 
-    public static final int QUOTA = 5;
+    public static final int QUOTA = 25;
 
     public String getName() {
         return name;
@@ -71,7 +71,7 @@ public class Course implements Comparable<Course>{
         this.id = id;
     }
 
-    public boolean doesOverlap (Course otherCourse) {
+    public boolean doesOverlap(Course otherCourse) {
         boolean[][] otherProgram = otherCourse.getProgram();
         for (int i = 0; i < program.length; i++) {
             for (int j = 0; j < program[i].length; j++) {
@@ -81,6 +81,10 @@ public class Course implements Comparable<Course>{
             }
         }
         return false;
+    }
+
+    public static boolean isFull(Course c) {
+        return c.students.size() >= QUOTA;
     }
 
     @Override
