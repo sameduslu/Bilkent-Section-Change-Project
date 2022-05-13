@@ -23,3 +23,6 @@ To compile the server sources, we have used maven. Run the following commands to
 
 In the development and test environments of the server codes, we used JDK 13. We have not tested against other versions. If you want to use another version, use at your own risk.
 Although, we think that JDK 9-17 range should work fine.
+
+### Client
+WARNING: YOU MUST CHANGE THE PATHS OF THE IMAGES IN THE SOURCE TO COMPILE THE CODES IN THE CLIENT APP
